@@ -1,0 +1,191 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class Auth extends CI_Controller {
+
+	public function login()
+	{
+		if(($this->session->userdata('id'))==NULL){
+			$this->load->view('auth/login');
+		}else{
+			$cek = $this->Main_model->getSelectedData('user_to_role a', 'b.route', array('a.user_id'=>$this->session->userdata('id'),'b.deleted'=>'0'), "",'','','',array(
+				'table' => 'user_role b',
+				'on' => 'a.role_id=b.id',
+				'pos' => 'left',
+			))->result();
+			if($cek!=NULL){
+				foreach ($cek as $key => $value) {
+					redirect($value->route);
+				}
+			}
+			else{
+				$this->load->view('auth/login');
+			}
+		}
+	}
+	public function login_process(){
+		$cek = $this->Main_model->getSelectedData('user a', '*', array("a.username" => $this->input->post('username'), "a.is_active" => '1', 'deleted' => '0'), 'a.username ASC','','','','')->result();
+		if($cek!=NULL){
+			$cek2 = $this->Main_model->getSelectedData('user a', '*', array("a.username" => $this->input->post('username'),'pass' => $this->input->post('password'), "a.is_active" => '1', 'deleted' => '0'), 'a.username ASC','','','','')->result();
+			if($cek2!=NULL){
+				foreach ($cek as $key => $value) {
+					$total_login = ($value->total_login)+1;
+					$login_attempts = ($value->login_attempts)+1;
+					$data_log = array(
+						'total_login' => $total_login,
+						'last_login' => date('Y-m-d H-i-s'),
+						'last_activity' => date('Y-m-d H-i-s'),
+						'login_attempts' => $login_attempts,
+						'last_login_attempt' => date('Y-m-d H-i-s'),
+						'ip_address' => $this->input->ip_address()
+					);
+					$this->Main_model->updateData('user',$data_log,array('id'=>$value->id));
+					$this->Main_model->log_activity($value->id,'Login to system','Login via web browser',$this->input->post('location'));
+					$role = $this->Main_model->getSelectedData('user_to_role a', 'b.route,a.user_id', array('a.user_id'=>$value->id,'b.deleted'=>'0'), "",'','','',array(
+						'table' => 'user_role b',
+						'on' => 'a.role_id=b.id',
+						'pos' => 'left',
+					))->result();
+					if($role==NULL){
+						$this->session->set_flashdata('error','<div class="alert alert-danger alert-dismissible" role="alert" style="text-align: justify;">
+															<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+															<strong>Ups! </strong>Akun Anda tidak dikenali sistem.
+														</div>' );
+						echo "<script>window.location='".base_url()."'</script>";
+					}else{
+						foreach ($role as $key => $value2) {
+							$sess_data['id'] = $value2->user_id;
+							$this->session->set_userdata($sess_data);
+							redirect($value2->route);
+						}
+					}
+				}
+			}else{
+				foreach ($cek as $key => $value) {
+					$login_attempts = ($value->login_attempts)+1;
+					$data_log = array(
+						'login_attempts' => $login_attempts,
+						'last_login_attempts' => date('Y-m-d H-i-s')
+					);
+					$this->Main_model->updateData('user',$data_log,array('id'=>$value->id));
+					$this->session->set_flashdata('error','<div class="alert alert-danger alert-dismissible" role="alert" style="text-align: justify;">
+													<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+													<strong>Ups! </strong>Password yg Anda masukkan tidak valid.
+												</div>' );
+					echo "<script>window.location='".base_url()."'</script>";
+				}
+			}
+		}
+		else{
+			$this->session->set_flashdata('error','<div class="alert alert-danger alert-dismissible" role="alert" style="text-align: justify;">
+											<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+											<strong>Ups! </strong>Username/ Email yang Anda masukkan tidak terdaftar.
+										</div>' );
+			echo "<script>window.location='".base_url()."'</script>";
+		}
+	}
+	public function register(){
+		$where = array(
+			'email' => $this->input->post('email'),
+			'deleted' => '0'
+		);
+		$cek = $this->Main_model->getSelectedData('user',$where);
+		if($cek!=NULL){
+			$this->session->set_flashdata('error','<div class="alert alert-danger alert-dismissible" role="alert" style="text-align: justify;">
+													<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+													<strong>Ups! </strong>Akun ini telah digunakan.
+												</div>' );
+			echo "<script>window.location='".base_url()."'</script>";
+		}
+		else{
+			$data1 = array(
+				'email' => $this->input->post('email'),
+				'password' => $this->input->post('password'),
+				'role' => 'semi_peserta'
+			);
+			$this->Main_model->insertData('user',$data1);
+			$getdatauser = $this->Main_model->getSelectedData('user',$where);
+			foreach ($getdatauser as $key => $value) {
+				$data_log = array(
+					'aktor' => $value->id,
+					'keterangan' => 'Daftar akun aplikasi (via web apps)',
+					'waktu' => date('Y-m-d H-i-s')
+				);
+				$data2 = array(
+					'user_id' => $value->id,
+					'fullname' => $this->input->post('fullname'),
+					'address' => $this->input->post('address'),
+					'phone' => $this->input->post('phone'),
+					'created_by' => $value->id
+				);
+				$this->Main_model->insertData('user_profile',$data2);
+				$sess_data['id'] = $value->id;
+				$this->session->set_userdata($sess_data);
+				redirect('profil');
+			}
+		}
+	}
+	public function logout(){
+		$this->session->sess_destroy();
+		echo "<script>window.location='".base_url()."'</script>";
+	}
+	public function forget_password() {
+		$q1 = "SELECT a.*,b.fullname FROM user a LEFT JOIN user_profile b ON a.id=b.user_id WHERE a.email='".$this->input->post('email')."' AND a.deleted='0'";
+		$cek = $this->Main_model->manualQuery($q1);
+        if($cek==NULL){
+			$this->session->set_flashdata('error','<div class="alert alert-danger alert-dismissible" role="alert" style="text-align: justify;">
+													<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+													<strong>Ups! </strong>Email tidak terdaftar.
+												</div>' );
+			echo "<script>window.location='".base_url()."'</script>";
+		}
+		else{
+			foreach ($cek as $key => $value) {
+			// PHPMailer
+			// require_once(APPPATH.'libraries/PHPMailerAutoload.php');
+
+			// $mail = new PHPMailer;
+
+			// $mail->isSMTP();
+			// $mail->Host = 'webmail.hostinger.co.id';
+			// $mail->SMTPAuth = true;
+			// $mail->Username = 'support.gbnku.co.id';
+			// $mail->Password = 'Ms@xLoUV9T#J';
+
+			// $mail->SMTPSecure = 'TLS';
+			// $mail->Port = 25; //port tidak usah di ubah, biarkan 587
+			// //$mail->SMTPDebug = 2;
+
+			// $mail->setFrom('support@gbnku.co.id', 'PT. Gita Bhakti Negeri');
+			// $mail->addAddress($value->email, $value->fullname);
+			// //$mail->addReplyTo('indoguardsmg@gmail.com', 'apa');
+			// $mail->isHTML(true);
+
+			// $mail->Subject = 'Lupa Kata Sandi';
+			// $mail->Body    = '<p>Berikut adalah data akun Anda</p>
+			// 				<p>Username : '.$value->email.'<br>Password : '.$value->password.'</p><p>Silahkan login kembali di sistem.</p>';
+			// $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+			// if(!$mail->send()) {
+			// 	echo 'Pesan gagal dikirim.';
+			// 	echo 'Kirim Pesan Error: ' . $mail->ErrorInfo;
+			// } else {
+			// 	echo "<script>alert('Pesan telah dikirim. Silahkan cek di Folder Kotak Masuk (Inbox) atau Spam')</script>";
+			// 	echo "<script>window.location='".base_url()."'</script>";
+			// }
+			// Biasa
+			$to = $value->email;
+			$dari = "support@gbnku.co.id";
+			$pesan = '<p>Berikut adalah data akun Anda</p>
+			<p>Username : '.$value->email.'<br>Password : '.$value->password.'</p><p>Silahkan login kembali di sistem.</p>';
+
+			ini_set( 'display_errors', 1 );
+			error_reporting( E_ALL );
+			$headers = "From:" . $dari;
+			$subjek = 'Lupa Kata Sandi';
+			mail($to,$subjek,$pesan, $headers);  
+			echo "<script>alert('Pesan telah dikirim. Silahkan cek di Folder Kotak Masuk (Inbox) atau Spam')</script>";
+			echo "<script>window.location='".base_url()."'</script>";
+		}}
+    }
+}
