@@ -77,4 +77,34 @@ class Main_model extends CI_Model{
 	function getLastID($table,$column){
 		return $this->db->query('SELECT '.$column.' FROM '.$table.' ORDER BY '.$column.' DESC LIMIT 1')->row_array();
 	}
+	function convert_tanggal($tanggalan){
+		$tanggal_tampil = '';
+		$waktu = explode('-', $tanggalan);
+		if ($waktu[1]=="01") {
+			$tanggal_tampil = $waktu[2]." Januari ".$waktu[0];
+		}elseif ($waktu[1]=="02") {
+			$tanggal_tampil = $waktu[2]." Februari ".$waktu[0];
+		}elseif ($waktu[1]=="03") {
+			$tanggal_tampil = $waktu[2]." Maret ".$waktu[0];
+		}elseif ($waktu[1]=="04") {
+			$tanggal_tampil = $waktu[2]." April ".$waktu[0];
+		}elseif ($waktu[1]=="05") {
+			$tanggal_tampil = $waktu[2]." Mei ".$waktu[0];
+		}elseif ($waktu[1]=="06") {
+			$tanggal_tampil = $waktu[2]." Juni ".$waktu[0];
+		}elseif ($waktu[1]=="07") {
+			$tanggal_tampil = $waktu[2]." Juli ".$waktu[0];
+		}elseif ($waktu[1]=="08") {
+			$tanggal_tampil = $waktu[2]." Agustus ".$waktu[0];
+		}elseif ($waktu[1]=="09") {
+			$tanggal_tampil = $waktu[2]." September ".$waktu[0];
+		}elseif ($waktu[1]=="10") {
+			$tanggal_tampil = $waktu[2]." Oktober ".$waktu[0];
+		}elseif ($waktu[1]=="11") {
+			$tanggal_tampil = $waktu[2]." November ".$waktu[0];
+		}elseif ($waktu[1]=="12") {
+			$tanggal_tampil = $waktu[2]." Desember ".$waktu[0];
+		}
+		return $tanggal_tampil;
+	}
 }

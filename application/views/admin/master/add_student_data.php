@@ -17,9 +17,8 @@
 <div class="page-content-inner">
 	<div class="m-heading-1 border-green m-bordered">
 		<h3>Catatan</h3>
-		<p> 1. Ekstensi foto yang diizinkan <b>jpg</b>, <b>png</b>, <b>jpeg</b>, dan <b>bmp</b>.</p>
-		<p> 2. Ukuran maksimal file yang akan diupload sebesar <b>3Mb</b>.</p>
-		<p> 3. Untuk <b>username</b> dan <b>password</b> diambil dari isian <b>Nama Lengkap</b> dan <b>Nama Ibu</b>.</p>
+		<p> 1. Kolom isian dengan tanda bintang (<font color='red'>*</font>) adalah wajib untuk di isi.</p>
+		<p> 2. Untuk <b>username</b> dan <b>password</b> diambil dari isian <b>Nama Lengkap</b> dan <b>Nama Ibu</b>.</p>
 	</div>
 	<div class="row">
 		<div class="col-md-12">
@@ -111,7 +110,7 @@
 						<div class="form-actions margin-top-10">
 							<div class="row">
 								<div class="col-md-offset-2 col-md-10">
-									<button type="button" data-dismiss="modal" class="btn default">Batal</button>
+									<button type="reset" class="btn default">Batal</button>
 									<button type="submit" class="btn blue">Simpan</button>
 								</div>
 							</div>

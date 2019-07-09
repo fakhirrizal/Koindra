@@ -33,16 +33,20 @@
 		<div class="row justify-content-center">
 			<div class="col-lg-5 col-md-7">
 			<div class="card bg-secondary shadow border-0">
-				<div class="card-header bg-transparent pb-5">
-				<!-- <div class="text-muted text-center mt-2 mb-3"><small>Sign in with</small></div> -->
-				<div class="btn-wrapper text-center">
-				<img src="<?=site_url('assets/logo.PNG');?>" width='70%'>
-				</div>
-				</div>
-				<div class="card-body px-lg-5 py-lg-5">
+				<!-- <div class="card-header bg-transparent pb-5">
+					<div class="text-muted text-center mt-2 mb-3">
+						<small>Sign in with</small>
+					</div>
+					<div class="btn-wrapper text-center">
+					</div>
+				</div> -->
+				<div class="card-body px-lg-5 py-lg-5" style='text-align: center'>
 				<!-- <div class="text-center text-muted mb-4">
 					<small>Or sign in with credentials</small>
 				</div> -->
+				<img src="<?=site_url('assets/logo-bg.PNG');?>" width='70%'>
+				<hr>
+				<?= $this->session->flashdata('error') ?>
 				<form role="form" action="<?= site_url('login_process'); ?>" method='post'>
 					<input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>">
 					<div class="form-group mb-3">
@@ -79,7 +83,7 @@
 				<a href="#" class="text-light"><small>Forgot password?</small></a>
 				</div>
 				<div class="col-6 text-right">
-				<a href="#" class="text-light"><small>Create new account</small></a>
+				<a href="<?= site_url('registrasi'); ?>" class="text-light"><small>Create new account</small></a>
 				</div>
 			</div>
 			</div>

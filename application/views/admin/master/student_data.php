@@ -89,11 +89,11 @@
 										</button>
 										<ul class="dropdown-menu" role="menu">
 											<li>
-												<a href="<?=site_url('admin_side/detail_data_radiografer/'.$value->user_id);?>">
+												<a href="<?=site_url('admin_side/detail_data_siswa/'.md5($value->user_id));?>">
 													<i class="icon-eye"></i> Detail Data </a>
 											</li>
 											<li>
-												<a data-toggle="modal" data-target="#ubahdata" id="<?= $value->user_id; ?>" class="ubahdata">
+												<a href="<?=site_url('admin_side/ubah_data_siswa/'.md5($value->user_id));?>">
 													<i class="icon-wrench"></i> Ubah Data </a>
 											</li>
 											<li>
