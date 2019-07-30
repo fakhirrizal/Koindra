@@ -25,7 +25,7 @@
 			<!-- BEGIN EXAMPLE TABLE PORTLET-->
 			<div class="portlet light ">
 				<div class="portlet-body">
-					<form role="form" class="form-horizontal" action="<?=base_url('admin_side/simpan_data_paket');?>" method="post"  enctype='multipart/form-data'>
+					<form role="form" class="form-horizontal" action="<?=base_url('admin_side/simpan_data_paket');?>" method="post" enctype='multipart/form-data'>
 						<input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>">
 						<div class="form-body">
 							<div class="form-group form-md-line-input has-danger">
@@ -51,7 +51,7 @@
 								</div>
 							</div>
 							<div class="form-group form-md-line-input has-danger">
-								<label class="col-md-2 control-label" for="form_control_1">Durasi (dalam Hari) <span class="required"> * </span></label>
+								<label class="col-md-2 control-label" for="form_control_1">Durasi (dalam Bulan) <span class="required"> * </span></label>
 								<div class="col-md-10">
 									<div class="input-icon">
 										<input type="number" class="form-control" name="duration" placeholder="Type something" required max="9999">
@@ -61,7 +61,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="form-group form-md-line-input has-danger">
+							<!-- <div class="form-group form-md-line-input has-danger">
 								<label class="col-md-2 control-label" for="form_control_1">Tanggal Kadaluarsa <span class="required"> * </span></label>
 								<div class="col-md-10">
 									<div class="input-icon">
@@ -71,7 +71,7 @@
 										<i class="fa fa-calendar-times-o"></i>
 									</div>
 								</div>
-							</div>
+							</div> -->
 							<div class="form-group form-md-line-input has-danger">
 								<label class="col-md-2 control-label" for="form_control_1">Info Tambahan</label>
 								<div class="col-md-10">

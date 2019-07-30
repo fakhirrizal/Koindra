@@ -52,7 +52,7 @@
 								</div>
 							</div>
 							<div class="form-group form-md-line-input has-danger">
-								<label class="col-md-2 control-label" for="form_control_1">Durasi (dalam Hari) <span class="required"> * </span></label>
+								<label class="col-md-2 control-label" for="form_control_1">Durasi (dalam Bulan) <span class="required"> * </span></label>
 								<div class="col-md-10">
 									<div class="input-icon">
 										<input type="number" class="form-control" name="duration" placeholder="Type something" required max="9999" value='<?= $data_utama['duration']; ?>'>
@@ -62,7 +62,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="form-group form-md-line-input has-danger">
+							<!-- <div class="form-group form-md-line-input has-danger">
 								<label class="col-md-2 control-label" for="form_control_1">Tanggal Kadaluarsa <span class="required"> * </span></label>
 								<div class="col-md-10">
 									<div class="input-icon">
@@ -72,7 +72,7 @@
 										<i class="fa fa-calendar-times-o"></i>
 									</div>
 								</div>
-							</div>
+							</div> -->
 							<div class="form-group form-md-line-input has-danger">
 								<label class="col-md-2 control-label" for="form_control_1">Info Tambahan</label>
 								<div class="col-md-10">

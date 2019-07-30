@@ -1,39 +1,55 @@
+<?= $this->session->flashdata('sukses') ?>
+<?= $this->session->flashdata('gagal') ?>
 <div class="page-content-inner">
 	<div class="row widget-row">
 		<!-- <div class="col-md-3">
 		</div> -->
+		<?php
+		if($data_status->expired_date==NULL AND $data_status->quota==NULL){
+			echo '<div style="text-align:center;"><a href="'.site_url('student/start_free_trial').'"><img src="http://clippingpathpartner.com/wp-content/uploads/2017/08/get-free-trial.png"/></a></div>';
+		}else{
+		?>
 		<div class="col-md-6">
-			<!-- BEGIN WIDGET THUMB -->
 			<div class="widget-thumb widget-bg-color-white margin-bottom-20 ">
 				<h4 class="widget-thumb-heading">Sisa Kuota</h4>
 				<div class="widget-thumb-wrap">
 					<i class="widget-thumb-icon bg-red icon-layers"></i>
 					<div class="widget-thumb-body">
 						<span class="widget-thumb-subtitle"></span>
-						<span class="widget-thumb-body-stat" data-counter="counterup" data-value="1,293">8 Pertemuan</span>
+						<span class="widget-thumb-body-stat" data-counter="counterup" data-value="1,293"><?php
+						if($data_status->quota==NULL){
+							echo'-';
+						}else{
+							echo $data_status->quota.'x';
+						}
+						?> Pertemuan</span>
 					</div>
 				</div>
 			</div>
-			<!-- END WIDGET THUMB -->
 		</div>
 		<div class="col-md-6">
-			<!-- BEGIN WIDGET THUMB -->
 			<div class="widget-thumb widget-bg-color-white margin-bottom-20 ">
 				<h4 class="widget-thumb-heading">Masa Aktif</h4>
 				<div class="widget-thumb-wrap">
 					<i class="widget-thumb-icon bg-purple fa fa-hourglass-2"></i>
 					<div class="widget-thumb-body">
 						<span class="widget-thumb-subtitle"></span>
-						<span class="widget-thumb-body-stat" data-counter="counterup" data-value="815">15 Juli 2019</span>
+						<span class="widget-thumb-body-stat" data-counter="counterup" data-value="815"><?php
+						if($data_status->expired_date==NULL){
+							echo'-';
+						}else{
+							echo $this->Main_model->convert_tanggal($data_status->expired_date);
+						}
+						?></span>
 					</div>
 				</div>
 			</div>
-			<!-- END WIDGET THUMB -->
 		</div>
+		<?php } ?>
 		<!-- <div class="col-md-3">
 		</div> -->
 	</div>
-	<div class="row">
+	<!-- <div class="row">
 		<div class="col-md-6 col-sm-6">
 			<div class="portlet light ">
 				<div class="portlet-title tabbable-line">
@@ -53,7 +69,6 @@
 				<div class="portlet-body">
 					<div class="tab-content">
 						<div class="tab-pane active" id="portlet_comments_1">
-							<!-- BEGIN: Comments -->
 							<div class="mt-comments">
 								<div class="mt-comment">
 									<div class="mt-comment-img">
@@ -156,10 +171,8 @@
 									</div>
 								</div>
 							</div>
-							<!-- END: Comments -->
 						</div>
 						<div class="tab-pane" id="portlet_comments_2">
-							<!-- BEGIN: Comments -->
 							<div class="mt-comments">
 								<div class="mt-comment">
 									<div class="mt-comment-img">
@@ -262,7 +275,6 @@
 									</div>
 								</div>
 							</div>
-							<!-- END: Comments -->
 						</div>
 					</div>
 				</div>
@@ -287,7 +299,6 @@
 				<div class="portlet-body">
 					<div class="tab-content">
 						<div class="tab-pane active" id="tab_actions_pending">
-							<!-- BEGIN: Actions -->
 							<div class="mt-actions">
 								<div class="mt-action">
 									<div class="mt-action-img">
@@ -458,10 +469,8 @@
 									</div>
 								</div>
 							</div>
-							<!-- END: Actions -->
 						</div>
 						<div class="tab-pane" id="tab_actions_completed">
-							<!-- BEGIN:Completed-->
 							<div class="mt-actions">
 								<div class="mt-action">
 									<div class="mt-action-img">
@@ -575,7 +584,6 @@
 										</div>
 									</div>
 								</div>
-								<!-- END: Completed -->
 							</div>
 						</div>
 					</div>
@@ -948,7 +956,6 @@
 				<div class="portlet-body">
 					<div class="task-content">
 						<div class="scroller" style="height: 312px;" data-always-visible="1" data-rail-visible1="1">
-							<!-- START TASK LIST -->
 							<ul class="task-list">
 								<li>
 									<div class="task-checkbox">
@@ -1269,7 +1276,6 @@
 									</div>
 								</li>
 							</ul>
-							<!-- END START TASK LIST -->
 						</div>
 					</div>
 					<div class="task-footer">
@@ -1281,5 +1287,5 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 </div>

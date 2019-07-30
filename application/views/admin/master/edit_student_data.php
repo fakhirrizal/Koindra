@@ -45,6 +45,17 @@
 								</div>
 							</div>
 							<div class="form-group form-md-line-input has-danger">
+								<label class="col-md-2 control-label" for="form_control_1">No. Induk <span class="required"> * </span></label>
+								<div class="col-md-10">
+									<div class="input-icon">
+										<input type="text" class="form-control" name="student_id" placeholder="Type something" value='<?= $value->student_id; ?>' required>
+										<div class="form-control-focus"> </div>
+										<span class="help-block">Some help goes here...</span>
+										<i class="icon-credit-card"></i>
+									</div>
+								</div>
+							</div>
+							<div class="form-group form-md-line-input has-danger">
 								<label class="col-md-2 control-label" for="form_control_1">Nama Ibu Kandung <span class="required"> * </span></label>
 								<div class="col-md-10">
 									<div class="input-icon">
@@ -91,22 +102,50 @@
 							<div class="form-group form-md-line-input has-danger">
 								<label class="col-md-2 control-label" for="form_control_1">Asal Sekolah</label>
 								<div class="col-md-10">
-									<div class="input-icon">
-										<input type="text" class="form-control" name="school" placeholder="Type something" value='<?= $value->school; ?>'>
-										<div class="form-control-focus"> </div>
-										<span class="help-block">Some help goes here...</span>
-										<i class="fa fa-mortar-board"></i>
-									</div>
+									<select class='form-control' name='school' required>
+										<option value=''>-- Pilih --</option>
+										<?php
+										foreach ($data_sekolah as $key => $value2) {
+											if($value2->school_code=$value->school){
+												echo '<option value="'.$value2->school_code.'" selected>'.$value2->school_name.'</option>';
+											}else{
+												echo '<option value="'.$value2->school_code.'">'.$value2->school_name.'</option>';
+											}
+										}
+										?>
+									</select>
 								</div>
 							</div>
 							<div class="form-group form-md-line-input has-danger">
 								<label class="col-md-2 control-label" for="form_control_1">Kelas</label>
 								<div class="col-md-10">
-									<div class="input-icon">
+									<!-- <div class="input-icon">
 										<input type="text" class="form-control" name="class" placeholder="Type something" value='<?= $value->class; ?>'>
 										<div class="form-control-focus"> </div>
 										<span class="help-block">Some help goes here...</span>
 										<i class="fa fa-level-up"></i>
+									</div> -->
+									<select class='form-control' name='class' required>
+										<option value=''>-- Pilih --</option>
+										<?php
+										for ($i=1; $i <13 ; $i++) {
+											if($i==$value->class){
+												echo '<option value="'.$i.'" selected>'.$i.'</option>';
+											}else{
+												echo '<option value="'.$i.'">'.$i.'</option>';}
+										}
+										?>
+									</select>
+								</div>
+							</div>
+							<div class="form-group form-md-line-input has-danger">
+								<label class="col-md-2 control-label" for="form_control_1">Passcode</label>
+								<div class="col-md-10">
+									<div class="input-icon">
+										<input type="text" class="form-control" name="passcode" placeholder="Type something" value='<?= $value->passcode; ?>'>
+										<div class="form-control-focus"> </div>
+										<span class="help-block">Some help goes here...</span>
+										<i class="icon-lock"></i>
 									</div>
 								</div>
 							</div>

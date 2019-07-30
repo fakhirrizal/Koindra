@@ -9,17 +9,17 @@ class App extends CI_Controller {
 	 * Maps to the following URL
 	 * 		http://example.com/index.php/welcome
 	 *	- or -
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see https://codeigniter.com/user_guide/general/urls.html
-	 */
-    function __construct() {
-        parent::__construct();
+	* 		http://example.com/index.php/welcome/index
+	*	- or -
+	* Since this controller is set as the default controller in
+	* config/routes.php, it's displayed at http://example.com/
+	*
+	* So any other public methods not prefixed with an underscore will
+	* map to /index.php/welcome/<method_name>
+	* @see https://codeigniter.com/user_guide/general/urls.html
+	*/
+	function __construct() {
+		parent::__construct();
 	}
 	public function launcher()
 	{
@@ -27,7 +27,7 @@ class App extends CI_Controller {
 		$this->load->view('student/app/launcher');
 		// $this->load->view('student/template/footer');
 	}
-    public function home()
+	public function home()
 	{
 		$data['parent'] = 'home';
 		$data['child'] = '';
@@ -44,6 +44,7 @@ class App extends CI_Controller {
 		// $data['laporan'] = $this->Main_model->manualQuery($q5);
 		// $q6 = "SELECT a.* FROM job_type a WHERE a.deleted='0'";
 		// $data['data_jenis'] = $this->Main_model->manualQuery($q6);
+		$data['data_status'] = $this->Main_model->getSelectedData('status a', 'a.*', array("a.user_id" => $this->session->userdata('id')))->row();
 		$this->load->view('student/template/header',$data);
 		$this->load->view('student/app/home',$data);
 		$this->load->view('student/template/footer');

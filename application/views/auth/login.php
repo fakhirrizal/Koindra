@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
+	<meta name="description" content="Growing up your knowladge with us">
 	<meta name="author" content="Creative Tim">
 	<title>Halaman Login</title>
 	<!-- Favicon -->
@@ -109,7 +109,7 @@
 		<div class="row align-items-center justify-content-xl-between">
 			<div class="col-xl-6">
 			<div class="copyright text-center text-xl-left text-muted">
-				&copy; 2018 <a href="#" class="font-weight-bold ml-1" target="_blank">Creative Tim</a>
+				&copy; 2019 <a href="#" class="font-weight-bold ml-1" target="_blank">Koindra Inc.</a>
 			</div>
 			</div>
 			<div class="col-xl-6">

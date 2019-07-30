@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 08 Jul 2019 pada 16.39
+-- Generation Time: 31 Jul 2019 pada 01.31
 -- Versi Server: 10.1.19-MariaDB
 -- PHP Version: 5.6.28
 
@@ -51,7 +51,49 @@ INSERT INTO `activity_logs` (`activity_id`, `user_id`, `company_id`, `activity_t
 (4, 2, 0, 'Updating data', 'Updating password account', '2019-07-07 23:27:20', '::1', 'PC', 'Windows 10', 'Chrome 75.0.3770', ''),
 (5, 2, 0, 'Login to system', 'Login via web browser', '2019-07-08 15:56:05', '::1', 'PC', 'Windows 10', 'Chrome 75.0.3770', '-6.9826992,110.4122944'),
 (6, 2, 0, 'Updating data', 'Updating email user', '2019-07-08 16:10:05', '::1', 'PC', 'Windows 10', 'Chrome 75.0.3770', ''),
-(7, 1, 0, 'Login to system', 'Login via web browser', '2019-07-08 21:38:21', '::1', 'PC', 'Windows 10', 'Chrome 75.0.3770', '-7.008630999999999,110.39028069999999');
+(7, 1, 0, 'Login to system', 'Login via web browser', '2019-07-08 21:38:21', '::1', 'PC', 'Windows 10', 'Chrome 75.0.3770', '-7.008630999999999,110.39028069999999'),
+(8, 2, 0, 'Login to system', 'Login via web browser', '2019-07-09 08:17:31', '::1', 'PC', 'Windows 10', 'Chrome 75.0.3770', '-6.982820299999999,110.412199'),
+(9, 1, 0, 'Login to system', 'Login via web browser', '2019-07-09 09:41:00', '::1', 'PC', 'Windows 10', 'Chrome 75.0.3770', '-6.9828151,110.412227'),
+(10, 1, 0, 'Login to system', 'Login via web browser', '2019-07-13 17:32:48', '::1', 'PC', 'Windows 10', 'Chrome 75.0.3770', NULL),
+(11, 1, 0, 'Login to system', 'Login via web browser', '2019-07-14 00:25:16', '::1', 'PC', 'Windows 10', 'Chrome 75.0.3770', NULL),
+(12, 1, 0, 'Login to system', 'Login via web browser', '2019-07-14 21:14:13', '::1', 'PC', 'Windows 10', 'Chrome 75.0.3770', NULL),
+(13, 1, 0, 'Creating data', 'Creating administrator data (Estio Nurcahyanto)', '2019-07-14 21:26:10', '::1', 'PC', 'Windows 10', 'Chrome 75.0.3770', ''),
+(14, 3, 0, 'Updating data', 'Reset password admin account', '2019-07-14 21:39:38', '::1', 'PC', 'Windows 10', 'Chrome 75.0.3770', ''),
+(15, 1, 0, 'Deleting data', 'Deleting student data', '2019-07-14 21:44:26', '::1', 'PC', 'Windows 10', 'Chrome 75.0.3770', ''),
+(16, 1, 0, 'Deleting data', 'Deleting admin data', '2019-07-14 21:45:30', '::1', 'PC', 'Windows 10', 'Chrome 75.0.3770', ''),
+(17, 1, 0, 'Login to system', 'Login via web browser', '2019-07-16 21:08:18', '::1', 'PC', 'Windows 10', 'Chrome 75.0.3770', '-7.008655399999999,110.3903186'),
+(18, 1, 0, 'Login to system', 'Login via web browser', '2019-07-17 23:43:51', '::1', 'PC', 'Windows 10', 'Chrome 75.0.3770', '-7.0086498,110.39031349999999'),
+(19, 2, 0, 'Login to system', 'Login via web browser', '2019-07-17 23:44:08', '::1', 'PC', 'Windows 10', 'Chrome 75.0.3770', '-7.0086498,110.39031349999999'),
+(20, 5, 0, 'Registration new account', 'Creating student data (jnbkjnkjn)', '2019-07-22 00:51:11', '::1', 'PC', 'Windows 10', 'Chrome 75.0.3770', ''),
+(21, 6, 0, 'Registration new account', 'Creating student data (lll)', '2019-07-22 00:52:00', '::1', 'PC', 'Windows 10', 'Chrome 75.0.3770', ''),
+(22, 1, 0, 'Login to system', 'Login via web browser', '2019-07-25 00:39:35', '::1', 'PC', 'Windows 10', 'Chrome 75.0.3770', '-7.0086689,110.3903077'),
+(23, 1, 0, 'Send notification', 'Send notification to Fakhir Rizal', '2019-07-25 01:22:51', '::1', 'PC', 'Windows 10', 'Chrome 75.0.3770', ''),
+(24, 1, 0, 'Importing data', 'Import student attendance data', '2019-07-28 17:35:40', '::1', 'PC', 'Windows 10', 'Chrome 75.0.3770', ''),
+(25, 1, 0, 'Importing data', 'Import student attendance data', '2019-07-28 17:36:39', '::1', 'PC', 'Windows 10', 'Chrome 75.0.3770', ''),
+(26, 1, 0, 'Importing data', 'Import student attendance data', '2019-07-28 17:37:50', '::1', 'PC', 'Windows 10', 'Chrome 75.0.3770', ''),
+(27, 1, 0, 'Importing data', 'Import student data', '2019-07-28 18:48:07', '::1', 'PC', 'Windows 10', 'Chrome 75.0.3770', ''),
+(28, 7, 0, 'Login to system', 'Login via web browser', '2019-07-28 18:55:05', '::1', 'PC', 'Windows 10', 'Chrome 75.0.3770', '-7.008612299999999,110.3902794'),
+(29, 1, 0, 'Login to system', 'Login via web browser', '2019-07-28 18:56:57', '::1', 'PC', 'Windows 10', 'Chrome 75.0.3770', '-7.0086245,110.39022419999999'),
+(30, 1, 0, 'Login to system', 'Login via web browser', '2019-07-28 19:48:27', '::1', 'PC', 'Windows 10', 'Chrome 75.0.3770', '-7.008627499999999,110.39021869999999'),
+(31, 1, 0, 'Updating data', 'Updating status student (quota and expired date packet)', '2019-07-28 20:19:43', '::1', 'PC', 'Windows 10', 'Chrome 75.0.3770', ''),
+(32, 1, 0, 'Updating data', 'Updating status student (quota and expired date packet)', '2019-07-28 20:21:35', '::1', 'PC', 'Windows 10', 'Chrome 75.0.3770', ''),
+(33, 7, 0, 'Login to system', 'Login via web browser', '2019-07-28 20:24:37', '::1', 'PC', 'Windows 10', 'Chrome 75.0.3770', '-7.0086296,110.39026159999999'),
+(34, 7, 0, 'Login to system', 'Login via web browser', '2019-07-28 21:29:37', '::1', 'PC', 'Windows 10', 'Chrome 75.0.3770', '-7.0086178,110.390295'),
+(35, 7, 0, 'Updating data', 'User starting trial this programe', '2019-07-28 21:56:19', '::1', 'PC', 'Windows 10', 'Chrome 75.0.3770', ''),
+(36, 7, 0, 'Updating data', 'User starting trial this programe', '2019-07-28 21:58:00', '::1', 'PC', 'Windows 10', 'Chrome 75.0.3770', ''),
+(37, 1, 0, 'Login to system', 'Login via web browser', '2019-07-28 21:59:07', '::1', 'PC', 'Windows 10', 'Chrome 75.0.3770', '-7.0086245,110.39022419999999'),
+(38, 7, 0, 'Login to system', 'Login via web browser', '2019-07-28 22:20:58', '::1', 'PC', 'Windows 10', 'Chrome 75.0.3770', '-7.008620700000001,110.39030389999999'),
+(39, 1, 0, 'Login to system', 'Login via web browser', '2019-07-30 14:46:32', '::1', 'PC', 'Windows 10', 'Chrome 75.0.3770', '-6.9827252,110.4122508'),
+(40, 1, 0, 'Deleting data', 'Deleting school data', '2019-07-30 15:45:13', '::1', 'PC', 'Windows 10', 'Chrome 75.0.3770', ''),
+(41, 1, 0, 'Creating data', 'Creating school data (d)', '2019-07-30 16:06:05', '::1', 'PC', 'Windows 10', 'Chrome 75.0.3770', ''),
+(42, 1, 0, 'Creating data', 'Creating school data (SMA Negeri 1 Subah)', '2019-07-30 16:08:13', '::1', 'PC', 'Windows 10', 'Chrome 75.0.3770', ''),
+(43, 1, 0, 'Updating data', 'Updating school data (SMA Negeri 2 Subah)', '2019-07-30 16:54:59', '::1', 'PC', 'Windows 10', 'Chrome 75.0.3770', ''),
+(44, 1, 0, 'Creating data', 'Creating student data (Estio Nurcahyanto)', '2019-07-30 17:46:16', '::1', 'PC', 'Windows 10', 'Chrome 75.0.3770', ''),
+(45, 1, 0, 'Updating data', 'Updating student data (Estio Nurcahyanto)', '2019-07-30 17:46:42', '::1', 'PC', 'Windows 10', 'Chrome 75.0.3770', ''),
+(46, 1, 0, 'Importing data', 'Import student data', '2019-07-30 17:48:51', '::1', 'PC', 'Windows 10', 'Chrome 75.0.3770', ''),
+(47, 1, 0, 'Updating data', 'Updating student data (Aris Riyanto)', '2019-07-30 18:26:43', '::1', 'PC', 'Windows 10', 'Chrome 75.0.3770', ''),
+(48, 1, 0, 'Login to system', 'Login via web browser', '2019-07-30 18:48:14', '::1', 'PC', 'Windows 10', 'Chrome 75.0.3770', '-6.9827859,110.41219919999999'),
+(49, 1, 0, 'Importing data', 'Import student attendance data', '2019-07-30 18:56:56', '::1', 'PC', 'Windows 10', 'Chrome 75.0.3770', '');
 
 -- --------------------------------------------------------
 
@@ -497,9 +539,9 @@ INSERT INTO `migrations` (`version`) VALUES
 CREATE TABLE `packet` (
   `packet_id` int(10) NOT NULL,
   `packet_name` text NOT NULL,
-  `quota` int(3) NOT NULL,
+  `quota` text,
   `duration` int(4) NOT NULL,
-  `expired_date` date NOT NULL,
+  `expired_date` date DEFAULT NULL,
   `additional_info` text,
   `term_and_condition` text NOT NULL,
   `price` int(10) NOT NULL,
@@ -512,8 +554,13 @@ CREATE TABLE `packet` (
 --
 
 INSERT INTO `packet` (`packet_id`, `packet_name`, `quota`, `duration`, `expired_date`, `additional_info`, `term_and_condition`, `price`, `is_active`, `deleted`) VALUES
-(1, 'PaHe 2 (Paket Hemat Sekali)', 8, 31, '2019-07-31', 'Setiap berangkat harap membawa takjil', '<li>Wajib puasa bagi yang muslim dan tidak ada halangan</li><li>Wajib datang sebelum ashar, soalnya ada sholat berjamaah</li><li>Bawa uang Rp 5.100,00 untuk ke sumbangan ke Panti Asuhan Sampangan (30 Juli 2019)</li>', 224000, '1', '0'),
-(2, 'Paket Ramadhan', 3, 7, '2019-07-31', 'Khusus 50 pendaftar pertama', '<li>Jika datang 3 hari berturut bonus les 1 jam</li><li>Saldo mengendap harus diatas Rp 100,000.00</li>', 50000, '0', '0');
+(1, 'Regular Bulanan', '6', 1, NULL, NULL, '-', 15, '1', '0'),
+(2, 'Regular Semesteran', '35', 6, NULL, NULL, '-', 75, '1', '0'),
+(3, 'Regular Tahunan', '80', 12, NULL, NULL, '-', 15, '1', '0'),
+(4, 'Unlimited Bulanan', 'Unlimited', 1, NULL, NULL, '-', 285, '1', '0'),
+(5, 'Unlimited Semesteran', 'Unlimited', 6, NULL, NULL, '-', 13375, '1', '0'),
+(6, 'Unlimited Tahunan', 'Unlimited', 12, NULL, NULL, '-', 25, '1', '0'),
+(7, 'Perpanjang Masa Aktif', NULL, 1, NULL, NULL, '-', 5, '1', '0');
 
 -- --------------------------------------------------------
 
@@ -525,8 +572,8 @@ CREATE TABLE `presence` (
   `presence_id` int(10) NOT NULL,
   `user_id` int(10) NOT NULL,
   `date` date NOT NULL,
-  `come_in` time NOT NULL,
-  `come_out` time NOT NULL,
+  `come_in` time DEFAULT NULL,
+  `come_out` time DEFAULT NULL,
   `note` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -536,7 +583,27 @@ CREATE TABLE `presence` (
 
 INSERT INTO `presence` (`presence_id`, `user_id`, `date`, `come_in`, `come_out`, `note`) VALUES
 (1, 2, '2019-07-03', '07:52:00', '10:04:00', ''),
-(2, 2, '2019-07-06', '08:02:00', '09:59:00', 'Aku terdiam di sini, yang aku tahu aku di temani ari-ari Ku sering menendang-nendang bahkan seperti ingin berlari Aku sering mendengar ia menangis kesakitan Ini akibat tingkah ku yang tak beraturan Aku besar, sehingga perutnya seperti tak mampu menopangku Terkadang aku manja, sehingga membuat ia lelah itu karenaku Aku selalu membuat jam tidurnya tidak nyenyak Sehingga ia terbangun dan selalu beranjak Meskipun aku sering merepotkan Ia selalu menyentuh ku dengan kelembutan Setiap pagi aku selalu di do’akan Supaya menjadi anak yang sopan dan dermawan Rasanya aku tersentuh, dan aku ingin bertemu dengan bulan ke Sembilan Dan akhirnya aku lahir di dunia Siapa lagi yang berperan, jika bukan dia Dia seorang yang berjuang tiada tara Ia mengeluarkan semua tenaganya Hanya ingin membuat aku keluar dari perutnya Ia menangis kesakitan, namun ia seperti tidak merasakannya Ku lihat keringat membasahi seluruh dahinya Ia tersenyum ketika aku berhasil dikeluarkannya Tuhan, ia baik sekali dan sangat berjasa Taruhan nyawa ia korbankan Hanya untuk aku yang ia lahirkan');
+(2, 7, '2019-07-06', '08:02:00', '09:59:00', 'Aku terdiam di sini, yang aku tahu aku di temani ari-ari Ku sering menendang-nendang bahkan seperti ingin berlari Aku sering mendengar ia menangis kesakitan Ini akibat tingkah ku yang tak beraturan Aku besar, sehingga perutnya seperti tak mampu menopangku Terkadang aku manja, sehingga membuat ia lelah itu karenaku Aku selalu membuat jam tidurnya tidak nyenyak Sehingga ia terbangun dan selalu beranjak Meskipun aku sering merepotkan Ia selalu menyentuh ku dengan kelembutan Setiap pagi aku selalu di do’akan Supaya menjadi anak yang sopan dan dermawan Rasanya aku tersentuh, dan aku ingin bertemu dengan bulan ke Sembilan Dan akhirnya aku lahir di dunia Siapa lagi yang berperan, jika bukan dia Dia seorang yang berjuang tiada tara Ia mengeluarkan semua tenaganya Hanya ingin membuat aku keluar dari perutnya Ia menangis kesakitan, namun ia seperti tidak merasakannya Ku lihat keringat membasahi seluruh dahinya Ia tersenyum ketika aku berhasil dikeluarkannya Tuhan, ia baik sekali dan sangat berjasa Taruhan nyawa ia korbankan Hanya untuk aku yang ia lahirkan'),
+(3, 2, '2019-07-01', '08:00:00', '13:00:00', ''),
+(4, 2, '2019-07-02', '08:00:00', '13:00:00', ''),
+(5, 2, '2019-07-11', '08:00:00', '13:00:00', 'Masuk tepat waktu'),
+(6, 2, '2019-07-04', '08:00:00', '13:00:00', 'Masuk tepat waktu'),
+(7, 2, '2019-07-05', '09:00:00', '13:00:00', 'Masuk telat satu jam'),
+(8, 5, '2019-07-05', '09:00:00', '13:00:00', 'Masuk telat satu jam'),
+(9, 2, '2019-09-04', '08:00:00', '13:00:00', 'Masuk tepat waktu'),
+(10, 5, '2019-09-05', '09:00:00', '13:00:00', 'Masuk telat satu jam'),
+(11, 2, '2019-09-14', '08:00:00', '13:00:00', 'Masuk tepat waktu'),
+(12, 6, '2019-09-05', '09:00:00', '13:00:00', 'Masuk telat satu jam'),
+(13, 9, '2019-07-31', NULL, NULL, 'Masuk tepat waktu'),
+(14, 8, '2019-07-31', NULL, NULL, 'Masuk telat satu jam'),
+(15, 9, '2019-07-30', NULL, NULL, 'Masuk tepat waktu'),
+(16, 8, '2019-07-30', NULL, NULL, 'Masuk telat satu jam'),
+(17, 9, '2019-07-29', NULL, NULL, 'Masuk tepat waktu'),
+(18, 8, '2019-07-29', NULL, NULL, 'Masuk telat satu jam'),
+(19, 9, '2019-07-28', NULL, NULL, 'Masuk tepat waktu'),
+(20, 8, '2019-07-28', NULL, NULL, 'Masuk telat satu jam'),
+(21, 9, '2019-07-27', NULL, NULL, 'Masuk tepat waktu'),
+(22, 8, '2019-07-27', NULL, NULL, 'Masuk telat satu jam');
 
 -- --------------------------------------------------------
 
@@ -551,6 +618,8 @@ CREATE TABLE `purchasing` (
   `date` date NOT NULL,
   `total_items` int(2) NOT NULL,
   `grand_total` int(10) NOT NULL,
+  `payment_type` text NOT NULL,
+  `status` enum('0','1','2') NOT NULL COMMENT '0 = Pending, 1 = Success, 2 = Expired/ Gagal',
   `deleted` enum('0','1') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -558,8 +627,8 @@ CREATE TABLE `purchasing` (
 -- Dumping data untuk tabel `purchasing`
 --
 
-INSERT INTO `purchasing` (`purchasing_id`, `invoice_number`, `user_id`, `date`, `total_items`, `grand_total`, `deleted`) VALUES
-(1, 'ICK#001/04-2019', 2, '2019-07-04', 3, 478000, '0');
+INSERT INTO `purchasing` (`purchasing_id`, `invoice_number`, `user_id`, `date`, `total_items`, `grand_total`, `payment_type`, `status`, `deleted`) VALUES
+(1, 'ICK#002/07-2019', 7, '2019-07-27', 3, 478000, '', '', '0');
 
 -- --------------------------------------------------------
 
@@ -571,6 +640,7 @@ CREATE TABLE `purchasing_detail` (
   `purchasing_detail_id` int(10) NOT NULL,
   `purchasing_id` int(10) NOT NULL,
   `product_id` int(10) NOT NULL,
+  `price` int(9) NOT NULL,
   `qty` int(10) NOT NULL,
   `sub_total` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -579,9 +649,32 @@ CREATE TABLE `purchasing_detail` (
 -- Dumping data untuk tabel `purchasing_detail`
 --
 
-INSERT INTO `purchasing_detail` (`purchasing_detail_id`, `purchasing_id`, `product_id`, `qty`, `sub_total`) VALUES
-(1, 1, 1, 2, 428000),
-(2, 1, 2, 1, 50000);
+INSERT INTO `purchasing_detail` (`purchasing_detail_id`, `purchasing_id`, `product_id`, `price`, `qty`, `sub_total`) VALUES
+(1, 1, 1, 214000, 2, 428000),
+(2, 1, 2, 50000, 1, 50000);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `school`
+--
+
+CREATE TABLE `school` (
+  `school_id` int(10) NOT NULL,
+  `school_code` text NOT NULL,
+  `school_name` text NOT NULL,
+  `address` text,
+  `number_phone` varchar(14) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `school`
+--
+
+INSERT INTO `school` (`school_id`, `school_code`, `school_name`, `address`, `number_phone`) VALUES
+(1, 'JKHK89', 'SMA Negeri 1 Batang', NULL, '+6285696303627'),
+(2, 'JXS989', 'SMP Negeri 1 Batang', NULL, NULL),
+(4, 'JKHK98', 'SMA Negeri 2 Subah', 'Kec. Subah, Kabupaten Batang', '99');
 
 -- --------------------------------------------------------
 
@@ -591,16 +684,22 @@ INSERT INTO `purchasing_detail` (`purchasing_detail_id`, `purchasing_id`, `produ
 
 CREATE TABLE `status` (
   `user_id` int(10) NOT NULL,
-  `quota` int(3) NOT NULL,
-  `expired_date` date NOT NULL
+  `last_packet` int(10) DEFAULT NULL,
+  `quota` text,
+  `expired_date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `status`
 --
 
-INSERT INTO `status` (`user_id`, `quota`, `expired_date`) VALUES
-(2, 4, '2019-07-31');
+INSERT INTO `status` (`user_id`, `last_packet`, `quota`, `expired_date`) VALUES
+(2, 1, '-4', '2019-07-25'),
+(5, 5, '-2', NULL),
+(6, NULL, NULL, '2019-01-01'),
+(7, NULL, '14', '2019-08-11'),
+(8, NULL, NULL, NULL),
+(9, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -609,7 +708,7 @@ INSERT INTO `status` (`user_id`, `quota`, `expired_date`) VALUES
 --
 
 CREATE TABLE `student` (
-  `student_id` int(10) NOT NULL,
+  `student_id` text,
   `user_id` int(10) NOT NULL,
   `fullname` text NOT NULL,
   `mother` text NOT NULL,
@@ -627,7 +726,12 @@ CREATE TABLE `student` (
 --
 
 INSERT INTO `student` (`student_id`, `user_id`, `fullname`, `mother`, `number_phone`, `mother_phone`, `email`, `school`, `class`, `passcode`, `deleted`) VALUES
-(1, 2, 'Fakhir Rizal', 'Siti Anifah', '085696303627', '085242970666', 'fakhir_rizal@hotmail.com', 'SMP Negeri 1 Batang', 'VIII C', '', '0');
+(NULL, 2, 'Fakhir Rizal', 'Siti Anifah', '085696303627', '085242970666', 'fakhir_rizal@hotmail.com', 'JKHK89', '11', '', '0'),
+(NULL, 5, 'Imam Fajrul F.', 'jknkj', '9809809', '085242970669', 'nkjn@nkl.dfmm', 'JKHK89', '12', 'hj', '0'),
+(NULL, 6, 'Endah Ayu Fitri', 'll', '989', '085242970122', 'endah@gmail.com', 'JKHK89', '10', 'nkj', '0'),
+(NULL, 7, 'Sharfina Aulia Puspasari', 'Siti', '85696', '353453', 'fina@gmail.com', 'JXS989', '9', NULL, '0'),
+('19941', 8, 'Estio Nurcahyanto', 'Ayu Hapsari', '085696304444', '085242970333', 'estio@gmail.com', 'JKHK98', '10', '19941', '0'),
+('isi', 9, 'Aris Riyanto', 'isi', 'isi', 'isi', 'aris@gmail.com', 'JKHK89', '12', 'isi', '0');
 
 -- --------------------------------------------------------
 
@@ -665,8 +769,15 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `pass`, `total_login`, `last_login`, `last_activity`, `login_attempts`, `last_login_attempt`, `remember_time`, `remember_exp`, `ip_address`, `is_active`, `verification_token`, `recovery_token`, `unlock_token`, `created_by`, `created_at`, `updated_by`, `updated_at`, `deleted_by`, `deleted_at`, `deleted`) VALUES
-(1, 'admin', '1', 51, '2019-07-08 21:38:21', '2019-07-08 21:38:21', 28, '2019-07-08 21:38:21', NULL, NULL, '::1', 1, NULL, NULL, NULL, 2, '2018-01-09 14:34:21', 2, '2018-09-02 14:06:43', NULL, NULL, 0),
-(2, 'siswa', 'a', 5, '2019-07-08 15:56:05', '2019-07-08 15:56:05', 7, '2019-07-08 15:56:05', NULL, NULL, '::1', 1, NULL, NULL, NULL, 3, '2019-07-02 18:20:17', 1, '2019-07-03 03:52:31', 1, '2019-07-03 09:10:51', 0);
+(1, 'admin', '1', 63, '2019-07-30 18:48:14', '2019-07-30 18:48:14', 40, '2019-07-30 18:48:14', NULL, NULL, '::1', 1, NULL, NULL, NULL, 2, '2018-01-09 14:34:21', 2, '2018-09-02 14:06:43', NULL, NULL, 0),
+(2, 'siswa', 'a', 7, '2019-07-17 23:44:08', '2019-07-17 23:44:08', 13, '2019-07-28 18:52:36', NULL, NULL, '::1', 1, NULL, NULL, NULL, 3, '2019-07-02 18:20:17', 1, '2019-07-03 03:52:31', 1, '2019-07-03 09:10:51', 0),
+(3, 'baru', NULL, 0, '2018-11-10 08:17:30', NULL, 0, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, 1, '2019-07-13 20:28:08', NULL, NULL, NULL, NULL, 0),
+(4, 'estio', '1234', 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, 1, '2019-07-14 21:26:10', 1, '2019-07-14 21:39:38', 1, '2019-07-14 21:45:30', 1),
+(5, 'jnbkjnkjn', 'jknkj', 1, '2019-07-22 00:51:11', '2019-07-22 00:51:11', 1, '2019-07-22 00:51:11', NULL, NULL, '::1', 1, NULL, NULL, NULL, 5, '2019-07-22 00:51:11', NULL, NULL, NULL, NULL, 0),
+(6, 'lll', 'll', 1, '2019-07-22 00:52:00', '2019-07-22 00:52:00', 1, '2019-07-22 00:52:00', NULL, NULL, '::1', 1, NULL, NULL, NULL, 6, '2019-07-22 00:52:00', NULL, NULL, NULL, NULL, 0),
+(7, 'isik', '1', 5, '2019-07-28 22:20:58', '2019-07-28 22:20:58', 6, '2019-07-28 22:20:58', NULL, NULL, '::1', 1, NULL, NULL, NULL, 1, '2019-07-28 18:48:07', NULL, NULL, NULL, NULL, 0),
+(8, 'Estio Nurcahyant', 'Ayu Hapsari', 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, 1, '2019-07-30 17:46:16', NULL, NULL, NULL, NULL, 0),
+(9, 'isi', 'isi', 1, '2019-07-30 17:48:51', '2019-07-30 17:48:51', 1, '2019-07-30 17:48:51', NULL, NULL, NULL, 1, NULL, NULL, NULL, 1, '2019-07-30 17:48:51', NULL, NULL, NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -688,7 +799,14 @@ CREATE TABLE `user_profile` (
 
 INSERT INTO `user_profile` (`id`, `user_id`, `fullname`, `address`, `photo`) VALUES
 (1, 1, 'Administrator', '', 'file_1562515936.jpg'),
-(2, 2, 'Fakhir Rizal', 'Jln. dr. Cipto 61, Proyonanggan Tengah', 'file_1562515936.jpg');
+(2, 2, 'Fakhir Rizal', 'Jln. dr. Cipto 61, Proyonanggan Tengah', 'file_1562515936.jpg'),
+(3, 3, 'Tes Admin', '', NULL),
+(4, 4, 'Estio Nurcahyanto', '', NULL),
+(5, 5, 'jnbkjnkjn', '', NULL),
+(6, 6, 'lll', '', NULL),
+(7, 7, 'Sharfina Aulia Puspasari', '', NULL),
+(8, 8, 'Estio Nurcahyanto', '', NULL),
+(9, 9, 'isi', 'isi', NULL);
 
 -- --------------------------------------------------------
 
@@ -772,7 +890,14 @@ CREATE TABLE `user_to_role` (
 
 INSERT INTO `user_to_role` (`user_id`, `role_id`) VALUES
 (1, 1),
-(2, 2);
+(2, 2),
+(3, 1),
+(4, 1),
+(5, 2),
+(6, 2),
+(7, 2),
+(8, 2),
+(9, 2);
 
 --
 -- Indexes for dumped tables
@@ -832,17 +957,24 @@ ALTER TABLE `purchasing_detail`
   ADD KEY `product_id` (`product_id`);
 
 --
+-- Indexes for table `school`
+--
+ALTER TABLE `school`
+  ADD PRIMARY KEY (`school_id`);
+
+--
 -- Indexes for table `status`
 --
 ALTER TABLE `status`
   ADD PRIMARY KEY (`user_id`),
-  ADD KEY `user_id` (`user_id`);
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `last_packet` (`last_packet`);
 
 --
 -- Indexes for table `student`
 --
 ALTER TABLE `student`
-  ADD PRIMARY KEY (`student_id`),
+  ADD PRIMARY KEY (`user_id`),
   ADD UNIQUE KEY `number_phone` (`number_phone`),
   ADD UNIQUE KEY `mother_phone` (`mother_phone`),
   ADD UNIQUE KEY `email` (`email`),
@@ -888,7 +1020,7 @@ ALTER TABLE `user_to_role`
 -- AUTO_INCREMENT for table `activity_logs`
 --
 ALTER TABLE `activity_logs`
-  MODIFY `activity_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `activity_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 --
 -- AUTO_INCREMENT for table `menu`
 --
@@ -903,32 +1035,32 @@ ALTER TABLE `packet`
 -- AUTO_INCREMENT for table `presence`
 --
 ALTER TABLE `presence`
-  MODIFY `presence_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `presence_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT for table `purchasing`
 --
 ALTER TABLE `purchasing`
-  MODIFY `purchasing_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `purchasing_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `purchasing_detail`
 --
 ALTER TABLE `purchasing_detail`
   MODIFY `purchasing_detail_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT for table `student`
+-- AUTO_INCREMENT for table `school`
 --
-ALTER TABLE `student`
-  MODIFY `student_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+ALTER TABLE `school`
+  MODIFY `school_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(9) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(9) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `user_profile`
 --
 ALTER TABLE `user_profile`
-  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `user_role`
 --

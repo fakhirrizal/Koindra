@@ -1,3 +1,5 @@
+
+
 <link href="<?= site_url() ?>assets/pages/css/invoice.min.css" rel="stylesheet" type="text/css" />
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <ul class="page-breadcrumb breadcrumb">
@@ -13,55 +15,15 @@
 <?= $this->session->flashdata('gagal') ?>
 <div class="page-content-inner">
 	<div class="invoice">
-		<div class="row invoice-logo">
+		<!-- <div class="row invoice-logo">
 			<div class="col-xs-6 invoice-logo-space">
 				<img src="<?= site_url().'assets/walmart.png'; ?>" class="img-responsive" alt="" /> </div>
 			<div class="col-xs-6">
-				<p> #5652256 / <?= $this->Main_model->convert_tanggal(date('Y-m-d')); ?>
-					<span class="muted"> Consectetuer adipiscing elit </span>
+				<p> Transaksi Tanggal <?= $this->Main_model->convert_tanggal(date('Y-m-d')); ?>
 				</p>
 			</div>
 		</div>
-		<hr/>
-		<!-- <div class="row">
-			<div class="col-xs-4">
-				<h3>Client:</h3>
-				<ul class="list-unstyled">
-					<li> John Doe </li>
-					<li> Mr Nilson Otto </li>
-					<li> FoodMaster Ltd </li>
-					<li> Madrid </li>
-					<li> Spain </li>
-					<li> 1982 OOP </li>
-				</ul>
-			</div>
-			<div class="col-xs-4">
-				<h3>About:</h3>
-				<ul class="list-unstyled">
-					<li> Drem psum dolor sit amet </li>
-					<li> Laoreet dolore magna </li>
-					<li> Consectetuer adipiscing elit </li>
-					<li> Magna aliquam tincidunt erat volutpat </li>
-					<li> Olor sit amet adipiscing eli </li>
-					<li> Laoreet dolore magna </li>
-				</ul>
-			</div>
-			<div class="col-xs-4 invoice-payment">
-				<h3>Payment Details:</h3>
-				<ul class="list-unstyled">
-					<li>
-						<strong>V.A.T Reg #:</strong> 542554(DEMO)78 </li>
-					<li>
-						<strong>Account Name:</strong> FoodMaster Ltd </li>
-					<li>
-						<strong>SWIFT code:</strong> 45454DEMO545DEMO </li>
-					<li>
-						<strong>Account Name:</strong> FoodMaster Ltd </li>
-					<li>
-						<strong>SWIFT code:</strong> 45454DEMO545DEMO </li>
-				</ul>
-			</div>
-		</div> -->
+		<hr/> -->
 		<div class="row">
 			<div class="col-xs-12">
 				<pre>
@@ -83,6 +45,7 @@
 						// echo'<pre>';
 						// print_r($datacart);
 						// echo'</pre>';
+						$price = 0;
 						foreach ($datacart as $key => $value) {
 						?>
 						<tr>
@@ -93,15 +56,92 @@
 							<td class="hidden-xs"> <?= 'Rp '.number_format($value['price'],2); ?> </td>
 							<td> <?= 'Rp '.number_format($value['subtotal']); ?> </td>
 						</tr>
-						<?php } ?>
+						<?php $price += $value['price']; } ?>
 					</tbody>
 				</table>
 				</pre>
 			</div>
 		</div>
+		<?php
+		$getdata = $this->Main_model->getSelectedData('user_profile a', 'a.*,b.email,b.number_phone', array("a.user_id" => $this->session->userdata('id')),'','','','',array(
+			'table' => 'student b',
+			'on' => 'a.user_id=b.user_id',
+			'pos' => 'LEFT',
+		))->row_array();
+
+		// echo $getdata['email'];
+
+		// Set Your server key
+		Veritrans_Config::$serverKey = "Mid-server-pj-mcbw3fEk36nTwvZr10lDn";
+		// Uncomment for production environment
+		Veritrans_Config::$isProduction = true;
+		Veritrans_Config::$isSanitized = Veritrans_Config::$is3ds = true;
+
+		// Required
+		$transaction_details = array(
+		'order_id' => date('YmdHi').'-'.$this->session->userdata('id'),// rand(),
+		'gross_amount' => 94000, // no decimal allowed for creditcard
+		);
+		// $price = $biaya_pendaftaran['nilai_pdh'];
+
+		// Optional
+		$item_details = array (
+			array(
+			'id' => rand(0,9),
+			// 'price' => $price,
+			'price' => $this->cart->total(),
+			'quantity' => 1,
+			'name' => "Transaksi di Koindra"
+			),
+		);
+
+
+		// Optional
+		$billing_address = array(
+		'first_name'    => "Andri",
+		'last_name'     => "Litani",
+		'address'       => "Mangga 20",
+		'city'          => "Jakarta",
+		'postal_code'   => "16602",
+		'phone'         => "081122334455",
+		'country_code'  => 'IDN'
+		);
+
+
+		// Optional
+		$shipping_address = array(
+		'first_name'    => "Obet",
+		'last_name'     => "Supriadi",
+		'address'       => "Manggis 90",
+		'city'          => "Jakarta",
+		'postal_code'   => "16601",
+		'phone'         => "08113366345",
+		'country_code'  => 'IDN'
+		);
+
+		// Optional
+		$customer_details = array(
+		'first_name'    => $getdata['fullname'],
+		// 'address'       => $getdata['address'],
+		// 'last_name'     => "Litani",
+		'email'         => $getdata['email'],
+		'phone'         => $getdata['number_phone']
+		// 'billing_address'  => $billing_address,
+		// 'shipping_address' => $shipping_address
+		);
+		// Fill transaction details
+		$transaction = array(
+		'transaction_details' => $transaction_details,
+		'customer_details' => $customer_details,
+		'item_details' => $item_details,
+		);
+
+		$snapToken = Veritrans_Snap::getSnapToken($transaction);
+		// echo "snapToken = ".$snapToken;
+		?>
 		<div class="row">
 			<div class="col-xs-4">
-				<div class="well">
+				<!-- <div class="well">
 					<address>
 						<strong>Loop, Inc.</strong>
 						<br/> 795 Park Ave, Suite 120
@@ -113,27 +153,26 @@
 						<br/>
 						<a href="mailto:#"> first.last@email.com </a>
 					</address>
-				</div>
+				</div> -->
 			</div>
 			<div class="col-xs-8 invoice-block">
 				<ul class="list-unstyled amounts">
-					<!-- <li>
-						<strong>Sub - Total amount:</strong> $9265 </li>
 					<li>
-						<strong>Discount:</strong> 12.9% </li>
-					<li>
-						<strong>VAT:</strong> ----- </li> -->
-					<li>
-						<h3><strong>Grand Total:</strong> <?= 'Rp '.number_format($this->cart->total(),2); ?></h3> </li>
+						<h4><strong>Grand Total:</strong> <?= 'Rp '.number_format($this->cart->total(),2); ?></h4> </li>
 				</ul>
 				<br/>
-				<a class="btn btn-lg blue hidden-print margin-bottom-5" onclick="javascript:window.print();"> Print
-					<i class="fa fa-print"></i>
-				</a>
-				<a class="btn btn-lg green hidden-print margin-bottom-5" href='<?= site_url('student/transaction_completed'); ?>'> Submit Your Invoice
-					<i class="fa fa-check"></i>
-				</a>
+				<a onclick="return confirm('Anda yakin?')" href='<?= site_url('student/destroy_cart') ?>' class='btn red hidden-print margin-bottom-5'>Hapus Keranjang <i class="fa fa-trash"></i></a>
+				<button id="pay-button" class="btn green hidden-print margin-bottom-5">Bayar Sekarang <i class="fa fa-check"></i></button>
 			</div>
 		</div>
 	</div>
 </div>
+
+	<!-- TODO: Remove ".sandbox" from script src URL for production environment. Also input your client key in "data-client-key" -->
+	<script src="https://app.midtrans.com/snap/snap.js" data-client-key="Mid-client-TOD6tYn8UrG_1F6C"></script>
+	<script type="text/javascript">
+		document.getElementById('pay-button').onclick = function(){
+		// SnapToken acquired from previous step
+		snap.pay('<?=$snapToken?>');
+		};
+	</script>

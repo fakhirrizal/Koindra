@@ -13,6 +13,9 @@
 <div class="page-content-inner">
 	<div class="m-heading-1 border-green m-bordered">
 		<h3>Catatan</h3>
+		<p> Ekstensi yang diijinkan : xlsx </p>
+		<p> Pada saat import data, isian dari <b>No. Anggota</b> akan dijadikan <b>username</b> dan <b>password</b> untuk masuk ke sistem. </p>
+		<p> Ukuran maksimal file : 3MB </p>
 		<p> Ketika mengklik <b>Atur Ulang Sandi</b>, maka kata sandi otomatis menjadi "<b>1234</b>"</p>
 	</div>
 	<div class="row">
@@ -36,7 +39,7 @@
 					<form action="#" method="post" onsubmit="return deleteConfirm();"/>
 					<div class="table-toolbar">
 						<div class="row">
-							<div class="col-md-6">
+							<div class="col-md-8">
 								<div class="btn-group">
 									<button type='submit' id="sample_editable_1_new" class="btn sbold red"> Hapus
 										<i class="fa fa-trash"></i>
@@ -44,9 +47,13 @@
 								</div>
 									<span class="separator">|</span>
 									<a href="<?=base_url('admin_side/tambah_data_siswa');?>" class="btn green uppercase">Tambah Data <i class="fa fa-plus"></i> </a>
-								<!-- <button id="sample_editable_1_new" onclick="window.location.href='<?=base_url('Master/admin');?>'" class="btn sbold green"> Tambah Data Baru
-									<i class="fa fa-plus"></i>
-								</button> -->
+									<!-- <button id="sample_editable_1_new" onclick="window.location.href='<?=base_url('Master/admin');?>'" class="btn sbold green"> Tambah Data Baru
+										<i class="fa fa-plus"></i>
+									</button> -->
+							</div>
+							<div class="col-md-4" style='text-align: right;'>
+								<a href="#" class="btn btn-info" data-toggle="modal" data-target="#fi">Import Data <i class="fa fa-cloud-upload"></i></a>
+								<a href="<?=base_url()?>data_upload/format_data_siswa.xlsx" class="btn btn-warning">Import Data Template</a>
 							</div>
 						</div>
 					</div>
@@ -61,7 +68,7 @@
 								</th>
 								<th style="text-align: center;" width="4%"> # </th>
 								<th style="text-align: center;"> Nama </th>
-								<th style="text-align: center;"> Nama Ibu </th>
+								<th style="text-align: center;"> No. Induk </th>
 								<th style="text-align: center;"> Nomor HP </th>
 								<th style="text-align: center;" width="7%"> Aksi </th>
 							</tr>
@@ -80,7 +87,7 @@
 								</td>
 								<td style="text-align: center;"><?= $no++.'.'; ?></td>
 								<td style="text-align: center;"><?= $value->fullname; ?></td>
-								<td style="text-align: center;"><?= $value->mother; ?></td>
+								<td style="text-align: center;"><?= $value->student_id; ?></td>
 								<td style="text-align: center;"><?= $value->number_phone; ?></td>
 								<td>
 									<div class="btn-group" style="text-align: center;">
@@ -129,6 +136,37 @@
 				</div>
 			</div>
 			<!-- END EXAMPLE TABLE PORTLET-->
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="fi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+		<div class="modal-header">
+			<!-- <h5 class="modal-title" id="exampleModalLabel">Form Import</h5> -->
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		<form role="form" action="<?php echo base_url()."admin_side/impor_data_siswa"; ?>" method='post' enctype="multipart/form-data">
+		<div class="modal-body">
+			<div class="form-body">
+				<div class="form-group form-md-line-input has-danger">
+					<label class="col-md-2 control-label" for="form_control_1">File Import <span class="required"> * </span></label>
+					<div class="col-md-10">
+						<div class="input-icon">
+							<input class="form-control" type="file" name='fmasuk' required>
+							<input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+			<button type="submit" class="btn btn-primary">Unggah</button>
+		</div>
+		</form>
 		</div>
 	</div>
 </div>

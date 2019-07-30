@@ -81,49 +81,61 @@ License: You must have a valid license purchased only from themeforest(the above
 					<!-- BEGIN TOP NAVIGATION MENU -->
 					<div class="top-menu">
 						<ul class="nav navbar-nav pull-right">
-							<li class="dropdown dropdown-extended dropdown-notification dropdown-dark" id="header_notification_bar">
-								<?php
-									// $q = "SELECT a.*,b.last_login,c.fullname,(SELECT COUNT(d.id) FROM user d WHERE d.role='radiografer' AND d.company_id=a.id AND d.deleted='0') AS jumlah_radiografer FROM company a LEFT JOIN admin_to_company b ON a.id=b.company_id LEFT JOIN user_profile c ON b.user_id=c.user_id WHERE a.deleted='0' AND b.user_id='".$this->session->userdata('id')."' AND b.deleted='0' AND c.deleted='0'";
-									// $data_notif = $this->Main_model->manualQuery($q);
-									$data_notif = 0;
-								?>
+							<!-- <li class="dropdown dropdown-extended dropdown-notification dropdown-dark" id="header_notification_bar">
 								<a href="<?= base_url().'admin_side/launcher'; ?>" class="dropdown-toggle" title="Go To Launcher">
 									<i class="icon-grid"></i>
-									<span class="badge badge-default"><?= count($data_notif); ?></span>
+									<span class="badge badge-default"></span>
 								</a>
-								<!-- <ul class="dropdown-menu">
+							</i> -->
+							<li class="dropdown dropdown-extended dropdown-notification dropdown-dark" id="header_notification_bar">
+								<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+									<i class="icon-bell"></i>
+									<?php
+									$get_notif = $this->Main_model->getSelectedData('purchasing a', 'a.*,b.fullname', array('a.status'=>'Pending','a.deleted'=>'0'), "",'','','',array(
+										'table' => 'user_profile b',
+										'on' => 'a.user_id=b.user_id',
+										'pos' => 'left',
+									))->result();
+									if($get_notif==NULL){
+										echo'';
+									}else{
+										echo '<span class="badge badge-default">'.count($get_notif).'</span>';
+									}
+									?>
+								</a>
+								<ul class="dropdown-menu">
+									<?php
+									if($get_notif!=NULL){
+									?>
 									<li class="external">
-										<h3>Ada
-											<strong><?= count($data_notif); ?></strong> pemberitahuan</h3>
-										<a href="#">lihat semua</a>
+										<h3>Total:
+											<strong><?= count($get_notif); ?> Transaksi</strong></h3>
+										<?= '<a href="'.site_url('admin_side/pembayaran').'">Lihat Semua</a>' ?>
 									</li>
 									<li>
 										<ul class="dropdown-menu-list scroller" style="height: 250px;" data-handle-color="#637283">
 											<?php
-											foreach ($data_notif as $key => $value) {
+											foreach ($get_notif as $key => $value) {
+												echo'
+												<li>
+													<a href="javascript:;">
+														<span class="details">
+															<span class="label label-sm label-icon label-warning">
+																<i class="fa fa-exchange"></i>
+															</span> '.$value->fullname.' sebesar Rp '.number_format($value->grand_total,2).'</span>
+													</a>
+												</li>
+												';
+											}
 											?>
-											<li>
-												<a href="javascript:;">
-													<span class="time">just now</span>
-													<span class="details">
-														<span class="label label-sm label-icon label-success">
-															<i class="fa fa-user"></i>
-														</span> <?= $value->fullname; ?> </span>
-												</a>
-											</li>
-											<?php } ?>
-											<li>
-												<a href="javascript:;">
-													<span class="time">3 mins</span>
-													<span class="details">
-														<span class="label label-sm label-icon label-danger">
-															<i class="fa fa-bolt"></i>
-														</span> Server #12 overloaded. </span>
-												</a>
-											</li>
 										</ul>
 									</li>
-								</ul> -->
+									<?php
+									}else{
+										echo'<li class="external"><h3><strong>Tidak ada transaksi</strong></h3></li>';
+									}
+									?>
+								</ul>
 							</li>
 							<li class="droddown dropdown-separator">
 								<span class="separator"></span>
@@ -202,6 +214,11 @@ License: You must have a valid license purchased only from themeforest(the above
 											<i class="icon-users"></i> Data Siswa
 										</a>
 									</li>
+									<li class=" <?php if($child=='school'){echo 'active';}else{echo '';} ?>">
+										<a href="<?php echo site_url('admin_side/sekolah'); ?>" class="nav-link nav-toggle ">
+											<i class="icon-graduation"></i> Data Sekolah
+										</a>
+									</li>
 									<li class=" <?php if($child=='packet'){echo 'active';}else{echo '';} ?>">
 										<a href="<?php echo site_url('admin_side/paket'); ?>" class="nav-link nav-toggle ">
 											<i class="icon-layers"></i> Data Paket
@@ -214,8 +231,16 @@ License: You must have a valid license purchased only from themeforest(the above
 								</a>
 							</li>
 							<li class="menu-dropdown classic-menu-dropdown <?php if($parent=='report'){echo 'active';}else{echo '';} ?>">
-								<a href="<?php echo site_url('admin_side/laporan'); ?>"><i class="icon-notebook"></i> Laporan
+								<a href="javascript:;"><i class="icon-notebook"></i> Laporan
+									<span class="arrow <?php if($parent=='report'){echo 'open';}else{echo '';} ?>"></span>
 								</a>
+								<ul class="dropdown-menu pull-left">
+									<li class=" <?php if($child=='presence'){echo 'active';}else{echo '';} ?>">
+										<a href="<?php echo site_url('admin_side/laporan_kehadiran'); ?>" class="nav-link nav-toggle ">
+											<i class="fa fa-check"></i> Data Kehadiran
+										</a>
+									</li>
+								</ul>
 							</li>
 							<li class="menu-dropdown classic-menu-dropdown <?php if($parent=='log_activity'){echo 'active';}else{echo '';} ?>">
 								<a href="<?php echo site_url('admin_side/log_activity'); ?>"><i class="fa fa-rss"></i> Log Activity

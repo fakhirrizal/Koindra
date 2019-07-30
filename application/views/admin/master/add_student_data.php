@@ -25,7 +25,7 @@
 			<!-- BEGIN EXAMPLE TABLE PORTLET-->
 			<div class="portlet light ">
 				<div class="portlet-body">
-					<form role="form" class="form-horizontal" action="<?=base_url('admin_side/simpan_data_siswa');?>" method="post"  enctype='multipart/form-data'>
+					<form role="form" class="form-horizontal" action="<?=base_url('admin_side/simpan_data_siswa');?>" method="post" enctype='multipart/form-data'>
 						<input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>">
 						<div class="form-body">
 							<div class="form-group form-md-line-input has-danger">
@@ -36,6 +36,17 @@
 										<div class="form-control-focus"> </div>
 										<span class="help-block">Some help goes here...</span>
 										<i class="fa fa-user"></i>
+									</div>
+								</div>
+							</div>
+							<div class="form-group form-md-line-input has-danger">
+								<label class="col-md-2 control-label" for="form_control_1">No. Induk <span class="required"> * </span></label>
+								<div class="col-md-10">
+									<div class="input-icon">
+										<input type="text" class="form-control" name="student_id" placeholder="Type something" required>
+										<div class="form-control-focus"> </div>
+										<span class="help-block">Some help goes here...</span>
+										<i class="icon-credit-card"></i>
 									</div>
 								</div>
 							</div>
@@ -84,24 +95,39 @@
 								</div>
 							</div>
 							<div class="form-group form-md-line-input has-danger">
-								<label class="col-md-2 control-label" for="form_control_1">Asal Sekolah</label>
+								<label class="col-md-2 control-label" for="form_control_1">Asal Sekolah <span class="required"> * </span></label>
 								<div class="col-md-10">
-									<div class="input-icon">
-										<input type="text" class="form-control" name="school" placeholder="Type something">
-										<div class="form-control-focus"> </div>
-										<span class="help-block">Some help goes here...</span>
-										<i class="fa fa-mortar-board"></i>
-									</div>
+									<select class='form-control' name='school' required>
+										<option value=''>-- Pilih --</option>
+										<?php
+										foreach ($data_sekolah as $key => $value) {
+											echo '<option value="'.$value->school_code.'">'.$value->school_name.'</option>';
+										}
+										?>
+									</select>
 								</div>
 							</div>
 							<div class="form-group form-md-line-input has-danger">
-								<label class="col-md-2 control-label" for="form_control_1">Kelas</label>
+								<label class="col-md-2 control-label" for="form_control_1">Kelas <span class="required"> * </span></label>
+								<div class="col-md-10">
+									<select class='form-control' name='class' required>
+										<option value=''>-- Pilih --</option>
+										<?php
+										for ($i=1; $i <13 ; $i++) {
+											echo '<option value="'.$i.'">'.$i.'</option>';
+										}
+										?>
+									</select>
+								</div>
+							</div>
+							<div class="form-group form-md-line-input has-danger">
+								<label class="col-md-2 control-label" for="form_control_1">Passcode</label>
 								<div class="col-md-10">
 									<div class="input-icon">
-										<input type="text" class="form-control" name="class" placeholder="Type something">
+										<input type="text" class="form-control" name="passcode" placeholder="Type something">
 										<div class="form-control-focus"> </div>
 										<span class="help-block">Some help goes here...</span>
-										<i class="fa fa-level-up"></i>
+										<i class="fa fa-lock"></i>
 									</div>
 								</div>
 							</div>

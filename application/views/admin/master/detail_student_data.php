@@ -50,19 +50,13 @@
 											<tr>
 												<td> Asal Sekolah </td>
 												<td> : </td>
-												<td><?php echo $row->school; ?></td>
+												<td><?php echo $row->school_name; ?></td>
 											</tr>
 											<tr>
 												<td> Kelas </td>
 												<td> : </td>
 												<td><?php echo $row->class; ?></td>
 											</tr>
-										</tbody>
-									</table>
-								</div>
-								<div class="col-md-6">
-									<table class="table">
-										<tbody>
 											<tr>
 												<td> Ibu Kandung </td>
 												<td> : </td>
@@ -72,6 +66,34 @@
 												<td> No. HP Ibu </td>
 												<td> : </td>
 												<td><?php echo $row->mother_phone; ?></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<div class="col-md-6">
+									<table class="table">
+										<tbody>
+											<tr>
+												<td> Kuota </td>
+												<td> : </td>
+												<td><?php
+												if($row->quota==NULL){
+													echo '-';
+												}else{
+													echo $row->quota.' Pertemuan';} ?>&nbsp; &nbsp; &nbsp;
+													<a title='Ubah Data' data-toggle="modal" data-target="#ubahdata" id="<?= $row->user_id; ?>" class="ubahdata">
+													<i class="icon-note"></i></a></td>
+											</tr>
+											<tr>
+												<td> Tanggal Berakhir </td>
+												<td> : </td>
+												<td><?php
+												if($row->expired_date==NULL){
+													echo '-';
+												}else{
+													echo $this->Main_model->convert_tanggal($row->expired_date);} ?>&nbsp; &nbsp; &nbsp;
+													<a title='Ubah Data' data-toggle="modal" data-target="#ubahdata" id="<?= $row->user_id; ?>" class="ubahdata">
+													<i class="icon-note"></i></a></td>
 											</tr>
 										</tbody>
 									</table>
@@ -94,8 +116,8 @@
 												<tr>
 													<th style="text-align: center;" width="4%"> # </th>
 													<th style="text-align: center;"> Tanggal </th>
-													<th style="text-align: center;"> Jam Masuk </th>
-													<th style="text-align: center;"> Jam Keluar </th>
+													<!-- <th style="text-align: center;"> Jam Masuk </th>
+													<th style="text-align: center;"> Jam Keluar </th> -->
 													<th style="text-align: center;"> Catatan </th>
 												</tr>
 											</thead>
@@ -107,8 +129,6 @@
 													<tr style="text-align: center;">
 														<td>'.$urutan.'.</td>
 														<td>'.$this->Main_model->convert_tanggal($value['date']).'</td>
-														<td>'.$value['come_in'].'</td>
-														<td>'.$value['come_out'].'</td>
 														<td><span class="more">'.$value['note'].'</span></td>
 													</tr>
 													';
@@ -124,9 +144,11 @@
 												<tr>
 													<th style="text-align: center;" width="4%"> # </th>
 													<th style="text-align: center;"> Invoice </th>
+													<!-- <th style="text-align: center;"> ID Pesanan </th> -->
 													<th style="text-align: center;"> Total Item </th>
 													<th style="text-align: center;"> Nominal </th>
 													<th style="text-align: center;"> Tanggal Pembayaran </th>
+													<th style="text-align: center;"> Status Pembayaran </th>
 													<th style="text-align: center;"> Aksi </th>
 												</tr>
 											</thead>
@@ -134,6 +156,29 @@
 												<?php
 												$urutan = 1;
 												foreach ($riwayat_pembayaran as $key => $value) {
+													Veritrans_Config::$serverKey = "Mid-server-pj-mcbw3fEk36nTwvZr10lDn";
+													// Uncomment for production environment
+													Veritrans_Config::$isProduction = true;
+													$order          = Veritrans_Transaction::status($value->invoice_number);
+													$status         = $order->transaction_status;
+													if ($status == "settlement") {
+														$stat = "Telah Dibayarkan";
+													} elseif ($status == "pending") {
+														$stat = "Menunggu Pembayaran";
+													} else {
+														$stat = "Gagal";
+													}
+													/*
+													$data['status'] = $status;
+													$data['metode'] = $order->payment_type;
+													$data['biaya']  = $order->gross_amount;*/
+													// if ($order->payment_type == "bank_transfer") {
+													// 	$data['va_number']['bank'] = $order->va_numbers[0]->bank;
+													// 	$data['va_number']['number'] = $order->va_numbers[0]->va_number;
+													// }elseif ($order->payment_type == "cstore") {
+													// 	$data['store'] = $order->store;
+													// 	$data['payment_code'] = $order->payment_code;
+													// }
 													echo'
 													<tr style="text-align: center;">
 														<td>'.$urutan.'.</td>
@@ -141,6 +186,7 @@
 														<td>'.$value->total_items.' Item</td>
 														<td>Rp '.number_format($value->grand_total,2).'</td>
 														<td>'.$this->Main_model->convert_tanggal($value->date).'</td>
+														<td>'.$stat.'</td>
 														<td>
 															<button class="btn btn-xs green detaildata" type="button" data-toggle="modal" data-target="#detaildata" id="'.md5($value->purchasing_id).'"> Detail
 																<i class="fa fa-share-square-o"></i>
@@ -178,8 +224,8 @@
 		// Configure/customize these variables.
 		var showChar = 100;  // How many characters are shown by default
 		var ellipsestext = "...";
-		var moretext = "Show more >";
-		var lesstext = "Show less";
+		var moretext = "[Show more]";
+		var lesstext = "[Show less]";
 
 		$('.more').each(function() {
 			var content = $(this).html();
@@ -218,6 +264,20 @@
 		</div>
 	</div>
 </div>
+<div class="modal fade" id="ubahdata" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="myModalLabel">Ubah Data</h4>
+			</div>
+			<div class="modal-body">
+				<div class="box box-primary" id='formubahdata' >
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 <script>
 	$(document).ready(function(){
 		$.ajaxSetup({
@@ -234,6 +294,18 @@
 			success:function(data){
 			$('#formdetaildata').html(data);
 			$('#detaildata').modal("show");
+			}
+		});
+		});
+		$('.ubahdata').click(function(){
+		var id = $(this).attr("id");
+		var modul = 'modul_ubah_data_quota_dan_masa_aktif';
+		var nilai_token = '<?php echo $this->security->get_csrf_hash();?>';
+		$.ajax({
+			data: {id:id,modul:modul,<?php echo $this->security->get_csrf_token_name();?>:nilai_token},
+			success:function(data){
+			$('#formubahdata').html(data);
+			$('#ubahdata').modal("show");
 			}
 		});
 		});

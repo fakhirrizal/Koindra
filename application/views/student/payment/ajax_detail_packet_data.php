@@ -26,13 +26,13 @@
 											<tr>
 												<td> Durasi </td>
 												<td> : </td>
-												<td><?php echo $row->duration.' Hari'; ?></td>
+												<td><?php echo $row->duration.' Bulan'; ?></td>
 											</tr>
-											<tr>
+											<!-- <tr>
 												<td> Tanggal Kadaluarsa </td>
 												<td> : </td>
 												<td><?php echo $this->Main_model->convert_tanggal($row->expired_date); ?></td>
-											</tr>
+											</tr> -->
 											<tr>
 												<td> Informasi Tambahan </td>
 												<td> : </td>

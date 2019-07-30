@@ -67,16 +67,30 @@ $route['admin_side/cleaning_log'] = 'admin/App/cleaning_log';
 $route['admin_side/tentang_aplikasi'] = 'admin/App/about';
 $route['admin_side/bantuan'] = 'admin/App/helper';
 
-$route['admin_side/administrator'] = 'admin/Master/administrator_data';
+$route['admin_side/administrator'] = 'admin/Master/admin_data';
+$route['admin_side/tambah_data_admin'] = 'admin/Master/add_admin_data';
+$route['admin_side/simpan_data_admin'] = 'admin/Master/save_admin_data';
+$route['admin_side/detail_data_admin/(:any)'] = 'admin/Master/detail_admin_data/$1';
+$route['admin_side/atur_ulang_kata_sandi_admin/(:any)'] = 'admin/Master/reset_password_admin_account/$1';
+$route['admin_side/hapus_data_admin/(:any)'] = 'admin/Master/delete_admin_data/$1';
+
+$route['admin_side/sekolah'] = 'admin/Master/school_data';
+$route['admin_side/detail_data_sekolah/(:any)'] = 'admin/Master/detail_school_data/$1';
+$route['admin_side/simpan_data_sekolah'] = 'admin/Master/save_school_data';
+$route['admin_side/perbarui_data_sekolah'] = 'admin/Master/update_school_data';
+$route['admin_side/hapus_data_sekolah/(:any)'] = 'admin/Master/delete_school_data/$1';
 
 $route['admin_side/siswa'] = 'admin/Master/student_data';
 $route['admin_side/tambah_data_siswa'] = 'admin/Master/add_student_data';
 $route['admin_side/simpan_data_siswa'] = 'admin/Master/save_student_data';
 $route['admin_side/detail_data_siswa/(:any)'] = 'admin/Master/detail_student_data/$1';
+$route['admin_side/impor_data_siswa'] = 'admin/Master/import_student_data';
 $route['admin_side/ubah_data_siswa/(:any)'] = 'admin/Master/edit_student_data/$1';
 $route['admin_side/perbarui_data_siswa'] = 'admin/Master/update_student_data';
+$route['admin_side/update_status'] = 'admin/Master/update_status';
 $route['admin_side/atur_ulang_kata_sandi_siswa/(:any)'] = 'admin/Master/reset_password_student_account/$1';
 $route['admin_side/hapus_data_siswa/(:any)'] = 'admin/Master/delete_student_data/$1';
+$route['admin_side/kirim_pemberitahuan/(:any)/(:any)'] = 'admin/Master/send_notification/$1/$2';
 
 $route['admin_side/paket'] = 'admin/Master/packet_data';
 $route['admin_side/tambah_data_paket'] = 'admin/Master/add_packet_data';
@@ -85,6 +99,13 @@ $route['admin_side/detail_data_paket/(:any)'] = 'admin/Master/detail_packet_data
 $route['admin_side/ubah_data_paket/(:any)'] = 'admin/Master/edit_packet_data/$1';
 $route['admin_side/perbarui_data_paket'] = 'admin/Master/update_packet_data';
 $route['admin_side/hapus_data_paket/(:any)'] = 'admin/Master/delete_packet_data/$1';
+
+$route['admin_side/laporan_kehadiran'] = 'admin/Report/presence_data';
+$route['admin_side/detail_data_kehadiran/(:any)'] = 'admin/Report/presence_data_detail/$1';
+$route['admin_side/impor_data_kehadiran'] = 'admin/Report/import_presence_data';
+
+$route['admin_side/pembayaran'] = 'admin/Payment/all_payment';
+$route['admin_side/hapus_transaksi/(:any)'] = 'admin/Payment/delete_payment/$1';
 
 /* Student */
 $route['student/launcher'] = 'student/App/launcher';
@@ -102,12 +123,18 @@ $route['student/update_password'] = 'student/User_profile/update_password';
 $route['student/email_setting'] = 'student/User_profile/email_setting';
 $route['student/update_email'] = 'student/User_profile/update_email';
 
+$route['student/start_free_trial'] = 'student/Master/start_free_trial';
+
 $route['student/paket'] = 'student/Payment/packet_data';
 $route['student/detail_data_paket/(:any)'] = 'student/Payment/detail_packet_data/$1';
 $route['student/add_to_cart/(:any)'] = 'student/Payment/add_to_cart/$1';
 $route['student/cart'] = 'student/Payment/cart';
+$route['student/destroy_cart'] = 'student/Payment/destroy_cart';
 $route['student/transaction_completed'] = 'student/Payment/transaction_completed';
 $route['student/riwayat_pembelian'] = 'student/Payment/payment_history';
+$route['student/detail_transaksi/(:any)'] = 'student/Payment/payment_detail/$1';
+
+$route['student/laporan_kehadiran'] = 'student/Report/presence_data';
 
 /* REST API */
 $route['rest_server'] = 'Rest_server/documentation';

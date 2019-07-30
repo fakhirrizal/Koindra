@@ -24,9 +24,9 @@ class Auth extends CI_Controller {
 		}
 	}
 	public function login_process(){
-		$cek = $this->Main_model->getSelectedData('user a', '*', array("a.username" => $this->input->post('username'), "a.is_active" => '1', 'deleted' => '0'), 'a.username ASC')->result();
+		$cek = $this->Main_model->getSelectedData('user a', '*', array("a.username" => $this->input->post('username'), "a.is_active" => '1', 'a.deleted' => '0'), 'a.username ASC')->result();
 		if($cek!=NULL){
-			$cek2 = $this->Main_model->getSelectedData('user a', '*', array("a.username" => $this->input->post('username'),'pass' => $this->input->post('password'), "a.is_active" => '1', 'deleted' => '0'), 'a.username ASC','','','','')->result();
+			$cek2 = $this->Main_model->getSelectedData('user a', '*', array("a.username" => $this->input->post('username'),'a.pass' => $this->input->post('password'), "a.is_active" => '1', 'a.deleted' => '0'), 'a.username ASC','','','','')->result();
 			if($cek2!=NULL){
 				foreach ($cek as $key => $value) {
 					$total_login = ($value->total_login)+1;
@@ -87,7 +87,8 @@ class Auth extends CI_Controller {
 	public function registration()
 	{
 		if(($this->session->userdata('id'))==NULL){
-			$this->load->view('auth/register');
+			$data['data_sekolah'] = $this->Main_model->getSelectedData('school a', 'a.*')->result();
+			$this->load->view('auth/register',$data);
 		}else{
 			$cek = $this->Main_model->getSelectedData('user_to_role a', 'b.route', array('a.user_id'=>$this->session->userdata('id'),'b.deleted'=>'0'), "",'','','',array(
 				'table' => 'user_role b',
@@ -100,7 +101,8 @@ class Auth extends CI_Controller {
 				}
 			}
 			else{
-				$this->load->view('auth/register');
+				$data['data_sekolah'] = $this->Main_model->getSelectedData('school a', 'a.*')->result();
+				$this->load->view('auth/register',$data);
 			}
 		}
 	}
@@ -163,6 +165,12 @@ class Auth extends CI_Controller {
 			// print_r($data4);
 			$this->Main_model->insertData('student',$data4);
 
+			$data5 = array(
+				'user_id' => $user_id['id']+1
+			);
+			// print_r($data5);
+			$this->Main_model->insertData('status',$data5);
+
 			$this->Main_model->log_activity($user_id['id']+1,'Registration new account',"Creating student data (".$this->input->post('fullname').")");
 			$this->db->trans_complete();
 			if($this->db->trans_status() === false){
@@ -180,7 +188,7 @@ class Auth extends CI_Controller {
 	public function forget_password() {
 		$q1 = "SELECT a.*,b.fullname FROM user a LEFT JOIN user_profile b ON a.id=b.user_id WHERE a.email='".$this->input->post('email')."' AND a.deleted='0'";
 		$cek = $this->Main_model->manualQuery($q1);
-        if($cek==NULL){
+		if($cek==NULL){
 			$this->session->set_flashdata('error','<div class="alert alert-danger alert-dismissible" role="alert" style="text-align: justify;">
 													<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 													<strong>Ups! </strong>Email tidak terdaftar.
@@ -235,5 +243,5 @@ class Auth extends CI_Controller {
 			echo "<script>alert('Pesan telah dikirim. Silahkan cek di Folder Kotak Masuk (Inbox) atau Spam')</script>";
 			echo "<script>window.location='".base_url()."'</script>";
 		}}
-    }
+	}
 }

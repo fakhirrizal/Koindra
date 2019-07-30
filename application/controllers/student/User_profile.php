@@ -2,8 +2,8 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class User_profile extends CI_Controller {
-    function __construct() {
-        parent::__construct();
+	function __construct() {
+		parent::__construct();
 	}
 	public function profile(){
 		$data['parent'] = '';

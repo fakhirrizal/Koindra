@@ -80,9 +80,9 @@ License: You must have a valid license purchased only from themeforest(the above
 					<!-- BEGIN TOP NAVIGATION MENU -->
 					<div class="top-menu">
 						<ul class="nav navbar-nav pull-right">
-							<li class="dropdown dropdown-extended dropdown-notification dropdown-dark" id="header_notification_bar">
+							<!-- <li class="dropdown dropdown-extended dropdown-notification dropdown-dark" id="header_notification_bar">
 								<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-									<i class="icon-bell"></i></a></li>
+									<i class="icon-bell"></i></a></li> -->
 							<li class="dropdown dropdown-extended dropdown-notification dropdown-dark" id="header_notification_bar">
 								<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
 									<i class="icon-basket-loaded"></i>
@@ -221,7 +221,7 @@ License: You must have a valid license purchased only from themeforest(the above
 								</ul>
 							</li>
 							<li class="menu-dropdown classic-menu-dropdown <?php if($parent=='report'){echo 'active';}else{echo '';} ?>">
-								<a href="<?php echo site_url('student/laporan'); ?>"><i class="icon-notebook"></i> Laporan
+								<a href="<?php echo site_url('student/laporan_kehadiran'); ?>"><i class="icon-notebook"></i> Laporan Kehadiran
 								</a>
 							</li>
 							<!-- <li class="menu-dropdown classic-menu-dropdown <?php if($parent=='log_activity'){echo 'active';}else{echo '';} ?>">

@@ -17,6 +17,7 @@
 <div class="page-content-inner">
 	<div class="m-heading-1 border-green m-bordered">
 		<h3>Catatan</h3>
+		<p>Pesan pemberitahuan kepada siswa akan dikirimkan via email.</p>
 	</div>
 	<div class="row">
 		<div class="col-md-12">
@@ -47,13 +48,13 @@
 											<tr>
 												<td> Durasi </td>
 												<td> : </td>
-												<td><?php echo $row->duration.' Hari'; ?></td>
+												<td><?php echo $row->duration.' Bulan'; ?></td>
 											</tr>
-											<tr>
+											<!-- <tr>
 												<td> Tanggal Kadaluarsa </td>
 												<td> : </td>
 												<td><?php echo $this->Main_model->convert_tanggal($row->expired_date); ?></td>
-											</tr>
+											</tr> -->
 											<tr>
 												<td> Informasi Tambahan </td>
 												<td> : </td>
@@ -90,6 +91,12 @@
 										<table class="table table-striped table-bordered table-hover order-column" id="sample_1">
 											<thead>
 												<tr>
+													<th width="3%">
+														<label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
+															<input type="checkbox" class="group-checkable" data-set="#sample_1 .checkboxes" />
+															<span></span>
+														</label>
+													</th>
 													<th style="text-align: center;" width="4%"> # </th>
 													<th style="text-align: center;"> Nama Siswa </th>
 													<th style="text-align: center;"> Sisa Kuota </th>
@@ -98,6 +105,45 @@
 												</tr>
 											</thead>
 											<tbody>
+												<?php
+												$no = 1;
+												foreach ($data_pengguna_aktif as $key => $value) {
+												?>
+												<tr class="odd gradeX">
+													<td style="text-align: center;">
+														<label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
+															<input type="checkbox" class="checkboxes" name="selected_id[]" value="<?= $value->user_id; ?>"/>
+															<span></span>
+														</label>
+													</td>
+													<td style="text-align: center;"><?= $no++.'.'; ?></td>
+													<td style="text-align: center;"><?= $value->fullname; ?></td>
+													<td style="text-align: center;"><?php
+													if($value->quota==NULL){
+														echo'-';
+													}else{ echo $value->quota.'x Pertemuan';} ?></td>
+													<td style="text-align: center;"><?php
+													if($value->expired_date==NULL){
+														echo'-';
+													}else{
+														echo $this->Main_model->convert_tanggal($value->expired_date);} ?></td>
+													<td width='5%'>
+														<div class="btn-group" style="text-align: center;">
+															<button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Aksi
+																<i class="fa fa-angle-down"></i>
+															</button>
+															<ul class="dropdown-menu" role="menu">
+																<li>
+																	<a href="<?=site_url('admin_side/kirim_pemberitahuan/'.md5($value->last_packet).'/'.md5($value->user_id));?>">
+																		<i class="icon-paper-plane"></i> Kirim Pemberitahuan </a>
+																</li>
+															</ul>
+														</div>
+													</td>
+												</tr>
+												<?php
+												}
+												?>
 											</tbody>
 										</table>
 									</div>

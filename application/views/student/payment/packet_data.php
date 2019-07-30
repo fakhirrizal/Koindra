@@ -55,7 +55,7 @@
 								<th style="text-align: center;"> Nama Paket </th>
 								<th style="text-align: center;"> Kuota </th>
 								<th style="text-align: center;"> Durasi </th>
-								<th style="text-align: center;"> Kadaluarsa </th>
+								<th style="text-align: center;"> Harga </th>
 								<th style="text-align: center;" width="7%"> Aksi </th>
 							</tr>
 						</thead>
@@ -74,8 +74,9 @@
 								<td style="text-align: center;"><?= $no++.'.'; ?></td>
 								<td style="text-align: center;"><?= $value->packet_name; ?></td>
 								<td style="text-align: center;"><?= $value->quota.'x Pertemuan'; ?></td>
-								<td style="text-align: center;"><?= $value->duration.' Hari'; ?></td>
-								<td style="text-align: center;"><?= $this->Main_model->convert_tanggal($value->expired_date); ?></td>
+								<td style="text-align: center;"><?= $value->duration.' Bulan'; ?></td>
+								<td style="text-align: center;"><?= 'Rp '.number_format($value->price,2); ?></td>
+								<!-- <td style="text-align: center;"><?= $this->Main_model->convert_tanggal($value->expired_date); ?></td> -->
 								<td>
 									<div class="btn-group" style="text-align: center;">
 										<button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Aksi

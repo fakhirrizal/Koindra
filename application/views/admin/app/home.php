@@ -1,21 +1,18 @@
 <div class="page-content-inner">
 	<div class="row widget-row">
 		<div class="col-md-3">
-			<!-- BEGIN WIDGET THUMB -->
 			<div class="widget-thumb widget-bg-color-white text-uppercase margin-bottom-20 ">
 				<h4 class="widget-thumb-heading">Jumlah Siswa</h4>
 				<div class="widget-thumb-wrap">
 					<i class="widget-thumb-icon bg-green icon-graduation"></i>
 					<div class="widget-thumb-body">
 						<span class="widget-thumb-subtitle">Anak</span>
-						<span class="widget-thumb-body-stat" data-counter="counterup" data-value="7,644">124</span>
+						<span class="widget-thumb-body-stat" data-counter="counterup" data-value="7,644"><?= count($siswa); ?></span>
 					</div>
 				</div>
 			</div>
-			<!-- END WIDGET THUMB -->
 		</div>
 		<div class="col-md-3">
-			<!-- BEGIN WIDGET THUMB -->
 			<div class="widget-thumb widget-bg-color-white text-uppercase margin-bottom-20 ">
 				<h4 class="widget-thumb-heading">Jumlah Pengajar</h4>
 				<div class="widget-thumb-wrap">
@@ -26,10 +23,8 @@
 					</div>
 				</div>
 			</div>
-			<!-- END WIDGET THUMB -->
 		</div>
 		<div class="col-md-3">
-			<!-- BEGIN WIDGET THUMB -->
 			<div class="widget-thumb widget-bg-color-white text-uppercase margin-bottom-20 ">
 				<h4 class="widget-thumb-heading">Transaksi Tertunda</h4>
 				<div class="widget-thumb-wrap">
@@ -40,10 +35,8 @@
 					</div>
 				</div>
 			</div>
-			<!-- END WIDGET THUMB -->
 		</div>
 		<div class="col-md-3">
-			<!-- BEGIN WIDGET THUMB -->
 			<div class="widget-thumb widget-bg-color-white text-uppercase margin-bottom-20 ">
 				<h4 class="widget-thumb-heading">Keuntangan Bulan Ini</h4>
 				<div class="widget-thumb-wrap">
@@ -54,10 +47,9 @@
 					</div>
 				</div>
 			</div>
-			<!-- END WIDGET THUMB -->
 		</div>
 	</div>
-	<div class="row">
+	<!-- <div class="row">
 		<div class="col-md-6 col-sm-6">
 			<div class="portlet light ">
 				<div class="portlet-title tabbable-line">
@@ -77,7 +69,6 @@
 				<div class="portlet-body">
 					<div class="tab-content">
 						<div class="tab-pane active" id="portlet_comments_1">
-							<!-- BEGIN: Comments -->
 							<div class="mt-comments">
 								<div class="mt-comment">
 									<div class="mt-comment-img">
@@ -180,10 +171,8 @@
 									</div>
 								</div>
 							</div>
-							<!-- END: Comments -->
 						</div>
 						<div class="tab-pane" id="portlet_comments_2">
-							<!-- BEGIN: Comments -->
 							<div class="mt-comments">
 								<div class="mt-comment">
 									<div class="mt-comment-img">
@@ -286,7 +275,6 @@
 									</div>
 								</div>
 							</div>
-							<!-- END: Comments -->
 						</div>
 					</div>
 				</div>
@@ -311,7 +299,6 @@
 				<div class="portlet-body">
 					<div class="tab-content">
 						<div class="tab-pane active" id="tab_actions_pending">
-							<!-- BEGIN: Actions -->
 							<div class="mt-actions">
 								<div class="mt-action">
 									<div class="mt-action-img">
@@ -482,10 +469,8 @@
 									</div>
 								</div>
 							</div>
-							<!-- END: Actions -->
 						</div>
 						<div class="tab-pane" id="tab_actions_completed">
-							<!-- BEGIN:Completed-->
 							<div class="mt-actions">
 								<div class="mt-action">
 									<div class="mt-action-img">
@@ -599,7 +584,6 @@
 										</div>
 									</div>
 								</div>
-								<!-- END: Completed -->
 							</div>
 						</div>
 					</div>
@@ -972,7 +956,6 @@
 				<div class="portlet-body">
 					<div class="task-content">
 						<div class="scroller" style="height: 312px;" data-always-visible="1" data-rail-visible1="1">
-							<!-- START TASK LIST -->
 							<ul class="task-list">
 								<li>
 									<div class="task-checkbox">
@@ -1293,7 +1276,6 @@
 									</div>
 								</li>
 							</ul>
-							<!-- END START TASK LIST -->
 						</div>
 					</div>
 					<div class="task-footer">
@@ -1305,5 +1287,5 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 </div>

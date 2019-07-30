@@ -58,11 +58,11 @@
 											<i class="fa fa-angle-down"></i>
 										</button>
 										<ul class="dropdown-menu" role="menu">
-											<!-- <li>
-												<a data-toggle="modal" data-target="#detaildata" id="<?= md5($value->packet_id); ?>" class="detaildata">
-													<i class="icon-eye"></i> Detail Data </a>
-											</li>
 											<li>
+												<a href="<?php echo base_url()."student/detail_transaksi/".md5($value->invoice_number); ?>">
+													Detail <i class="fa fa-share-square-o"></i></a>
+											</li>
+											<!-- <li>
 												<a href="<?=site_url('student/add_to_cart/'.md5($value->packet_id));?>">
 													<i class="fa fa-share-square-o"></i> Beli </a>
 											</li> -->

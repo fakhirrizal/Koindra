@@ -99,7 +99,14 @@
 										<div class="input-group-prepend">
 											<span class="input-group-text"><i class="ni ni-building"></i></span>
 										</div>
-										<input class="form-control" placeholder="Asal Sekolah" type="text" name='school'>
+										<select class='form-control' name='school' required>
+											<option value=''>-- Pilih --</option>
+											<?php
+											foreach ($data_sekolah as $key => $value) {
+												echo '<option value="'.$value->school_code.'">'.$value->school_name.'</option>';
+											}
+											?>
+										</select>
 									</div>
 								</div>
 								<div class="form-group">
@@ -107,7 +114,14 @@
 										<div class="input-group-prepend">
 											<span class="input-group-text"><i class="ni ni-hat-3"></i></span>
 										</div>
-										<input class="form-control" placeholder="Kelas" type="text" name='class'>
+										<select class='form-control' name='class' required>
+											<option value=''>-- Pilih --</option>
+											<?php
+											for ($i=1; $i <13 ; $i++) {
+												echo '<option value="'.$i.'">'.$i.'</option>';
+											}
+											?>
+										</select>
 									</div>
 								</div>
 								<div class="form-group">
@@ -130,7 +144,7 @@
 								<div class="row my-4">
 									<div class="col-12">
 										<div class="custom-control custom-control-alternative custom-checkbox">
-											<input class="custom-control-input" id="customCheckRegister" type="checkbox">
+											<input class="custom-control-input" id="customCheckRegister" type="checkbox" required>
 											<label class="custom-control-label" for="customCheckRegister">
 												<span class="text-muted">I agree with the <a data-toggle="modal" data-target="#exampleModal">Privacy Policy</a></span>
 											</label>
@@ -186,7 +200,7 @@
 			<div class="row align-items-center justify-content-xl-between">
 				<div class="col-xl-6">
 					<div class="copyright text-center text-xl-left text-muted">
-						&copy; 2018 <a href="https://www.creative-tim.com" class="font-weight-bold ml-1" target="_blank">Creative Tim</a>
+						&copy; 2019 <a href="#" class="font-weight-bold ml-1" target="_blank">Koindra Inc.</a>
 					</div>
 				</div>
 				<div class="col-xl-6">
