@@ -5,7 +5,7 @@
 		<i class="fa fa-circle"></i>
 	</li>
 	<li>
-		<span>Data Paket</span>
+		<span>Packet Data</span>
 		<i class="fa fa-circle"></i>
 	</li>
 	<li>
@@ -35,22 +35,22 @@
 									<table class="table">
 										<tbody>
 											<tr>
-												<td> Nama Sekolah </td>
+												<td> School Name </td>
 												<td> : </td>
 												<td><?php echo $row->school_name; ?></td>
 											</tr>
 											<tr>
-												<td> Kode Sekolah </td>
+												<td> Code of School </td>
 												<td> : </td>
 												<td><?php echo $row->school_code; ?></td>
 											</tr>
 											<tr>
-												<td> Alamat </td>
+												<td> Address </td>
 												<td> : </td>
 												<td><?php echo $row->address; ?></td>
 											</tr>
 											<tr>
-												<td> Nomor Telpon </td>
+												<td> Number Phone </td>
 												<td> : </td>
 												<td><?php echo $row->number_phone; ?></td>
 											</tr>
@@ -62,7 +62,7 @@
 							<div class="tabbable-line">
 								<ul class="nav nav-tabs ">
 									<li class="active">
-										<a href="#tab_15_1" data-toggle="tab"> Data Siswa </a>
+										<a href="#tab_15_1" data-toggle="tab"> Student Data </a>
 									</li>
 								</ul>
 								<div class="tab-content">
@@ -77,10 +77,10 @@
 														</label>
 													</th>
 													<th style="text-align: center;" width="4%"> # </th>
-													<th style="text-align: center;"> Nama Siswa </th>
-													<th style="text-align: center;"> Sisa Kuota </th>
-													<th style="text-align: center;"> Jatuh Tempo </th>
-													<th style="text-align: center;"> Aksi </th>
+													<th style="text-align: center;"> Student Name </th>
+													<th style="text-align: center;"> Remaining Quota </th>
+													<th style="text-align: center;"> Expired Date </th>
+													<th style="text-align: center;"> Action </th>
 												</tr>
 											</thead>
 											<tbody>
@@ -108,13 +108,13 @@
 														echo $this->Main_model->convert_tanggal($value->expired_date);} ?></td>
 													<td width='5%'>
 														<div class="btn-group" style="text-align: center;">
-															<button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Aksi
+															<button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Action
 																<i class="fa fa-angle-down"></i>
 															</button>
 															<ul class="dropdown-menu" role="menu">
 																<li>
 																	<a href="<?=site_url('admin_side/kirim_pemberitahuan/'.md5($value->last_packet).'/'.md5($value->user_id));?>">
-																		<i class="icon-paper-plane"></i> Kirim Pemberitahuan </a>
+																		<i class="icon-paper-plane"></i> Send Notification </a>
 																</li>
 															</ul>
 														</div>
@@ -130,7 +130,7 @@
 							</div>
 						</div><?php } ?>
 						<div class="col-md-12" >
-						<hr><a href="<?php echo base_url()."admin_side/sekolah"; ?>" class="btn btn-info" role="button"><i class="fa fa-angle-double-left"></i> Kembali</a></div>
+						<hr><a href="<?php echo base_url()."admin_side/sekolah"; ?>" class="btn btn-info" role="button"><i class="fa fa-angle-double-left"></i> Back</a></div>
 					</div>
 				</div>
 			</div>

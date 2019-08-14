@@ -1,14 +1,14 @@
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <ul class="page-breadcrumb breadcrumb">
 	<li>
-		<span>Data Transaksi</span>
+		<span>Transaction Data</span>
 	</li>
 </ul>
 <?= $this->session->flashdata('sukses') ?>
 <?= $this->session->flashdata('gagal') ?>
 <div class="page-content-inner">
 	<div class="m-heading-1 border-green m-bordered">
-		<h3>Catatan</h3>
+		<h3>Note</h3>
 	</div>
 	<div class="row">
 		<div class="col-md-12">
@@ -20,9 +20,9 @@
 						<div class="col-md-5">
 							<select id='pilihan' class="form-control select2-allow-clear">
 								<option value=""></option>
-								<option value="2">Telah Dibayarkan</option>
-								<option value="0">Menunggu Pembayaran</option>
-								<option value="19">Gagal</option>
+								<option value="2">Success</option>
+								<option value="0">Pending</option>
+								<option value="19">Failed</option>
 							</select>
 						</div>
 					</div>
@@ -31,7 +31,7 @@
 					<form action="#" method="post" onsubmit="return deleteConfirm();"/>
 					<div class="table-toolbar">
 						<div class="row">
-							<div class="col-md-6">
+							<!-- <div class="col-md-6">
 								<div class="btn-group">
 									<button type='submit' id="sample_editable_1_new" class="btn sbold red"> Hapus
 										<i class="fa fa-trash"></i>
@@ -39,7 +39,7 @@
 								</div>
 									<span class="separator">|</span>
 									<a href="#" class="btn green uppercase">Tambah Data <i class="fa fa-plus"></i> </a>
-							</div>
+							</div> -->
 						</div>
 					</div>
 					<table class="table table-striped table-bordered table-hover order-column" id="sample_2">
@@ -48,13 +48,13 @@
 								<th style="text-align: center;" width="4%"> # </th>
 								<th style="text-align: center;"> Invoice </th>
 								<!-- <th style="text-align: center;"> ID Pesanan </th> -->
-								<th style="text-align: center;"> Pengguna </th>
-								<th style="text-align: center;"> Nominal </th>
-								<th style="text-align: center;"> Tanggal Pembayaran </th>
+								<th style="text-align: center;"> User </th>
+								<th style="text-align: center;"> Price </th>
+								<th style="text-align: center;"> Transaction Date </th>
 								<th style="text-align: center;">Payment Type</th>
 								<!-- <th>Virtual Account</th> -->
-								<th style="text-align: center;"> Status Pembayaran </th>
-								<th style="text-align: center;"> Aksi </th>
+								<th style="text-align: center;"> Payment Status </th>
+								<th style="text-align: center;"> Action </th>
 							</tr>
 						</thead>
 						<tbody>
@@ -69,11 +69,11 @@
 
 								$status         = $order->transaction_status;
 								if ($status == "settlement") {
-									$stat = "Telah Dibayarkan";
+									$stat = "Success";
 								} elseif ($status == "pending") {
-									$stat = "Menunggu Pembayaran";
+									$stat = "Pending";
 								} else {
-									$stat = "Gagal";
+									$stat = "Failed";
 								}
 								// $bill_key = $order->bill_key;
 								// $total_items = $value->total_items;

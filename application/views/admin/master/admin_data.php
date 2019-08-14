@@ -5,7 +5,7 @@
 		<i class="fa fa-circle"></i>
 	</li>
 	<li>
-		<span>Data Admin</span>
+		<span>Administrator Data</span>
 	</li>
 </ul>
 <?= $this->session->flashdata('sukses') ?>
@@ -38,12 +38,12 @@
 						<div class="row">
 							<div class="col-md-6">
 								<div class="btn-group">
-									<button type='submit' id="sample_editable_1_new" class="btn sbold red"> Hapus
+									<button type='submit' id="sample_editable_1_new" class="btn sbold red"> Delete
 										<i class="fa fa-trash"></i>
 									</button>
 								</div>
 									<span class="separator">|</span>
-									<a href="<?=base_url('admin_side/tambah_data_admin');?>" class="btn green uppercase">Tambah Data <i class="fa fa-plus"></i> </a>
+									<a href="<?=base_url('admin_side/tambah_data_admin');?>" class="btn green uppercase">Add Data <i class="fa fa-plus"></i> </a>
 								<!-- <button id="sample_editable_1_new" onclick="window.location.href='<?=base_url('Master/admin');?>'" class="btn sbold green"> Tambah Data Baru
 									<i class="fa fa-plus"></i>
 								</button> -->
@@ -60,10 +60,10 @@
 									</label>
 								</th>
 								<th style="text-align: center;" width="4%"> # </th>
-								<th style="text-align: center;"> Nama </th>
+								<th style="text-align: center;"> Name </th>
 								<th style="text-align: center;"> Username </th>
-								<th style="text-align: center;"> Login Terakhir </th>
-								<th style="text-align: center;" width="7%"> Aksi </th>
+								<th style="text-align: center;"> Last Login </th>
+								<th style="text-align: center;" width="7%"> Action </th>
 							</tr>
 						</thead>
 						<tbody>
@@ -91,7 +91,7 @@
 									$get_tanggal = explode(' ',$value->last_login); echo $this->Main_model->convert_tanggal($get_tanggal[0]).' '.$get_tanggal[1];}?></td>
 								<td>
 									<div class="btn-group" style="text-align: center;">
-										<button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Aksi
+										<button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Action
 											<i class="fa fa-angle-down"></i>
 										</button>
 										<ul class="dropdown-menu" role="menu">
@@ -101,12 +101,12 @@
 											</li>
 											<li>
 												<a onclick="return confirm('Anda yakin?')" href="<?=site_url('admin_side/hapus_data_admin/'.md5($value->user_id));?>">
-													<i class="icon-trash"></i> Hapus Data </a>
+													<i class="icon-trash"></i> Delete Data </a>
 											</li>
 											<li class="divider"> </li>
 											<li>
 												<a href="<?=site_url('admin_side/atur_ulang_kata_sandi_admin/'.md5($value->user_id));?>">
-													<i class="fa fa-refresh"></i> Atur Ulang Sandi
+													<i class="fa fa-refresh"></i> Reset Password
 												</a>
 											</li>
 										</ul>

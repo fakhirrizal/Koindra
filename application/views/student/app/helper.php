@@ -1,6 +1,6 @@
 <ul class="page-breadcrumb breadcrumb">
 	<li>
-		<span>Panduan Penggunaan Aplikasi</span>
+		<span>Application Usage Guide</span>
 	</li>
 </ul>
 <div class="page-content-inner">
@@ -13,11 +13,11 @@
 			<!-- BEGIN EXAMPLE TABLE PORTLET-->
 			<div class="portlet light ">
 				<div class="portlet-body">
-					<p style="text-align: justify;">Berikut adalah panduan yang dapat Anda gunakan untuk menggunakan Aplikasi ini, jika Anda akan membaca di lain waktu bisa diunduh dokumen ini melalui link yang tersedia.
+					<p style="text-align: justify;">Here is a guide that you can to use this application, if you will read later you can download this document via the link provided.
 					</p>
 					<button class="btn btn-white btn-default btn-round">
 							<i class="ace-icon fa fa-download"></i>
-							<a href="#">Unduh</a>
+							<a href="#">Download</a>
 					</button>
 					<br>
 					<br>

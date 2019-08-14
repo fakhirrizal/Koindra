@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 31 Jul 2019 pada 01.31
+-- Generation Time: 03 Agu 2019 pada 18.07
 -- Versi Server: 10.1.19-MariaDB
 -- PHP Version: 5.6.28
 
@@ -93,7 +93,9 @@ INSERT INTO `activity_logs` (`activity_id`, `user_id`, `company_id`, `activity_t
 (46, 1, 0, 'Importing data', 'Import student data', '2019-07-30 17:48:51', '::1', 'PC', 'Windows 10', 'Chrome 75.0.3770', ''),
 (47, 1, 0, 'Updating data', 'Updating student data (Aris Riyanto)', '2019-07-30 18:26:43', '::1', 'PC', 'Windows 10', 'Chrome 75.0.3770', ''),
 (48, 1, 0, 'Login to system', 'Login via web browser', '2019-07-30 18:48:14', '::1', 'PC', 'Windows 10', 'Chrome 75.0.3770', '-6.9827859,110.41219919999999'),
-(49, 1, 0, 'Importing data', 'Import student attendance data', '2019-07-30 18:56:56', '::1', 'PC', 'Windows 10', 'Chrome 75.0.3770', '');
+(49, 1, 0, 'Importing data', 'Import student attendance data', '2019-07-30 18:56:56', '::1', 'PC', 'Windows 10', 'Chrome 75.0.3770', ''),
+(50, 1, 0, 'Login to system', 'Login via web browser', '2019-08-01 00:07:53', '::1', 'PC', 'Windows 10', 'Chrome 75.0.3770', '-7.0086185,110.3902404'),
+(51, 1, 0, 'Login to system', 'Login via web browser', '2019-08-01 09:01:25', '::1', 'PC', 'Windows 10', 'Chrome 75.0.3770', '-6.9826885999999995,110.41224799999999');
 
 -- --------------------------------------------------------
 
@@ -698,7 +700,7 @@ INSERT INTO `status` (`user_id`, `last_packet`, `quota`, `expired_date`) VALUES
 (5, 5, '-2', NULL),
 (6, NULL, NULL, '2019-01-01'),
 (7, NULL, '14', '2019-08-11'),
-(8, NULL, NULL, NULL),
+(8, NULL, '0', NULL),
 (9, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
@@ -718,6 +720,7 @@ CREATE TABLE `student` (
   `school` text,
   `class` text,
   `passcode` text,
+  `status` enum('Aktif','Free Trial','Keluar') NOT NULL,
   `deleted` enum('0','1') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -725,13 +728,13 @@ CREATE TABLE `student` (
 -- Dumping data untuk tabel `student`
 --
 
-INSERT INTO `student` (`student_id`, `user_id`, `fullname`, `mother`, `number_phone`, `mother_phone`, `email`, `school`, `class`, `passcode`, `deleted`) VALUES
-(NULL, 2, 'Fakhir Rizal', 'Siti Anifah', '085696303627', '085242970666', 'fakhir_rizal@hotmail.com', 'JKHK89', '11', '', '0'),
-(NULL, 5, 'Imam Fajrul F.', 'jknkj', '9809809', '085242970669', 'nkjn@nkl.dfmm', 'JKHK89', '12', 'hj', '0'),
-(NULL, 6, 'Endah Ayu Fitri', 'll', '989', '085242970122', 'endah@gmail.com', 'JKHK89', '10', 'nkj', '0'),
-(NULL, 7, 'Sharfina Aulia Puspasari', 'Siti', '85696', '353453', 'fina@gmail.com', 'JXS989', '9', NULL, '0'),
-('19941', 8, 'Estio Nurcahyanto', 'Ayu Hapsari', '085696304444', '085242970333', 'estio@gmail.com', 'JKHK98', '10', '19941', '0'),
-('isi', 9, 'Aris Riyanto', 'isi', 'isi', 'isi', 'aris@gmail.com', 'JKHK89', '12', 'isi', '0');
+INSERT INTO `student` (`student_id`, `user_id`, `fullname`, `mother`, `number_phone`, `mother_phone`, `email`, `school`, `class`, `passcode`, `status`, `deleted`) VALUES
+('19942', 2, 'Fakhir Rizal', 'Siti Anifah', '085696303627', '085242970666', 'fakhir_rizal@hotmail.com', 'JKHK89', '11', '', 'Aktif', '0'),
+(NULL, 5, 'Imam Fajrul F.', 'jknkj', '9809809', '085242970669', 'nkjn@nkl.dfmm', 'JKHK89', '12', 'hj', 'Aktif', '0'),
+(NULL, 6, 'Endah Ayu Fitri', 'll', '989', '085242970122', 'endah@gmail.com', 'JKHK89', '10', 'nkj', 'Aktif', '0'),
+(NULL, 7, 'Sharfina Aulia Puspasari', 'Siti', '85696', '353453', 'fina@gmail.com', 'JXS989', '9', NULL, 'Aktif', '0'),
+('19941', 8, 'Estio Nurcahyanto', 'Ayu Hapsari', '085696304444', '085242970333', 'estio@gmail.com', 'JKHK98', '10', '19941', 'Aktif', '0'),
+('isi', 9, 'Aris Riyanto', 'isi', 'isi', 'isi', 'aris@gmail.com', 'JKHK89', '12', 'isi', 'Aktif', '0');
 
 -- --------------------------------------------------------
 
@@ -769,7 +772,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `pass`, `total_login`, `last_login`, `last_activity`, `login_attempts`, `last_login_attempt`, `remember_time`, `remember_exp`, `ip_address`, `is_active`, `verification_token`, `recovery_token`, `unlock_token`, `created_by`, `created_at`, `updated_by`, `updated_at`, `deleted_by`, `deleted_at`, `deleted`) VALUES
-(1, 'admin', '1', 63, '2019-07-30 18:48:14', '2019-07-30 18:48:14', 40, '2019-07-30 18:48:14', NULL, NULL, '::1', 1, NULL, NULL, NULL, 2, '2018-01-09 14:34:21', 2, '2018-09-02 14:06:43', NULL, NULL, 0),
+(1, 'admin', '1', 65, '2019-08-01 09:01:25', '2019-08-01 09:01:25', 42, '2019-08-01 09:01:25', NULL, NULL, '::1', 1, NULL, NULL, NULL, 2, '2018-01-09 14:34:21', 2, '2018-09-02 14:06:43', NULL, NULL, 0),
 (2, 'siswa', 'a', 7, '2019-07-17 23:44:08', '2019-07-17 23:44:08', 13, '2019-07-28 18:52:36', NULL, NULL, '::1', 1, NULL, NULL, NULL, 3, '2019-07-02 18:20:17', 1, '2019-07-03 03:52:31', 1, '2019-07-03 09:10:51', 0),
 (3, 'baru', NULL, 0, '2018-11-10 08:17:30', NULL, 0, NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, 1, '2019-07-13 20:28:08', NULL, NULL, NULL, NULL, 0),
 (4, 'estio', '1234', 0, NULL, NULL, 0, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, 1, '2019-07-14 21:26:10', 1, '2019-07-14 21:39:38', 1, '2019-07-14 21:45:30', 1),
@@ -1020,7 +1023,7 @@ ALTER TABLE `user_to_role`
 -- AUTO_INCREMENT for table `activity_logs`
 --
 ALTER TABLE `activity_logs`
-  MODIFY `activity_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `activity_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 --
 -- AUTO_INCREMENT for table `menu`
 --

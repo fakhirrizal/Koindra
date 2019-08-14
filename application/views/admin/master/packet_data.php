@@ -5,14 +5,14 @@
 		<i class="fa fa-circle"></i>
 	</li>
 	<li>
-		<span>Data Paket</span>
+		<span>Packet Data</span>
 	</li>
 </ul>
 <?= $this->session->flashdata('sukses') ?>
 <?= $this->session->flashdata('gagal') ?>
 <div class="page-content-inner">
 	<div class="m-heading-1 border-green m-bordered">
-		<h3>Catatan</h3>
+		<h3>Note</h3>
 		<p> Hanya status <b>aktif</b> yang akan tampil di shop display pengguna</p>
 	</div>
 	<div class="row">
@@ -38,12 +38,12 @@
 						<div class="row">
 							<div class="col-md-6">
 								<div class="btn-group">
-									<button type='submit' id="sample_editable_1_new" class="btn sbold red"> Hapus
+									<button type='submit' id="sample_editable_1_new" class="btn sbold red"> Delete
 										<i class="fa fa-trash"></i>
 									</button>
 								</div>
 									<span class="separator">|</span>
-									<a href="<?=base_url('admin_side/tambah_data_paket');?>" class="btn green uppercase">Tambah Data <i class="fa fa-plus"></i> </a>
+									<a href="<?=base_url('admin_side/tambah_data_paket');?>" class="btn green uppercase">Add Data <i class="fa fa-plus"></i> </a>
 								<!-- <button id="sample_editable_1_new" onclick="window.location.href='<?=base_url('Master/admin');?>'" class="btn sbold green"> Tambah Data Baru
 									<i class="fa fa-plus"></i>
 								</button> -->
@@ -60,11 +60,11 @@
 									</label>
 								</th>
 								<th style="text-align: center;" width="4%"> # </th>
-								<th style="text-align: center;"> Nama Paket </th>
-								<th style="text-align: center;"> Kuota </th>
-								<th style="text-align: center;"> Durasi </th>
-								<th style="text-align: center;"> Harga </th>
-								<th style="text-align: center;" width="7%"> Aksi </th>
+								<th style="text-align: center;"> Packet Name </th>
+								<th style="text-align: center;"> Quota </th>
+								<th style="text-align: center;"> Duration </th>
+								<th style="text-align: center;"> Price </th>
+								<th style="text-align: center;" width="7%"> Action </th>
 							</tr>
 						</thead>
 						<tbody>
@@ -81,13 +81,18 @@
 								</td>
 								<td style="text-align: center;"><?= $no++.'.'; ?></td>
 								<td style="text-align: center;"><?= $value->packet_name; ?></td>
-								<td style="text-align: center;"><?= $value->quota.'x Pertemuan'; ?></td>
-								<td style="text-align: center;"><?= $value->duration.' Bulan'; ?></td>
+								<td style="text-align: center;"><?php
+												if($value->quota>0){
+												echo $value->quota.'x Pertemuan';}
+												else{
+													echo $value->quota;
+												} ?></td>
+								<td style="text-align: center;"><?= $value->duration.' Month'; ?></td>
 								<td style="text-align: center;"><?= 'Rp '.number_format($value->price,2); ?></td>
 								<!-- <td style="text-align: center;"><?= $this->Main_model->convert_tanggal($value->expired_date); ?></td> -->
 								<td>
 									<div class="btn-group" style="text-align: center;">
-										<button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Aksi
+										<button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Action
 											<i class="fa fa-angle-down"></i>
 										</button>
 										<ul class="dropdown-menu" role="menu">
@@ -97,11 +102,11 @@
 											</li>
 											<li>
 												<a href="<?=site_url('admin_side/ubah_data_paket/'.md5($value->packet_id));?>">
-													<i class="icon-wrench"></i> Ubah Data </a>
+													<i class="icon-wrench"></i> Edit Data </a>
 											</li>
 											<li>
 												<a onclick="return confirm('Anda yakin?')" href="<?=site_url('admin_side/hapus_data_paket/'.md5($value->packet_id));?>">
-													<i class="icon-trash"></i> Hapus Data </a>
+													<i class="icon-trash"></i> Delete Data </a>
 											</li>
 										</ul>
 									</div>

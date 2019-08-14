@@ -58,7 +58,8 @@ License: You must have a valid license purchased only from themeforest(the above
 		<link href="<?=base_url('assets/layouts/layout3/css/themes/default.min.css');?>" rel="stylesheet" type="text/css" id="style_color" />
 		<link href="<?=base_url('assets/layouts/layout3/css/custom.min.css');?>" rel="stylesheet" type="text/css" />
 		<!-- END THEME LAYOUT STYLES -->
-		<link href="https://iconverticons.com/img/logo.png" rel="icon" type="image/x-icon">
+		<!-- <link href="https://iconverticons.com/img/logo.png" rel="icon" type="image/x-icon"> -->
+		<link href="<?=site_url('assets/1.ico');?>" rel="icon" type="image/x-icon">
 	</head>
     <!-- END HEAD -->
 
@@ -71,7 +72,8 @@ License: You must have a valid license purchased only from themeforest(the above
 					<!-- BEGIN LOGO -->
 					<div class="page-logo">
 						<a href="javascript:;">
-							<img src="https://www.debanensite.nl/files/thumb/d/e/logo_D_300_300_demaco.jpg" alt="logo" class="logo-default">
+							<!-- <img src="https://www.debanensite.nl/files/thumb/d/e/logo_D_300_300_demaco.jpg" alt="logo" class="logo-default"> -->
+							<img src="<?= base_url('assets/4.PNG'); ?>" alt="logo" class="logo-default" width='112px' height='32px'>
 						</a>
 					</div>
 					<!-- END LOGO -->
@@ -143,12 +145,20 @@ License: You must have a valid license purchased only from themeforest(the above
 							<!-- BEGIN USER LOGIN DROPDOWN -->
 							<li class="dropdown dropdown-user dropdown-dark">
 								<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-									<img alt="" class="img-circle" src="https://cdn1.iconfinder.com/data/icons/rcons-user-action/512/user-512.png">
-									<span class="username username-hide-mobile">Administrator</span>
+									<!-- <img alt="" class="img-circle" src="https://cdn1.iconfinder.com/data/icons/rcons-user-action/512/user-512.png"> -->
+									<?php
+										$get_profile = $this->Main_model->getSelectedData('user_profile a', 'a.*', array('a.user_id'=>$this->session->userdata('id')))->row();
+										if($get_profile->photo==NULL){
+											echo '<img alt="" class="img-circle" src="https://cdn1.iconfinder.com/data/icons/rcons-user-action/512/user-512.png">';
+										}else{
+											echo '<img alt="" class="img-circle" src="'.base_url('assets/photo_profile/').$get_profile->photo.'">';
+										}
+									?>
+									<span class="username username-hide-mobile"><?php if($get_profile->fullname==''){echo'Administrator';}else{echo $get_profile->fullname;} ?></span>
 								</a>
 								<ul class="dropdown-menu dropdown-menu-default">
 									<li>
-										<a href="#!">
+										<a href="<?php echo site_url('admin_side/profile'); ?>">
 											<i class="icon-user"></i> Profil </a>
 									</li>
 									<li>
@@ -181,7 +191,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					<!-- BEGIN HEADER SEARCH BOX -->
 					<form class="search-form" action="javascript:;" method="GET">
 						<div class="input-group">
-							<input type="text" class="form-control" placeholder="Cari" name="query">
+							<input type="text" class="form-control" placeholder="Search" name="query">
 							<span class="input-group-btn">
 								<a href="javascript:;" class="btn submit">
 									<i class="icon-magnifier"></i>
@@ -196,7 +206,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					<div class="hor-menu  ">
 						<ul class="nav navbar-nav">
 							<li class="menu-dropdown classic-menu-dropdown <?php if($parent=='home'){echo 'active';}else{echo '';} ?>">
-								<a href="<?php echo site_url('admin_side/beranda'); ?>"><i class="icon-home"></i> Beranda
+								<a href="<?php echo site_url('admin_side/beranda'); ?>"><i class="icon-home"></i> Home
 								</a>
 							</li>
 							<li class="menu-dropdown classic-menu-dropdown <?php if($parent=='master'){echo 'active';}else{echo '';} ?>">
@@ -206,38 +216,38 @@ License: You must have a valid license purchased only from themeforest(the above
 								<ul class="dropdown-menu pull-left">
 									<li class=" <?php if($child=='administrator'){echo 'active';}else{echo '';} ?>">
 										<a href="<?php echo site_url('admin_side/administrator'); ?>" class="nav-link nav-toggle ">
-											<i class="icon-user-following"></i> Data Admin
+											<i class="icon-user-following"></i> Administrator Data
 										</a>
 									</li>
 									<li class=" <?php if($child=='student'){echo 'active';}else{echo '';} ?>">
 										<a href="<?php echo site_url('admin_side/siswa'); ?>" class="nav-link nav-toggle ">
-											<i class="icon-users"></i> Data Siswa
+											<i class="icon-users"></i> Student Data
 										</a>
 									</li>
 									<li class=" <?php if($child=='school'){echo 'active';}else{echo '';} ?>">
 										<a href="<?php echo site_url('admin_side/sekolah'); ?>" class="nav-link nav-toggle ">
-											<i class="icon-graduation"></i> Data Sekolah
+											<i class="icon-graduation"></i> School Data
 										</a>
 									</li>
 									<li class=" <?php if($child=='packet'){echo 'active';}else{echo '';} ?>">
 										<a href="<?php echo site_url('admin_side/paket'); ?>" class="nav-link nav-toggle ">
-											<i class="icon-layers"></i> Data Paket
+											<i class="icon-layers"></i> Packet Data
 										</a>
 									</li>
 								</ul>
 							</li>
 							<li class="menu-dropdown classic-menu-dropdown <?php if($parent=='payment'){echo 'active';}else{echo '';} ?>">
-								<a href="<?php echo site_url('admin_side/pembayaran'); ?>"><i class="icon-wallet"></i> Pembayaran
+								<a href="<?php echo site_url('admin_side/pembayaran'); ?>"><i class="icon-wallet"></i> Payment
 								</a>
 							</li>
 							<li class="menu-dropdown classic-menu-dropdown <?php if($parent=='report'){echo 'active';}else{echo '';} ?>">
-								<a href="javascript:;"><i class="icon-notebook"></i> Laporan
+								<a href="javascript:;"><i class="icon-notebook"></i> Report
 									<span class="arrow <?php if($parent=='report'){echo 'open';}else{echo '';} ?>"></span>
 								</a>
 								<ul class="dropdown-menu pull-left">
 									<li class=" <?php if($child=='presence'){echo 'active';}else{echo '';} ?>">
 										<a href="<?php echo site_url('admin_side/laporan_kehadiran'); ?>" class="nav-link nav-toggle ">
-											<i class="fa fa-check"></i> Data Kehadiran
+											<i class="fa fa-check"></i> Attendance Data
 										</a>
 									</li>
 								</ul>
@@ -246,10 +256,10 @@ License: You must have a valid license purchased only from themeforest(the above
 								<a href="<?php echo site_url('admin_side/log_activity'); ?>"><i class="fa fa-rss"></i> Log Activity
 								</a>
 							</li>
-							<li class="menu-dropdown classic-menu-dropdown <?php if($parent=='about'){echo 'active';}else{echo '';} ?>">
-								<a href="<?php echo site_url('admin_side/tentang_aplikasi'); ?>"><i class="icon-bulb"></i> Tentang Aplikasi
+							<!-- <li class="menu-dropdown classic-menu-dropdown <?php if($parent=='about'){echo 'active';}else{echo '';} ?>">
+								<a href="<?php echo site_url('admin_side/tentang_aplikasi'); ?>"><i class="icon-bulb"></i> About Application
 								</a>
-							</li>
+							</li> -->
 						</ul>
 					</div>
 					<!-- END MEGA MENU -->

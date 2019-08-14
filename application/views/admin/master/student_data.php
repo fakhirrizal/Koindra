@@ -5,7 +5,7 @@
 		<i class="fa fa-circle"></i>
 	</li>
 	<li>
-		<span>Data Siswa</span>
+		<span>Student Data</span>
 	</li>
 </ul>
 <?= $this->session->flashdata('sukses') ?>
@@ -41,12 +41,12 @@
 						<div class="row">
 							<div class="col-md-8">
 								<div class="btn-group">
-									<button type='submit' id="sample_editable_1_new" class="btn sbold red"> Hapus
+									<button type='submit' id="sample_editable_1_new" class="btn sbold red"> Delete
 										<i class="fa fa-trash"></i>
 									</button>
 								</div>
 									<span class="separator">|</span>
-									<a href="<?=base_url('admin_side/tambah_data_siswa');?>" class="btn green uppercase">Tambah Data <i class="fa fa-plus"></i> </a>
+									<a href="<?=base_url('admin_side/tambah_data_siswa');?>" class="btn green uppercase">Add Data <i class="fa fa-plus"></i> </a>
 									<!-- <button id="sample_editable_1_new" onclick="window.location.href='<?=base_url('Master/admin');?>'" class="btn sbold green"> Tambah Data Baru
 										<i class="fa fa-plus"></i>
 									</button> -->
@@ -67,10 +67,11 @@
 									</label>
 								</th>
 								<th style="text-align: center;" width="4%"> # </th>
-								<th style="text-align: center;"> Nama </th>
-								<th style="text-align: center;"> No. Induk </th>
-								<th style="text-align: center;"> Nomor HP </th>
-								<th style="text-align: center;" width="7%"> Aksi </th>
+								<th style="text-align: center;"> Name </th>
+								<th style="text-align: center;"> Student ID </th>
+								<th style="text-align: center;"> Number Phone </th>
+								<th style="text-align: center;"> Status </th>
+								<th style="text-align: center;" width="7%"> Action </th>
 							</tr>
 						</thead>
 						<tbody>
@@ -89,9 +90,18 @@
 								<td style="text-align: center;"><?= $value->fullname; ?></td>
 								<td style="text-align: center;"><?= $value->student_id; ?></td>
 								<td style="text-align: center;"><?= $value->number_phone; ?></td>
+								<td style="text-align: center;"><?php
+								if($value->status=='Aktif'){
+									echo'<span class="label label-primary"> Active </span>';
+								}elseif($value->status=='Free Trial'){
+									echo'<span class="label label-warning"> Free Trial </span>';
+								}else{
+									echo'<span class="label label-danger"> Non Active </span>';
+								}
+								?></td>
 								<td>
 									<div class="btn-group" style="text-align: center;">
-										<button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Aksi
+										<button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Action
 											<i class="fa fa-angle-down"></i>
 										</button>
 										<ul class="dropdown-menu" role="menu">
@@ -101,16 +111,16 @@
 											</li>
 											<li>
 												<a href="<?=site_url('admin_side/ubah_data_siswa/'.md5($value->user_id));?>">
-													<i class="icon-wrench"></i> Ubah Data </a>
+													<i class="icon-wrench"></i> Edit Data </a>
 											</li>
 											<li>
 												<a onclick="return confirm('Anda yakin?')" href="<?=site_url('admin_side/hapus_data_siswa/'.md5($value->user_id));?>">
-													<i class="icon-trash"></i> Hapus Data </a>
+													<i class="icon-trash"></i> Delete Data </a>
 											</li>
 											<li class="divider"> </li>
 											<li>
 												<a href="<?=site_url('admin_side/atur_ulang_kata_sandi_siswa/'.md5($value->user_id));?>">
-													<i class="fa fa-refresh"></i> Atur Ulang Sandi
+													<i class="fa fa-refresh"></i> Reset Password
 												</a>
 											</li>
 										</ul>
@@ -163,8 +173,8 @@
 			</div>
 		</div>
 		<div class="modal-footer">
-			<button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-			<button type="submit" class="btn btn-primary">Unggah</button>
+			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			<button type="submit" class="btn btn-primary">Submit</button>
 		</div>
 		</form>
 		</div>

@@ -264,63 +264,70 @@ class Master extends CI_Controller {
 	}
 	public function save_student_data(){
 		$this->db->trans_start();
-		$user_id = $this->Main_model->getLastID('user','id');
+		$check = $this->Main_model->getSelectedData('student a', 'a.*',array('student_id'=>$this->input->post('student_id')))->result();
+		if($check==NULL){
+			$user_id = $this->Main_model->getLastID('user','id');
 
-		$data1 = array(
-					'id' => $user_id['id']+1,
-					'username' => $this->input->post('fullname'),
-					'pass' => $this->input->post('mother'),
-					'is_active' => '1',
-					'created_at' => date('Y-m-d H:i:s'),
-					'created_by' => $this->session->userdata('id')
-				);
-		// print_r($data1);
-		$this->Main_model->insertData('user',$data1);
+			$data1 = array(
+						'id' => $user_id['id']+1,
+						'username' => $this->input->post('fullname'),
+						'pass' => $this->input->post('mother'),
+						'is_active' => '1',
+						'created_at' => date('Y-m-d H:i:s'),
+						'created_by' => $this->session->userdata('id')
+					);
+			// print_r($data1);
+			$this->Main_model->insertData('user',$data1);
 
-		$data2 = array(
-			'user_id' => $user_id['id']+1,
-			'fullname' => $this->input->post('fullname'),
-		);
-		// print_r($data2);
-		$this->Main_model->insertData('user_profile',$data2);
+			$data2 = array(
+				'user_id' => $user_id['id']+1,
+				'fullname' => $this->input->post('fullname'),
+			);
+			// print_r($data2);
+			$this->Main_model->insertData('user_profile',$data2);
 
-		$data3 = array(
-			'user_id' => $user_id['id']+1,
-			'role_id' => '2',
-		);
-		// print_r($data3);
-		$this->Main_model->insertData('user_to_role',$data3);
+			$data3 = array(
+				'user_id' => $user_id['id']+1,
+				'role_id' => '2',
+			);
+			// print_r($data3);
+			$this->Main_model->insertData('user_to_role',$data3);
 
-		$data4 = array(
-			'student_id' => $this->input->post('student_id'),
-			'user_id' => $user_id['id']+1,
-			'fullname' => $this->input->post('fullname'),
-			'mother' => $this->input->post('mother'),
-			'number_phone' => $this->input->post('number_phone'),
-			'mother_phone' => $this->input->post('mother_phone'),
-			'email' => $this->input->post('email'),
-			'school' => $this->input->post('school'),
-			'class' => $this->input->post('class'),
-			'passcode' => $this->input->post('passcode')
-		);
-		// print_r($data4);
-		$this->Main_model->insertData('student',$data4);
+			$data4 = array(
+				'student_id' => $this->input->post('student_id'),
+				'user_id' => $user_id['id']+1,
+				'fullname' => $this->input->post('fullname'),
+				'mother' => $this->input->post('mother'),
+				'number_phone' => $this->input->post('number_phone'),
+				'mother_phone' => $this->input->post('mother_phone'),
+				'email' => $this->input->post('email'),
+				'school' => $this->input->post('school'),
+				'class' => $this->input->post('class'),
+				'passcode' => $this->input->post('passcode'),
+				'status' => $this->input->post('status')
+			);
+			// print_r($data4);
+			$this->Main_model->insertData('student',$data4);
 
-		$data5 = array(
-			'user_id' => $user_id['id']+1
-		);
-		// print_r($data5);
-		$this->Main_model->insertData('status',$data5);
+			$data5 = array(
+				'user_id' => $user_id['id']+1
+			);
+			// print_r($data5);
+			$this->Main_model->insertData('status',$data5);
 
-		$this->Main_model->log_activity($this->session->userdata('id'),'Creating data',"Creating student data (".$this->input->post('fullname').")");
-		$this->db->trans_complete();
-		if($this->db->trans_status() === false){
-			$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data gagal ditambahkan.<br /></div>' );
+			$this->Main_model->log_activity($this->session->userdata('id'),'Creating data',"Creating student data (".$this->input->post('fullname').")");
+			$this->db->trans_complete();
+			if($this->db->trans_status() === false){
+				$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data gagal ditambahkan.<br /></div>' );
+				echo "<script>window.location='".base_url()."admin_side/tambah_data_siswa/'</script>";
+			}
+			else{
+				$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data telah berhasil ditambahkan.<br /></div>' );
+				echo "<script>window.location='".base_url()."admin_side/siswa/'</script>";
+			}
+		}else{
+			$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>No. Induk ini telah digunakan.<br /></div>' );
 			echo "<script>window.location='".base_url()."admin_side/tambah_data_siswa/'</script>";
-		}
-		else{
-			$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data telah berhasil ditambahkan.<br /></div>' );
-			echo "<script>window.location='".base_url()."admin_side/siswa/'</script>";
 		}
 	}
 	public function import_student_data(){
@@ -340,59 +347,64 @@ class Master extends CI_Controller {
 			$numrow = 1;
 			foreach($sheet as $row){
 				if($numrow > 1){
-					$user_id = $this->Main_model->getLastID('user','id');
+					$check = $this->Main_model->getSelectedData('student a', 'a.*',array('student_id'=>$row['A']))->result();
+					if($check==NULL){
+						$user_id = $this->Main_model->getLastID('user','id');
 
-					$data1 = array(
-								'id' => $user_id['id']+1,
-								'username' => $row['A'],
-								'pass' => $row['A'],
-								'total_login' => '1',
-								'last_login' => date('Y-m-d H-i-s'),
-								'last_activity' => date('Y-m-d H-i-s'),
-								'login_attempts' => '1',
-								'last_login_attempt' => date('Y-m-d H-i-s'),
-								'is_active' => '1',
-								'created_at' => date('Y-m-d H:i:s'),
-								'created_by' => $this->session->userdata('id')
-							);
-					// print_r($data1);
-					$this->Main_model->insertData('user',$data1);
+						$data1 = array(
+									'id' => $user_id['id']+1,
+									'username' => $row['A'],
+									'pass' => $row['A'],
+									'total_login' => '1',
+									'last_login' => date('Y-m-d H-i-s'),
+									'last_activity' => date('Y-m-d H-i-s'),
+									'login_attempts' => '1',
+									'last_login_attempt' => date('Y-m-d H-i-s'),
+									'is_active' => '1',
+									'created_at' => date('Y-m-d H:i:s'),
+									'created_by' => $this->session->userdata('id')
+								);
+						// print_r($data1);
+						$this->Main_model->insertData('user',$data1);
 
-					$data2 = array(
-						'user_id' => $user_id['id']+1,
-						'fullname' => $row['B'],
-						'address' => $row['C']
-					);
-					// print_r($data2);
-					$this->Main_model->insertData('user_profile',$data2);
+						$data2 = array(
+							'user_id' => $user_id['id']+1,
+							'fullname' => $row['B'],
+							'address' => $row['C']
+						);
+						// print_r($data2);
+						$this->Main_model->insertData('user_profile',$data2);
 
-					$data3 = array(
-						'user_id' => $user_id['id']+1,
-						'role_id' => '2',
-					);
-					// print_r($data3);
-					$this->Main_model->insertData('user_to_role',$data3);
+						$data3 = array(
+							'user_id' => $user_id['id']+1,
+							'role_id' => '2',
+						);
+						// print_r($data3);
+						$this->Main_model->insertData('user_to_role',$data3);
 
-					$data4 = array(
-						'student_id' => $row['A'],
-						'user_id' => $user_id['id']+1,
-						'fullname' => $row['B'],
-						'mother' => $row['D'],
-						'number_phone' => $row['E'],
-						'mother_phone' => $row['F'],
-						'email' => $row['G'],
-						'school' => $row['H'],
-						'class' => $row['I'],
-						'passcode' => $row['J']
-					);
-					// print_r($data4);
-					$this->Main_model->insertData('student',$data4);
+						$data4 = array(
+							'student_id' => $row['A'],
+							'user_id' => $user_id['id']+1,
+							'fullname' => $row['B'],
+							'mother' => $row['D'],
+							'number_phone' => $row['E'],
+							'mother_phone' => $row['F'],
+							'email' => $row['G'],
+							'school' => $row['H'],
+							'class' => $row['I'],
+							'passcode' => $row['J']
+						);
+						// print_r($data4);
+						$this->Main_model->insertData('student',$data4);
 
-					$data5 = array(
-						'user_id' => $user_id['id']+1
-					);
-					// print_r($data5);
-					$this->Main_model->insertData('status',$data5);
+						$data5 = array(
+							'user_id' => $user_id['id']+1
+						);
+						// print_r($data5);
+						$this->Main_model->insertData('status',$data5);
+					}else{
+						echo'';
+					}
 				}
 				$numrow++;
 			}
@@ -451,7 +463,8 @@ class Master extends CI_Controller {
 			'email' => $this->input->post('email'),
 			'school' => $this->input->post('school'),
 			'class' => $this->input->post('class'),
-			'passcode' => $this->input->post('passcode')
+			'passcode' => $this->input->post('passcode'),
+			'status' => $this->input->post('status')
 		);
 		// print_r($data1);
 		$this->Main_model->updateData('student',$data1,array('md5(user_id)'=>$this->input->post('user_id')));

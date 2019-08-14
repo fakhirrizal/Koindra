@@ -7,10 +7,10 @@ foreach ($data_utama as $key => $value) {
 	<input type="hidden" name="school_code_old" value='<?= $value->school_code; ?>'>
 	<div class="form-body">
 		<div class="form-group form-md-line-input has-danger">
-			<label class="col-md-2 control-label" for="form_control_1">Kode Sekolah <span class="required"> * </span></label>
+			<label class="col-md-2 control-label" for="form_control_1">Code of School <span class="required"> * </span></label>
 			<div class="col-md-10">
 				<div class="input-icon">
-					<input type="text" class="form-control" name="school_code" placeholder="Type something" value='<?= $value->school_code; ?>' required>
+					<input type="text" class="form-control" name="school_code" placeholder="Type something" value='<?= $value->school_code; ?>' maxlength='2' required>
 					<div class="form-control-focus"> </div>
 					<span class="help-block">Some help goes here...</span>
 					<i class="icon-direction"></i>
@@ -18,7 +18,7 @@ foreach ($data_utama as $key => $value) {
 			</div>
 		</div>
 		<div class="form-group form-md-line-input has-danger">
-			<label class="col-md-2 control-label" for="form_control_1">Nama Sekolah <span class="required"> * </span></label>
+			<label class="col-md-2 control-label" for="form_control_1">School Name <span class="required"> * </span></label>
 			<div class="col-md-10">
 				<div class="input-icon">
 					<input type="text" class="form-control" name="school_name" placeholder="Type something" value='<?= $value->school_name; ?>' required>
@@ -29,7 +29,7 @@ foreach ($data_utama as $key => $value) {
 			</div>
 		</div>
 		<div class="form-group form-md-line-input has-danger">
-			<label class="col-md-2 control-label" for="form_control_1">Alamat</label>
+			<label class="col-md-2 control-label" for="form_control_1">Address</label>
 			<div class="col-md-10">
 				<div class="input-icon">
 					<input type="text" class="form-control" name="address" placeholder="Type something" value='<?= $value->address; ?>'>
@@ -40,7 +40,7 @@ foreach ($data_utama as $key => $value) {
 			</div>
 		</div>
 		<div class="form-group form-md-line-input has-danger">
-			<label class="col-md-2 control-label" for="form_control_1">Nomor Telpon</label>
+			<label class="col-md-2 control-label" for="form_control_1">Number Phone</label>
 			<div class="col-md-10">
 				<div class="input-icon">
 					<input type="text" class="form-control" name="number_phone" placeholder="Type something" value='<?= $value->number_phone; ?>'>
@@ -55,8 +55,8 @@ foreach ($data_utama as $key => $value) {
 	<div class="form-actions margin-top-10">
 		<div class="row">
 			<div class="col-md-offset-2 col-md-10">
-				<button type="reset" class="btn default">Batal</button>
-				<button type="submit" class="btn blue">Simpan</button>
+				<button type="reset" class="btn default">Clear</button>
+				<button type="submit" class="btn blue">Save</button>
 			</div>
 		</div>
 	</div>

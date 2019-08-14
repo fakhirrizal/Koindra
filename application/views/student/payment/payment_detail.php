@@ -2,11 +2,11 @@
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <ul class="page-breadcrumb breadcrumb">
 	<li>
-		<span>Pembelian</span>
+		<span>Purchasing</span>
 		<i class="fa fa-circle"></i>
 	</li>
 	<li>
-		<span>Detail Transaksi</span>
+		<span>Transaction Detail</span>
 	</li>
 </ul>
 <?= $this->session->flashdata('sukses') ?>
@@ -22,17 +22,18 @@
 			$status         = $order->transaction_status;
 			$stat = '';
 			if ($status == "settlement") {
-				$stat = "Telah Dibayarkan";
+				$stat = "Success";
 			} elseif ($status == "pending") {
-				$stat = "Menunggu Pembayaran";
+				$stat = "Pending";
 			} else {
-				$stat = "Gagal";
+				$stat = "Failed";
 			}
 			?>
-			<b>Nomor Invoice</b>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<?= $value->invoice_number; ?><br>
-			<b>Tanggal Transaksi</b>&nbsp; &nbsp; &nbsp; &nbsp;<?= $this->Main_model->convert_tanggal($value->date); ?><br>
+			<b>Invoice Number</b>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<?= $value->invoice_number; ?><br>
+			<b>Transaction Date</b>&nbsp; &nbsp; &nbsp; &nbsp;<?= $this->Main_model->convert_tanggal($value->date); ?><br>
 			<b>Total Items</b>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<?= $value->total_items.' items'; ?><br>
-			<b>Total Harga</b>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<?= 'Rp '.number_format($value->grand_total,2); ?><br>
+			<b>Total Price</b>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<?= 'Rp '.number_format($value->grand_total,2); ?><br>
+			<b>Payment Type</b>&nbsp; &nbsp; &nbsp; &nbsp;<?= $value->payment_type; ?><br>
 			<b>Status</b>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<?= $stat; ?>
 			<?php if ($order->transaction_status == "pending") { ?>
 			<br><br>
@@ -40,7 +41,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4 class="panel-title">
-							<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapse_1"> Cara Pembayaran </a>
+							<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapse_1"> Method of Payment </a>
 						</h4>
 					</div>
 					<div id="collapse_1" class="panel-collapse in">
@@ -165,8 +166,8 @@
 									</label>
 								</th>
 								<th style="text-align: center;" width="4%"> # </th>
-								<th style="text-align: center;"> Nama Paket </th>
-								<th style="text-align: center;"> Harga </th>
+								<th style="text-align: center;"> Packet Name </th>
+								<th style="text-align: center;"> Price </th>
 								<th style="text-align: center;"> Qty </th>
 								<th style="text-align: center;"> Sub Total </th>
 							</tr>

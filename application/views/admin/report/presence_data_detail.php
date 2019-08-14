@@ -1,18 +1,18 @@
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <ul class="page-breadcrumb breadcrumb">
 	<li>
-		<span>Laporan</span>
+		<span>Report</span>
 		<i class="fa fa-circle"></i>
 	</li>
 	<li>
-		<span>Detail Data Kehadiran</span>
+		<span>Attendance Data Details</span>
 	</li>
 </ul>
 <?= $this->session->flashdata('sukses') ?>
 <?= $this->session->flashdata('gagal') ?>
 <div class="page-content-inner">
 	<div class="m-heading-1 border-green m-bordered">
-		<h3>Catatan</h3>
+		<h3>Note</h3>
 	</div>
 	<div class="row">
 		<div class="col-md-12">
@@ -22,11 +22,11 @@
 						<thead>
 							<tr>
 								<th style="text-align: center;" width="4%"> # </th>
-								<th style="text-align: center;" width="15%"> Nama </th>
-								<th style="text-align: center;" width="15%"> Tanggal </th>
+								<th style="text-align: center;" width="15%"> Name </th>
+								<th style="text-align: center;" width="15%"> Date </th>
 								<!-- <th style="text-align: center;"> Jam Masuk </th>
 								<th style="text-align: center;"> Jam Keluar </th> -->
-								<th style="text-align: center;"> Catatan </th>
+								<th style="text-align: center;"> Note </th>
 							</tr>
 						</thead>
 						<tbody>

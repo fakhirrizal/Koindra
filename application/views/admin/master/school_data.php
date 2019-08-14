@@ -5,14 +5,14 @@
 		<i class="fa fa-circle"></i>
 	</li>
 	<li>
-		<span>Data Paket</span>
+		<span>School Data</span>
 	</li>
 </ul>
 <?= $this->session->flashdata('sukses') ?>
 <?= $this->session->flashdata('gagal') ?>
 <div class="page-content-inner">
 	<div class="m-heading-1 border-green m-bordered">
-		<h3>Catatan</h3>
+		<h3>Note</h3>
 		<!-- <p> Hanya status <b>aktif</b> yang akan tampil di shop display pengguna</p> -->
 	</div>
 	<div class="row">
@@ -38,12 +38,12 @@
 						<div class="row">
 							<div class="col-md-6">
 								<div class="btn-group">
-									<button type='submit' id="sample_editable_1_new" class="btn sbold red"> Hapus
+									<button type='submit' id="sample_editable_1_new" class="btn sbold red"> Delete
 										<i class="fa fa-trash"></i>
 									</button>
 								</div>
 									<span class="separator">|</span>
-									<a data-toggle="modal" data-target="#tambahdata" class="btn green uppercase">Tambah Data <i class="fa fa-plus"></i> </a>
+									<a data-toggle="modal" data-target="#tambahdata" class="btn green uppercase">Add Data <i class="fa fa-plus"></i> </a>
 								<!-- <button id="sample_editable_1_new" onclick="window.location.href='<?=base_url('Master/admin');?>'" class="btn sbold green"> Tambah Data Baru
 									<i class="fa fa-plus"></i>
 								</button> -->
@@ -60,10 +60,10 @@
 									</label>
 								</th>
 								<th style="text-align: center;" width="4%"> # </th>
-								<th style="text-align: center;"> Kode Sekolah </th>
-								<th style="text-align: center;"> Nama Sekolah </th>
-								<th style="text-align: center;"> Jumlah Siswa </th>
-								<th style="text-align: center;" width="7%"> Aksi </th>
+								<th style="text-align: center;"> Code of School </th>
+								<th style="text-align: center;"> School Name </th>
+								<th style="text-align: center;"> Students </th>
+								<th style="text-align: center;" width="7%"> Action </th>
 							</tr>
 						</thead>
 						<tbody>
@@ -81,10 +81,10 @@
 								<td style="text-align: center;"><?= $no++.'.'; ?></td>
 								<td style="text-align: center;"><?= $value->school_code; ?></td>
 								<td style="text-align: center;"><?= $value->school_name; ?></td>
-								<td style="text-align: center;"><?= $value->total_student.' Siswa'; ?></td>
+								<td style="text-align: center;"><?= $value->total_student.' Student'; ?></td>
 								<td>
 									<div class="btn-group" style="text-align: center;">
-										<button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Aksi
+										<button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Action
 											<i class="fa fa-angle-down"></i>
 										</button>
 										<ul class="dropdown-menu" role="menu">
@@ -94,11 +94,11 @@
 											</li>
 											<li>
 												<a data-toggle="modal" data-target="#ubahdata" id="<?= md5($value->school_code); ?>" class="ubahdata">
-													<i class="icon-wrench"></i> Ubah Data </a>
+													<i class="icon-wrench"></i> Edit Data </a>
 											</li>
 											<li>
 												<a onclick="return confirm('Anda yakin?')" href="<?=site_url('admin_side/hapus_data_sekolah/'.md5($value->school_code));?>">
-													<i class="icon-trash"></i> Hapus Data </a>
+													<i class="icon-trash"></i> Delete Data </a>
 											</li>
 										</ul>
 									</div>
@@ -146,7 +146,7 @@
 								<label class="col-md-2 control-label" for="form_control_1">Kode Sekolah <span class="required"> * </span></label>
 								<div class="col-md-10">
 									<div class="input-icon">
-										<input type="text" class="form-control" name="school_code" placeholder="Type something" required>
+										<input type="text" class="form-control" name="school_code" placeholder="Type something" maxlength='2' required>
 										<div class="form-control-focus"> </div>
 										<span class="help-block">Some help goes here...</span>
 										<i class="icon-direction"></i>

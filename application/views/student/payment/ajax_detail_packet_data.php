@@ -14,19 +14,24 @@
 									<table class="table">
 										<tbody>
 											<tr>
-												<td> Nama Paket </td>
+												<td> Packet Name </td>
 												<td> : </td>
 												<td><?php echo $row->packet_name; ?></td>
 											</tr>
 											<tr>
-												<td> Kuota </td>
+												<td> Quota </td>
 												<td> : </td>
-												<td><?php echo $row->quota.'x Pertemuan'; ?></td>
+												<td><?php
+												if($row->quota>0){
+												echo $row->quota.'x Pertemuan';}
+												else{
+													echo $row->quota;
+												} ?></td>
 											</tr>
 											<tr>
-												<td> Durasi </td>
+												<td> Duration </td>
 												<td> : </td>
-												<td><?php echo $row->duration.' Bulan'; ?></td>
+												<td><?php echo $row->duration.' Month'; ?></td>
 											</tr>
 											<!-- <tr>
 												<td> Tanggal Kadaluarsa </td>
@@ -34,23 +39,23 @@
 												<td><?php echo $this->Main_model->convert_tanggal($row->expired_date); ?></td>
 											</tr> -->
 											<tr>
-												<td> Informasi Tambahan </td>
+												<td> Additional Information </td>
 												<td> : </td>
 												<td><?php echo $row->additional_info; ?></td>
 											</tr>
 											<tr>
-												<td> Syarat dan Ketentuan </td>
+												<td> Term and Condition </td>
 												<td> : </td>
 												<td><?php echo $row->term_and_condition; ?></td>
 											</tr>
 											<tr>
-												<td> Harga </td>
+												<td> Price </td>
 												<td> : </td>
 												<td><?php echo 'Rp '.number_format($row->price,2); ?></td>
 											</tr>
 										</tbody>
 									</table>
-									<button class="btn blue btn-block btn-lg m-icon-big" onclick="window.location.href='<?= site_url('student/add_to_cart/'.md5($row->packet_id)); ?>'">Beli
+									<button class="btn blue btn-block btn-lg m-icon-big" onclick="window.location.href='<?= site_url('student/add_to_cart/'.md5($row->packet_id)); ?>'">Buy
 										<i class="m-icon-big-swapright m-icon-white"></i>
 									</button>
 								</div>

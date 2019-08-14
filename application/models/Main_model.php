@@ -107,4 +107,17 @@ class Main_model extends CI_Model{
 		}
 		return $tanggal_tampil;
 	}
+	public function convert_hari($date){
+		$daftar_hari = array(
+			'Sunday' => 'Minggu',
+			'Monday' => 'Senin',
+			'Tuesday' => 'Selasa',
+			'Wednesday' => 'Rabu',
+			'Thursday' => 'Kamis',
+			'Friday' => 'Jumat',
+			'Saturday' => 'Sabtu'
+		);
+		$namahari = date('l', strtotime($date));
+		return $daftar_hari[$namahari];
+	}
 }

@@ -67,6 +67,12 @@ $route['admin_side/cleaning_log'] = 'admin/App/cleaning_log';
 $route['admin_side/tentang_aplikasi'] = 'admin/App/about';
 $route['admin_side/bantuan'] = 'admin/App/helper';
 
+$route['admin_side/profile'] = 'admin/User_profile/profile';
+$route['admin_side/update_profile'] = 'admin/User_profile/update_profile';
+$route['admin_side/update_profile_photo'] = 'admin/User_profile/update_profile_photo';
+$route['admin_side/password_setting'] = 'admin/User_profile/password_setting';
+$route['admin_side/update_password'] = 'admin/User_profile/update_password';
+
 $route['admin_side/administrator'] = 'admin/Master/admin_data';
 $route['admin_side/tambah_data_admin'] = 'admin/Master/add_admin_data';
 $route['admin_side/simpan_data_admin'] = 'admin/Master/save_admin_data';
@@ -102,6 +108,7 @@ $route['admin_side/hapus_data_paket/(:any)'] = 'admin/Master/delete_packet_data/
 
 $route['admin_side/laporan_kehadiran'] = 'admin/Report/presence_data';
 $route['admin_side/detail_data_kehadiran/(:any)'] = 'admin/Report/presence_data_detail/$1';
+$route['admin_side/simpan_data_kehadiran'] = 'admin/Report/save_presence_data';
 $route['admin_side/impor_data_kehadiran'] = 'admin/Report/import_presence_data';
 
 $route['admin_side/pembayaran'] = 'admin/Payment/all_payment';

@@ -4,9 +4,9 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
-	<meta name="author" content="Creative Tim">
-	<title>Halaman Registrasi</title>
+	<meta name="description" content="Growing up your knowladge with us">
+	<meta name="author" content="Koindra">
+	<title>Koindra - Registration Page</title>
 	<!-- Favicon -->
 	<link href="<?=site_url('assets/icon.png');?>" rel="icon" type="image/png">
 	<!-- Fonts -->
@@ -50,7 +50,8 @@
 						</div> -->
 						<div class="card-body px-lg-5 py-lg-5" style='text-align: center'>
 							<?= $this->session->flashdata('error') ?>
-							<img src="<?=site_url('assets/logo-bg.PNG');?>" width='70%'><hr>
+							<!-- <img src="<?=site_url('assets/logo-bg.PNG');?>" width='70%'> -->
+							<img src="<?=site_url('assets/1.png');?>" width='70%'><hr>
 							<form role="form" action="<?= site_url('register_process'); ?>" method='post'>
 								<p id="getLocation"></p>
 								<input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>">
@@ -59,7 +60,7 @@
 										<div class="input-group-prepend">
 											<span class="input-group-text"><i class="ni ni-single-02"></i></span>
 										</div>
-										<input class="form-control" placeholder="Nama Lengkap" type="text" name='fullname' required>
+										<input class="form-control" placeholder="Fullname" type="text" name='fullname' required>
 									</div>
 								</div>
 								<div class="form-group">
@@ -67,7 +68,7 @@
 										<div class="input-group-prepend">
 											<span class="input-group-text"><i class="ni ni-single-02"></i></span>
 										</div>
-										<input class="form-control" placeholder="Nama Ibu Kandung" type="text" name='mother' required>
+										<input class="form-control" placeholder="Mother's Name" type="text" name='mother' required>
 									</div>
 								</div>
 								<div class="form-group">
@@ -83,7 +84,7 @@
 										<div class="input-group-prepend">
 											<span class="input-group-text"><i class="ni ni-mobile-button"></i></span>
 										</div>
-										<input class="form-control" placeholder="Nomor HP" type="text" name='number_phone' maxlength='14'>
+										<input class="form-control" placeholder="Number Phone" type="text" name='number_phone' maxlength='14'>
 									</div>
 								</div>
 								<div class="form-group">
@@ -91,7 +92,7 @@
 										<div class="input-group-prepend">
 											<span class="input-group-text"><i class="ni ni-mobile-button"></i></span>
 										</div>
-										<input class="form-control" placeholder="Nomor HP Ibu" type="text" name='mother_phone' maxlength='14'>
+										<input class="form-control" placeholder="Mother's Number Phone" type="text" name='mother_phone' maxlength='14'>
 									</div>
 								</div>
 								<div class="form-group">
@@ -100,7 +101,7 @@
 											<span class="input-group-text"><i class="ni ni-building"></i></span>
 										</div>
 										<select class='form-control' name='school' required>
-											<option value=''>-- Pilih --</option>
+											<option value=''>-- Choose --</option>
 											<?php
 											foreach ($data_sekolah as $key => $value) {
 												echo '<option value="'.$value->school_code.'">'.$value->school_name.'</option>';
@@ -115,7 +116,7 @@
 											<span class="input-group-text"><i class="ni ni-hat-3"></i></span>
 										</div>
 										<select class='form-control' name='class' required>
-											<option value=''>-- Pilih --</option>
+											<option value=''>-- Choose --</option>
 											<?php
 											for ($i=1; $i <13 ; $i++) {
 												echo '<option value="'.$i.'">'.$i.'</option>';

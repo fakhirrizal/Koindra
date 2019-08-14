@@ -58,7 +58,8 @@ License: You must have a valid license purchased only from themeforest(the above
 		<link href="<?=base_url('assets/layouts/layout3/css/themes/default.min.css');?>" rel="stylesheet" type="text/css" id="style_color" />
 		<link href="<?=base_url('assets/layouts/layout3/css/custom.min.css');?>" rel="stylesheet" type="text/css" />
 		<!-- END THEME LAYOUT STYLES -->
-		<link href="https://iconverticons.com/img/logo.png" rel="icon" type="image/x-icon">
+		<!-- <link href="https://iconverticons.com/img/logo.png" rel="icon" type="image/x-icon"> -->
+		<link href="<?=site_url('assets/1.ico');?>" rel="icon" type="image/x-icon">
 	</head>
 
 		<body class="page-container-bg-solid page-md">
@@ -70,7 +71,8 @@ License: You must have a valid license purchased only from themeforest(the above
 					<!-- BEGIN LOGO -->
 					<div class="page-logo">
 						<a href="javascript:;">
-							<img src="https://www.debanensite.nl/files/thumb/d/e/logo_D_300_300_demaco.jpg" alt="logo" class="logo-default">
+							<!-- <img src="https://www.debanensite.nl/files/thumb/d/e/logo_D_300_300_demaco.jpg" alt="logo" class="logo-default"> -->
+							<img src="<?= base_url('assets/4.PNG'); ?>" alt="logo" class="logo-default" width='112px' height='32px'>
 						</a>
 					</div>
 					<!-- END LOGO -->
@@ -101,8 +103,8 @@ License: You must have a valid license purchased only from themeforest(the above
 									?>
 									<li class="external">
 										<h3>Total:
-											<strong><?= $this->cart->total_items(); ?> Produk</strong></h3>
-										<?= '<a href="'.site_url('student/cart').'">Lihat Semua</a>' ?>
+											<strong><?= $this->cart->total_items(); ?> Items</strong></h3>
+										<?= '<a href="'.site_url('student/cart').'">Show All</a>' ?>
 									</li>
 									<li>
 										<ul class="dropdown-menu-list scroller" style="height: 250px;" data-handle-color="#637283">
@@ -125,7 +127,7 @@ License: You must have a valid license purchased only from themeforest(the above
 									</li>
 									<?php
 									}else{
-										echo'<li class="external"><h3><strong>Keranjang Belanja Anda Kosong</strong></h3></li>';
+										echo'<li class="external"><h3><strong>Your Shopping Cart is Empty</strong></h3></li>';
 									}
 									?>
 								</ul>
@@ -153,11 +155,11 @@ License: You must have a valid license purchased only from themeforest(the above
 								<ul class="dropdown-menu dropdown-menu-default">
 									<li>
 										<a href="<?php echo site_url('student/profile'); ?>">
-											<i class="icon-user"></i> Profil </a>
+											<i class="icon-user"></i> Profile </a>
 									</li>
 									<li>
 										<a href="<?php echo site_url('student/bantuan'); ?>">
-											<i class="icon-rocket"></i> Bantuan
+											<i class="icon-rocket"></i> Helper
 											<!-- <span class="badge badge-success"> 7 </span> -->
 										</a>
 									</li>
@@ -168,7 +170,7 @@ License: You must have a valid license purchased only from themeforest(the above
 									</li> -->
 									<li>
 										<a href="<?php echo site_url('Auth/logout'); ?>">
-											<i class="icon-key"></i> Keluar </a>
+											<i class="icon-key"></i> Sign out </a>
 									</li>
 								</ul>
 							</li>
@@ -185,7 +187,7 @@ License: You must have a valid license purchased only from themeforest(the above
 					<!-- BEGIN HEADER SEARCH BOX -->
 					<form class="search-form" action="javascript:;" method="GET">
 						<div class="input-group">
-							<input type="text" class="form-control" placeholder="Cari" name="query">
+							<input type="text" class="form-control" placeholder="Search" name="query">
 							<span class="input-group-btn">
 								<a href="javascript:;" class="btn submit">
 									<i class="icon-magnifier"></i>
@@ -200,38 +202,38 @@ License: You must have a valid license purchased only from themeforest(the above
 					<div class="hor-menu  ">
 						<ul class="nav navbar-nav">
 							<li class="menu-dropdown classic-menu-dropdown <?php if($parent=='home'){echo 'active';}else{echo '';} ?>">
-								<a href="<?php echo site_url('student/beranda'); ?>"><i class="icon-home"></i> Beranda
+								<a href="<?php echo site_url('student/beranda'); ?>"><i class="icon-home"></i> Home
 								</a>
 							</li>
 							<li class="menu-dropdown classic-menu-dropdown <?php if($parent=='payment'){echo 'active';}else{echo '';} ?>">
-								<a href="javascript:;"><i class="icon-wallet"></i> Pembelian
+								<a href="javascript:;"><i class="icon-wallet"></i> Purchasing
 									<span class="arrow <?php if($parent=='payment'){echo 'open';}else{echo '';} ?>"></span>
 								</a>
 								<ul class="dropdown-menu pull-left">
 									<li class=" <?php if($child=='packet'){echo 'active';}else{echo '';} ?>">
 										<a href="<?php echo site_url('student/paket'); ?>" class="nav-link nav-toggle ">
-											<i class="icon-layers"></i> Daftar Paket
+											<i class="icon-layers"></i> Packet List
 										</a>
 									</li>
 									<li class=" <?php if($child=='payment_history'){echo 'active';}else{echo '';} ?>">
 										<a href="<?php echo site_url('student/riwayat_pembelian'); ?>" class="nav-link nav-toggle ">
-											<i class="fa fa-folder-open-o"></i> Riwayat Pembelian
+											<i class="fa fa-folder-open-o"></i> Payment History
 										</a>
 									</li>
 								</ul>
 							</li>
 							<li class="menu-dropdown classic-menu-dropdown <?php if($parent=='report'){echo 'active';}else{echo '';} ?>">
-								<a href="<?php echo site_url('student/laporan_kehadiran'); ?>"><i class="icon-notebook"></i> Laporan Kehadiran
+								<a href="<?php echo site_url('student/laporan_kehadiran'); ?>"><i class="icon-notebook"></i> Attendance Report
 								</a>
 							</li>
 							<!-- <li class="menu-dropdown classic-menu-dropdown <?php if($parent=='log_activity'){echo 'active';}else{echo '';} ?>">
 								<a href="<?php echo site_url('student/log_activity'); ?>"><i class="fa fa-rss"></i> Log Activity
 								</a>
 							</li> -->
-							<li class="menu-dropdown classic-menu-dropdown <?php if($parent=='about'){echo 'active';}else{echo '';} ?>">
-								<a href="<?php echo site_url('student/tentang_aplikasi'); ?>"><i class="icon-bulb"></i> Tentang Aplikasi
+							<!-- <li class="menu-dropdown classic-menu-dropdown <?php if($parent=='about'){echo 'active';}else{echo '';} ?>">
+								<a href="<?php echo site_url('student/tentang_aplikasi'); ?>"><i class="icon-bulb"></i> About Application
 								</a>
-							</li>
+							</li> -->
 						</ul>
 					</div>
 					<!-- END MEGA MENU -->
@@ -251,7 +253,7 @@ License: You must have a valid license purchased only from themeforest(the above
 						<!-- BEGIN PAGE TITLE -->
 						<div class="page-title">
 							<h1>Dashboard
-								<small>Sistem Informasi</small>
+								<small>Information System</small>
 							</h1>
 						</div>
 						<!-- END PAGE TITLE -->
@@ -259,7 +261,7 @@ License: You must have a valid license purchased only from themeforest(the above
 						<div class="page-toolbar">
 							<!-- BEGIN THEME PANEL -->
 							<div class="btn-group btn-theme-panel">
-								<a href="#" title="Setting Informasi Aplikasi" class="btn dropdown-toggle" >
+								<a href="#" title="Setting" class="btn dropdown-toggle" >
 									<i class="icon-settings"></i>
 								</a>
 							</div>

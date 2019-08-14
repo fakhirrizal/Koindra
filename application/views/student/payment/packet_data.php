@@ -5,14 +5,14 @@
 		<i class="fa fa-circle"></i>
 	</li>
 	<li>
-		<span>Data Paket</span>
+		<span>Packet Data</span>
 	</li>
 </ul>
 <?= $this->session->flashdata('sukses') ?>
 <?= $this->session->flashdata('gagal') ?>
 <div class="page-content-inner">
 	<div class="m-heading-1 border-green m-bordered">
-		<h3>Catatan</h3>
+		<h3>Note</h3>
 		<!-- <p> Ketika mengklik <b>Atur Ulang Sandi</b>, maka kata sandi otomatis menjadi "<b>1234</b>"</p> -->
 	</div>
 	<div class="row">
@@ -52,11 +52,11 @@
 									</label>
 								</th>
 								<th style="text-align: center;" width="4%"> # </th>
-								<th style="text-align: center;"> Nama Paket </th>
-								<th style="text-align: center;"> Kuota </th>
-								<th style="text-align: center;"> Durasi </th>
-								<th style="text-align: center;"> Harga </th>
-								<th style="text-align: center;" width="7%"> Aksi </th>
+								<th style="text-align: center;"> Packet Name </th>
+								<th style="text-align: center;"> Quota </th>
+								<th style="text-align: center;"> Duration </th>
+								<th style="text-align: center;"> Price </th>
+								<th style="text-align: center;" width="7%"> Action </th>
 							</tr>
 						</thead>
 						<tbody>
@@ -73,8 +73,13 @@
 								</td>
 								<td style="text-align: center;"><?= $no++.'.'; ?></td>
 								<td style="text-align: center;"><?= $value->packet_name; ?></td>
-								<td style="text-align: center;"><?= $value->quota.'x Pertemuan'; ?></td>
-								<td style="text-align: center;"><?= $value->duration.' Bulan'; ?></td>
+								<td style="text-align: center;"><?php
+												if($value->quota>0){
+												echo $value->quota.'x Pertemuan';}
+												else{
+													echo $value->quota;
+												} ?></td>
+								<td style="text-align: center;"><?= $value->duration.' Month'; ?></td>
 								<td style="text-align: center;"><?= 'Rp '.number_format($value->price,2); ?></td>
 								<!-- <td style="text-align: center;"><?= $this->Main_model->convert_tanggal($value->expired_date); ?></td> -->
 								<td>
@@ -89,7 +94,7 @@
 											</li>
 											<li>
 												<a href="<?=site_url('student/add_to_cart/'.md5($value->packet_id));?>">
-													<i class="fa fa-share-square-o"></i> Beli </a>
+													<i class="fa fa-share-square-o"></i> Buy </a>
 											</li>
 										</ul>
 									</div>
@@ -111,7 +116,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="myModalLabel">Detail Data Paket</h4>
+				<h4 class="modal-title" id="myModalLabel">Packet Data Detail</h4>
 			</div>
 			<div class="modal-body">
 				<div class="box box-primary" id='formdetaildata' >

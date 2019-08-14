@@ -107,77 +107,123 @@ class Auth extends CI_Controller {
 		}
 	}
 	public function register_process(){
-		$cek = $this->Main_model->getSelectedData('student a', 'a.*', array("a.fullname" => $this->input->post('fullname'),'a.mother' => $this->input->post('mother')))->result();
-		if($cek!=NULL){
-			$this->session->set_flashdata('error','
-			<div class="alert alert-danger alert-dismissible" role="alert" style="text-align: justify;">
-				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<strong>Ups! </strong>Akun ini telah digunakan.
-			</div>' );
+		$cek_passcode = $this->Main_model->getSelectedData('user_to_role a', 'a.*', array("a.role_id" => '1','b.passcode' => $this->input->post('passcode')),'','','','',array(
+			'table' => 'user_profile b',
+			'on' => 'a.user_id=b.user_id',
+			'pos' => 'left',
+		))->result();
+		if($cek_passcode==NULL){
+			$this->session->set_flashdata('error','<div class="alert alert-danger alert-dismissible" role="alert" style="text-align: justify;">
+											<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+											<strong>Ups! </strong>Passcode yang Anda masukkan tidak valid.
+										</div>' );
 			echo "<script>window.location='".base_url('registrasi')."'</script>";
-		}
-		else{
-			$this->db->trans_start();
-			$user_id = $this->Main_model->getLastID('user','id');
-
-			$data1 = array(
-						'id' => $user_id['id']+1,
-						'username' => $this->input->post('fullname'),
-						'pass' => $this->input->post('mother'),
-						'total_login' => '1',
-						'last_login' => date('Y-m-d H-i-s'),
-						'last_activity' => date('Y-m-d H-i-s'),
-						'login_attempts' => '1',
-						'last_login_attempt' => date('Y-m-d H-i-s'),
-						'ip_address' => $this->input->ip_address(),
-						'is_active' => '1',
-						'created_at' => date('Y-m-d H:i:s'),
-						'created_by' => $user_id['id']+1
-					);
-			// print_r($data1);
-			$this->Main_model->insertData('user',$data1);
-
-			$data2 = array(
-				'user_id' => $user_id['id']+1,
-				'fullname' => $this->input->post('fullname'),
-			);
-			// print_r($data2);
-			$this->Main_model->insertData('user_profile',$data2);
-
-			$data3 = array(
-				'user_id' => $user_id['id']+1,
-				'role_id' => '2',
-			);
-			// print_r($data3);
-			$this->Main_model->insertData('user_to_role',$data3);
-
-			$data4 = array(
-				'user_id' => $user_id['id']+1,
-				'fullname' => $this->input->post('fullname'),
-				'mother' => $this->input->post('mother'),
-				'number_phone' => $this->input->post('number_phone'),
-				'mother_phone' => $this->input->post('mother_phone'),
-				'email' => $this->input->post('email'),
-				'school' => $this->input->post('school'),
-				'class' => $this->input->post('class'),
-				'passcode' => $this->input->post('passcode')
-			);
-			// print_r($data4);
-			$this->Main_model->insertData('student',$data4);
-
-			$data5 = array(
-				'user_id' => $user_id['id']+1
-			);
-			// print_r($data5);
-			$this->Main_model->insertData('status',$data5);
-
-			$this->Main_model->log_activity($user_id['id']+1,'Registration new account',"Creating student data (".$this->input->post('fullname').")");
-			$this->db->trans_complete();
-			if($this->db->trans_status() === false){
-				echo 'Gagal!';
+		}else{
+			$cek = $this->Main_model->getSelectedData('student a', 'a.*', array("a.fullname" => $this->input->post('fullname'),'a.mother' => $this->input->post('mother')))->result();
+			if($cek!=NULL){
+				$this->session->set_flashdata('error','
+				<div class="alert alert-danger alert-dismissible" role="alert" style="text-align: justify;">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<strong>Ups! </strong>Akun ini telah digunakan.
+				</div>' );
+				echo "<script>window.location='".base_url('registrasi')."'</script>";
 			}
 			else{
-				echo 'Berhasil :)';
+				$this->db->trans_start();
+				$user_id = $this->Main_model->getLastID('user','id');
+
+				$data1 = array(
+							'id' => $user_id['id']+1,
+							'username' => $this->input->post('fullname'),
+							'pass' => $this->input->post('mother'),
+							'total_login' => '1',
+							'last_login' => date('Y-m-d H-i-s'),
+							'last_activity' => date('Y-m-d H-i-s'),
+							'login_attempts' => '1',
+							'last_login_attempt' => date('Y-m-d H-i-s'),
+							'ip_address' => $this->input->ip_address(),
+							'is_active' => '1',
+							'created_at' => date('Y-m-d H:i:s'),
+							'created_by' => $user_id['id']+1
+						);
+				// print_r($data1);
+				$this->Main_model->insertData('user',$data1);
+
+				$data2 = array(
+					'user_id' => $user_id['id']+1,
+					'fullname' => $this->input->post('fullname'),
+				);
+				// print_r($data2);
+				$this->Main_model->insertData('user_profile',$data2);
+
+				$data3 = array(
+					'user_id' => $user_id['id']+1,
+					'role_id' => '2',
+				);
+				// print_r($data3);
+				$this->Main_model->insertData('user_to_role',$data3);
+
+				$get_student_id = $this->Main_model->getSelectedData('student a', 'a.*', array("a.school" => $this->input->post('school')),'a.student_id DESC','1')->row();
+				$student_id = '';
+				if($get_student_id==NULL){
+					$student_id = '1'.$this->input->post('school').'001';
+				}else{
+					$student_id = (substr($get_student_id->student_id,-3))+1;}
+				$data4 = array(
+					'student_id' => $student_id,
+					'user_id' => $user_id['id']+1,
+					'fullname' => $this->input->post('fullname'),
+					'mother' => $this->input->post('mother'),
+					'number_phone' => $this->input->post('number_phone'),
+					'mother_phone' => $this->input->post('mother_phone'),
+					'email' => $this->input->post('email'),
+					'school' => $this->input->post('school'),
+					'class' => $this->input->post('class'),
+					'passcode' => $this->input->post('passcode')
+				);
+				// print_r($data4);
+				$this->Main_model->insertData('student',$data4);
+
+				$expired_date = date('Y-m-d', strtotime('+14 days', strtotime(date('Y-m-d'))));
+				$data5 = array(
+					'user_id' => $user_id['id']+1,
+					'quota' => 'Unlimited',
+					'expired_date' => $expired_date
+				);
+				// print_r($data5);
+				$this->Main_model->insertData('status',$data5);
+
+				$this->Main_model->log_activity($user_id['id']+1,'Registration new account',"Creating student data (".$this->input->post('fullname').")");
+				$this->db->trans_complete();
+				if($this->db->trans_status() === false){
+					$this->session->set_flashdata('error','<div class="alert alert-danger alert-dismissible" role="alert" style="text-align: justify;">
+												<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+												<strong>Ups! </strong>Registrasi gagal.
+											</div>' );
+					echo "<script>window.location='".base_url('registrasi')."'</script>";
+				}
+				else{
+					// $this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>Selamat bergabung, dan nikmati <b>Free Trial</b> selama <b>14 Hari</b>.<br /></div>' );
+					// echo "<script>window.location='".base_url()."student/beranda/'</script>";
+					$role = $this->Main_model->getSelectedData('user_to_role a', 'b.route,a.user_id', array('a.user_id'=>$user_id['id']+1,'b.deleted'=>'0'), "",'','','',array(
+						'table' => 'user_role b',
+						'on' => 'a.role_id=b.id',
+						'pos' => 'left',
+					))->result();
+					if($role==NULL){
+						$this->session->set_flashdata('error','<div class="alert alert-danger alert-dismissible" role="alert" style="text-align: justify;">
+															<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+															<strong>Ups! </strong>Akun Anda tidak dikenali sistem.
+														</div>' );
+						echo "<script>window.location='".base_url()."'</script>";
+					}else{
+						foreach ($role as $key => $value2) {
+							$sess_data['id'] = $value2->user_id;
+							$this->session->set_userdata($sess_data);
+							redirect($value2->route);
+						}
+					}
+				}
 			}
 		}
 	}

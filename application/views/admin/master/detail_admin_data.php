@@ -5,7 +5,7 @@
 		<i class="fa fa-circle"></i>
 	</li>
 	<li>
-		<span>Data Admin</span>
+		<span>Administrator Data</span>
 		<i class="fa fa-circle"></i>
 	</li>
 	<li>
@@ -16,7 +16,7 @@
 <?= $this->session->flashdata('gagal') ?>
 <div class="page-content-inner">
 	<div class="m-heading-1 border-green m-bordered">
-		<h3>Catatan</h3>
+		<h3>Note</h3>
 		<!-- <p> Hanya status <b>aktif</b> yang akan tampil di shop display pengguna</p> -->
 	</div>
 	<div class="row">
@@ -34,7 +34,7 @@
 									<table class="table">
 										<tbody>
 											<tr>
-												<td> <b>Nama</b> : <?= $row->fullname; ?> </td>
+												<td> <b>Name</b> : <?= $row->fullname; ?> </td>
 											</tr>
 											<tr>
 												<td></td>
@@ -47,7 +47,7 @@
 							<div class="tabbable-line">
 								<ul class="nav nav-tabs ">
 									<li class="active">
-										<a href="#tab_15_1" data-toggle="tab"> Log Aktifitas </a>
+										<a href="#tab_15_1" data-toggle="tab"> Log Activity </a>
 									</li>
 								</ul>
 								<div class="tab-content">
@@ -57,7 +57,7 @@
 											<div class="row">
 												<div class="col-md-6">
 													<div class="btn-group">
-														<button type='submit' id="sample_editable_1_new" class="btn sbold red"> Hapus
+														<button type='submit' id="sample_editable_1_new" class="btn sbold red"> Delete
 															<i class="fa fa-trash"></i>
 														</button>
 													</div>
@@ -74,10 +74,10 @@
 														</label>
 													</th>
 													<th style="text-align: center;" width="4%"> # </th>
-													<th style="text-align: center;"> Tipe Aktifitas </th>
-													<th style="text-align: center;"> Aktifitas </th>
-													<th style="text-align: center;"> Waktu </th>
-													<th style="text-align: center;" width="7%"> Aksi </th>
+													<th style="text-align: center;"> Activity Type </th>
+													<th style="text-align: center;"> Activity </th>
+													<th style="text-align: center;"> Datetime </th>
+													<th style="text-align: center;" width="7%"> Action </th>
 												</tr>
 											</thead>
 											<tbody>
@@ -109,7 +109,7 @@
 																</li>
 																<li>
 																	<a onclick="return confirm('Anda yakin?')" href="<?=site_url('admin_side/hapus_aktifitas/'.md5($value->activity_id));?>">
-																		<i class="icon-trash"></i> Hapus Data </a>
+																		<i class="icon-trash"></i> Delete Data </a>
 																</li>
 															</ul>
 														</div>
@@ -136,7 +136,7 @@
 							</div>
 						</div>
 						<div class="col-md-12" >
-						<hr><a href="<?php echo base_url()."admin_side/administrator"; ?>" class="btn btn-info" role="button"><i class="fa fa-angle-double-left"></i> Kembali</a></div>
+						<hr><a href="<?php echo base_url()."admin_side/administrator"; ?>" class="btn btn-info" role="button"><i class="fa fa-angle-double-left"></i> Back</a></div>
 					</div>
 				</div>
 			</div>
@@ -149,7 +149,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="myModalLabel">Detail Data Aktifitas</h4>
+				<h4 class="modal-title" id="myModalLabel">Detail Activity Data</h4>
 			</div>
 			<div class="modal-body">
 				<div class="box box-primary" id='formdetaildata' >

@@ -5,13 +5,13 @@
 		<!-- <div class="col-md-3">
 		</div> -->
 		<?php
-		if($data_status->expired_date==NULL AND $data_status->quota==NULL){
-			echo '<div style="text-align:center;"><a href="'.site_url('student/start_free_trial').'"><img src="http://clippingpathpartner.com/wp-content/uploads/2017/08/get-free-trial.png"/></a></div>';
-		}else{
+		// if($data_status->expired_date==NULL AND $data_status->quota==NULL){
+		// 	echo '<div style="text-align:center;"><a href="'.site_url('student/start_free_trial').'"><img src="http://clippingpathpartner.com/wp-content/uploads/2017/08/get-free-trial.png"/></a></div>';
+		// }else{
 		?>
 		<div class="col-md-6">
 			<div class="widget-thumb widget-bg-color-white margin-bottom-20 ">
-				<h4 class="widget-thumb-heading">Sisa Kuota</h4>
+				<h4 class="widget-thumb-heading">Remaining Quota</h4>
 				<div class="widget-thumb-wrap">
 					<i class="widget-thumb-icon bg-red icon-layers"></i>
 					<div class="widget-thumb-body">
@@ -19,17 +19,19 @@
 						<span class="widget-thumb-body-stat" data-counter="counterup" data-value="1,293"><?php
 						if($data_status->quota==NULL){
 							echo'-';
+						}elseif($data_status->quota=='Unlimited'){
+							echo $data_status->quota;
 						}else{
-							echo $data_status->quota.'x';
+							echo $data_status->quota.'x Pertemuan';
 						}
-						?> Pertemuan</span>
+						?></span>
 					</div>
 				</div>
 			</div>
 		</div>
 		<div class="col-md-6">
 			<div class="widget-thumb widget-bg-color-white margin-bottom-20 ">
-				<h4 class="widget-thumb-heading">Masa Aktif</h4>
+				<h4 class="widget-thumb-heading">Expired Date</h4>
 				<div class="widget-thumb-wrap">
 					<i class="widget-thumb-icon bg-purple fa fa-hourglass-2"></i>
 					<div class="widget-thumb-body">
@@ -45,9 +47,20 @@
 				</div>
 			</div>
 		</div>
-		<?php } ?>
+		<?php // } ?>
 		<!-- <div class="col-md-3">
 		</div> -->
+	</div>
+	<div class="row">
+		<div class="col-md-4" style='text-align:center;'><h3>Top Up</h3>
+			<a href="<?php echo site_url('student/paket'); ?>"><img src="https://img.icons8.com/cotton/2x/card-in-use.png" alt="Daftar Paket" title="Daftar Paket" width='200px' height='200px'></a>
+		</div>
+		<div class="col-md-4" style='text-align:center;'><h3>Payment History</h3>
+			<a href="<?php echo site_url('student/riwayat_pembelian'); ?>"><img src="https://img.icons8.com/cotton/2x/invoice.png" alt="Riwayat Transaksi" title="Riwayat Transaksi" width='200px' height='200px'></a>
+		</div>
+		<div class="col-md-4" style='text-align:center;'><h3>Attendance Data</h3>
+			<a href="<?php echo site_url('student/laporan_kehadiran'); ?>"><img src="http://jplussolution.com/sca/img/attend.png" alt="Laporan Kehadiran" title="Laporan Kehadiran" width='200px' height='200px'></a>
+		</div>
 	</div>
 	<!-- <div class="row">
 		<div class="col-md-6 col-sm-6">

@@ -9,9 +9,9 @@
         <!-- END CONTAINER -->
         <!-- BEGIN FOOTER -->
 		<!-- BEGIN PRE-FOOTER -->
-        <div class="page-prefooter">
+        <!-- <div class="page-prefooter">
             <div class="container">
-                <div class="row">
+                <div class="row"> -->
 					<style type="text/css">
 						.wrapper {
 							text-align: center;
@@ -46,7 +46,7 @@
                             </form>
                         </div>
                     </div> -->
-                    <div class="col-md-6 col-sm-6 col-xs-12 footer-block" style="text-align: center;">
+                    <!-- <div class="col-md-6 col-sm-6 col-xs-12 footer-block" style="text-align: center;">
 						<h2>Follow Us On</h2>
 						<div class='wrapper'>
                         <ul class="social-icons">
@@ -79,10 +79,10 @@
                             <br> Email:
                             <a href="mailto:info@koindra.com">info@koindra.com</a>
                         </address>
-                    </div>
-                </div>
+                    </div> -->
+                <!-- </div>
             </div>
-        </div>
+        </div> -->
         <!-- END PRE-FOOTER -->
         <!-- BEGIN INNER FOOTER -->
         <div class="page-footer">

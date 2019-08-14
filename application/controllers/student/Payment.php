@@ -68,31 +68,32 @@ class Payment extends CI_Controller {
 			$purchasing_detail_data = array(
 				'purchasing_id' => $purchasing_id['purchasing_id']+1,
 				'product_id' => $value['id'],
+				'price' => $value['price'],
 				'qty' => $value['qty'],
 				'sub_total' => $value['subtotal']
 			);
 			$this->Main_model->insertData('purchasing_detail',$purchasing_detail_data);
-			$get_status_by_student_id = $this->Main_model->getSelectedData('status a', 'a.*,DATE_FORMAT(LAST_DAY(expired_date),"%d") AS end_of_month', array('a.user_id'=>$this->session->userdata('id')))->row();
-			$result_of_date = '';
-			if(substr($get_status_by_student_id->expired_date,-2)=='01'){
-				$beginning_of_the_month = date('Y-m-d',strtotime('+3 months',strtotime($get_status_by_student_id->expired_date)));
-				$result_of_date = date('Y-m-d', strtotime('-1 days', strtotime($beginning_of_the_month)));
-			}else{
-				$get_date = substr($get_status_by_student_id->expired_date,0,8).$get_status_by_student_id->end_of_month;
-				$result_of_date = date('Y-m-d',strtotime('+3 months',strtotime($get_date)));
-			}
-			$get_quota = $this->Main_model->getSelectedData('packet a', 'a.*', array('a.packet_id'=>$value['id']))->row();
-			$result_quota = '';
-			if($get_quota->quota=='Unlimited'){
-				$result_quota = 'Unlimited';
-			}else{
-				$result_quota = ($get_status_by_student_id->quota)+($get_quota->quota);
-			}
-			$update_status = array(
-				'quota' => $result_quota,
-				'expired_date' => $result_of_date
-			);
-			$this->Main_model->updateData('status',$update_status,array('user_id'=>$this->session->userdata('id')));
+			// $get_status_by_student_id = $this->Main_model->getSelectedData('status a', 'a.*,DATE_FORMAT(LAST_DAY(expired_date),"%d") AS end_of_month', array('a.user_id'=>$this->session->userdata('id')))->row();
+			// $result_of_date = '';
+			// if(substr($get_status_by_student_id->expired_date,-2)=='01'){
+			// 	$beginning_of_the_month = date('Y-m-d',strtotime('+3 months',strtotime($get_status_by_student_id->expired_date)));
+			// 	$result_of_date = date('Y-m-d', strtotime('-1 days', strtotime($beginning_of_the_month)));
+			// }else{
+			// 	$get_date = substr($get_status_by_student_id->expired_date,0,8).$get_status_by_student_id->end_of_month;
+			// 	$result_of_date = date('Y-m-d',strtotime('+3 months',strtotime($get_date)));
+			// }
+			// $get_quota = $this->Main_model->getSelectedData('packet a', 'a.*', array('a.packet_id'=>$value['id']))->row();
+			// $result_quota = '';
+			// if($get_quota->quota=='Unlimited'){
+			// 	$result_quota = 'Unlimited';
+			// }else{
+			// 	$result_quota = ($get_status_by_student_id->quota)+($get_quota->quota);
+			// }
+			// $update_status = array(
+			// 	'quota' => $result_quota,
+			// 	'expired_date' => $result_of_date
+			// );
+			// $this->Main_model->updateData('status',$update_status,array('user_id'=>$this->session->userdata('id')));
 		}
 		$this->cart->destroy();
 		$this->db->trans_complete();
@@ -101,7 +102,7 @@ class Payment extends CI_Controller {
 			echo "<script>window.location='".base_url()."student/beranda/'</script>";
 		}
 		else{
-			$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>transaksi Anda telah selesai.<br /></div>' );
+			$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>transaksi Anda segera diproses.<br /></div>' );
 			echo "<script>window.location='".base_url()."student/beranda/'</script>";
 		}
 	}

@@ -5,10 +5,10 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta name="description" content="Growing up your knowladge with us">
-	<meta name="author" content="Creative Tim">
-	<title>Halaman Login</title>
+	<meta name="author" content="Koindra">
+	<title>Koindra - Login Page</title>
 	<!-- Favicon -->
-	<link href="<?=site_url('assets/icon.png');?>" rel="icon" type="image/png">
+	<link href="<?=site_url('assets/1.ico');?>" rel="icon" type="image/png">
 	<!-- Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
 	<!-- Icons -->
@@ -44,7 +44,7 @@
 				<!-- <div class="text-center text-muted mb-4">
 					<small>Or sign in with credentials</small>
 				</div> -->
-				<img src="<?=site_url('assets/logo-bg.PNG');?>" width='70%'>
+				<img src="<?=site_url('assets/1.png');?>" width='70%'>
 				<hr>
 				<?= $this->session->flashdata('error') ?>
 				<form role="form" action="<?= site_url('login_process'); ?>" method='post'>
@@ -80,7 +80,7 @@
 			</div>
 			<div class="row mt-3">
 				<div class="col-6">
-				<a href="#" class="text-light"><small>Forgot password?</small></a>
+				<!-- <a href="#" class="text-light"><small>Forgot password?</small></a> -->
 				</div>
 				<div class="col-6 text-right">
 				<a href="<?= site_url('registrasi'); ?>" class="text-light"><small>Create new account</small></a>

@@ -11,7 +11,20 @@ class Report extends CI_Controller {
 		$data['child'] = 'presence';
 		$data['grand_child'] = '';
 
-		$data['data_tabel'] = $this->Main_model->getSelectedData('student a', 'a.*,(SELECT COUNT(b.presence_id) FROM presence b WHERE b.user_id=a.user_id) AS jumlah_kehadiran', array('a.deleted'=>'0'), "a.fullname ASC")->result();
+		if($this->input->post('start')=='' AND $this->input->post('end')==''){
+			$data['data_tabel'] = $this->Main_model->getSelectedData('student a', 'a.*,(SELECT COUNT(b.presence_id) FROM presence b WHERE b.user_id=a.user_id) AS jumlah_kehadiran,q.quota', array('a.deleted'=>'0'), "a.fullname ASC",'','','',array(
+				'table' => 'status q',
+				'on' => 'a.user_id=q.user_id',
+				'pos' => 'left',
+			))->result();
+		}else{
+			$data['data_tabel'] = $this->Main_model->getSelectedData('student a', 'a.*,(SELECT COUNT(b.presence_id) FROM presence b WHERE b.user_id=a.user_id AND b.date between "'.$this->input->post('start').'" AND "'.$this->input->post('end').'") AS jumlah_kehadiran,q.quota', array('a.deleted'=>'0'), "a.fullname ASC",'','','',array(
+				'table' => 'status q',
+				'on' => 'a.user_id=q.user_id',
+				'pos' => 'left',
+			))->result();
+		}
+		$data['siswa'] = $this->Main_model->getSelectedData('student a', 'a.*','','a.fullname ASC')->result();
 		$this->load->view('admin/template/header',$data);
 		$this->load->view('admin/report/presence_data',$data);
 		$this->load->view('admin/template/footer');
@@ -29,6 +42,25 @@ class Report extends CI_Controller {
 		$this->load->view('admin/template/header',$data);
 		$this->load->view('admin/report/presence_data_detail',$data);
 		$this->load->view('admin/template/footer');
+	}
+	public function save_presence_data(){
+		$this->db->trans_start();
+		$datasimpan = array(
+			'user_id'=>$this->input->post('user_id'),
+			'date'=>$this->input->post('date'),
+			'note'=>$this->input->post('note')
+		);
+		$this->Main_model->insertData('presence',$datasimpan);
+		$this->Main_model->log_activity($this->session->userdata('id'),'Creating data',"Add attendance student data");
+			$this->db->trans_complete();
+			if($this->db->trans_status() === false){
+				$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data gagal ditambahkan.<br /></div>' );
+				echo "<script>window.location='".base_url()."admin_side/laporan_kehadiran/'</script>";
+			}
+			else{
+				$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data telah berhasil ditambahkan.<br /></div>' );
+				echo "<script>window.location='".base_url()."admin_side/laporan_kehadiran/'</script>";
+			}
 	}
 	public function import_presence_data(){
 		include APPPATH.'third_party/PHPExcel/PHPExcel.php';
@@ -61,7 +93,8 @@ class Report extends CI_Controller {
 							$this->Main_model->insertData('presence',$datasimpan);
 							$getquota = $this->Main_model->getSelectedData('status a', '*', array("a.user_id" => $get_student_id->user_id))->row();
 							if($getquota->quota==NULL){
-								echo $getquota->user_id;
+								// echo $getquota->user_id;
+								echo'';
 							}else{
 								$this->Main_model->updateData('status',array('quota'=>($getquota->quota)-1),array('user_id'=>$get_student_id->user_id));}
 						}else{
@@ -71,12 +104,12 @@ class Report extends CI_Controller {
 				}
 				$numrow++;
 			}
-			// $this->Main_model->log_activity($this->session->userdata('id'),'Importing data',"Import student attendance data");
-			// $this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data telah berhasil diupload.<br /></div>' );
-			// echo "<script>window.location='".base_url()."admin_side/laporan_kehadiran/'</script>";
+			$this->Main_model->log_activity($this->session->userdata('id'),'Importing data',"Import student attendance data");
+			$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data telah berhasil diupload.<br /></div>' );
+			echo "<script>window.location='".base_url()."admin_side/laporan_kehadiran/'</script>";
 		}else{
-			// $this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data gagal diupload.<br /></div>' );
-			// echo "<script>window.location='".base_url()."admin_side/laporan_kehadiran/'</script>";
+			$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data gagal diupload.<br /></div>' );
+			echo "<script>window.location='".base_url()."admin_side/laporan_kehadiran/'</script>";
 		}
 	}
 }

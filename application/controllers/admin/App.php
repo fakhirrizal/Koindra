@@ -32,7 +32,15 @@ class App extends CI_Controller {
 		$data['parent'] = 'home';
 		$data['child'] = '';
 		$data['grand_child'] = '';
+		$data['profile'] = $this->Main_model->getSelectedData('user_profile a', 'a.*', array('a.user_id'=>$this->session->userdata('id')))->row();
 		$data['siswa'] = $this->Main_model->getSelectedData('student a', 'a.*', array('a.deleted'=>'0'), "a.fullname ASC")->result();
+		$data['transaksi_tertunda'] = $this->Main_model->getSelectedData('purchasing a', 'a.*', array('a.status'=>'0','a.deleted'=>'0'))->result();
+		$seminggu_lalu = mktime(0, 0, 0, date('m'), date('d')-7, date('Y'));
+		$data['kehadiran'] = $this->Main_model->getSelectedData('student a', 'a.*,(SELECT COUNT(b.presence_id) FROM presence b WHERE b.user_id=a.user_id AND b.date between "'.date("Y-m-d", $seminggu_lalu).'" AND "'.date('Y-m-d').'") AS jumlah_kehadiran,q.quota', array('a.deleted'=>'0'), "jumlah_kehadiran DESC",'','','',array(
+			'table' => 'status q',
+			'on' => 'a.user_id=q.user_id',
+			'pos' => 'left',
+		))->result();
 		$this->load->view('admin/template/header',$data);
 		$this->load->view('admin/app/home',$data);
 		$this->load->view('admin/template/footer');

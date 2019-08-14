@@ -6,19 +6,19 @@
 		<i class="fa fa-circle"></i>
 	</li>
 	<li>
-		<span>Data Admin</span>
+		<span>Administrator Data</span>
 		<i class="fa fa-circle"></i>
 	</li>
 	<li>
-		<span>Tambah Data</span>
+		<span>Add Data</span>
 	</li>
 </ul>
 <?= $this->session->flashdata('sukses') ?>
 <?= $this->session->flashdata('gagal') ?>
 <div class="page-content-inner">
 	<div class="m-heading-1 border-green m-bordered">
-		<h3>Catatan</h3>
-		<p> Kolom isian dengan tanda bintang (<font color='red'>*</font>) adalah wajib untuk di isi.</p>
+		<h3>Note</h3>
+		<p> Fields with (<font color='red'>*</font>) are required.</p>
 	</div>
 	<div class="row">
 		<div class="col-md-12">
@@ -29,7 +29,7 @@
 						<input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>">
 						<div class="form-body">
 							<div class="form-group form-md-line-input has-danger">
-								<label class="col-md-2 control-label" for="form_control_1">Nama <span class="required"> * </span></label>
+								<label class="col-md-2 control-label" for="form_control_1">Fullname <span class="required"> * </span></label>
 								<div class="col-md-10">
 									<div class="input-icon">
 										<input type="text" class="form-control" name="fullname" placeholder="Type something" required>
@@ -67,8 +67,8 @@
 						<div class="form-actions margin-top-10">
 							<div class="row">
 								<div class="col-md-offset-2 col-md-10">
-									<button type="reset" class="btn default">Batal</button>
-									<button type="submit" class="btn blue">Simpan</button>
+									<button type="reset" class="btn default">Clear</button>
+									<button type="submit" class="btn blue">Save</button>
 								</div>
 							</div>
 						</div>

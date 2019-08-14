@@ -5,7 +5,7 @@
 		<i class="fa fa-circle"></i>
 	</li>
 	<li>
-		<span>Data Siswa</span>
+		<span>Student Data</span>
 		<i class="fa fa-circle"></i>
 	</li>
 	<li>
@@ -33,7 +33,7 @@
 									<table class="table">
 										<tbody>
 											<tr>
-												<td> Nama Lengkap </td>
+												<td> Fullname </td>
 												<td> : </td>
 												<td><?php echo $row->fullname; ?></td>
 											</tr>
@@ -43,27 +43,27 @@
 												<td><?php echo $row->email; ?></td>
 											</tr>
 											<tr>
-												<td> No. HP </td>
+												<td> Number Phone </td>
 												<td> : </td>
 												<td><?php echo $row->number_phone; ?></td>
 											</tr>
 											<tr>
-												<td> Asal Sekolah </td>
+												<td> School </td>
 												<td> : </td>
 												<td><?php echo $row->school_name; ?></td>
 											</tr>
 											<tr>
-												<td> Kelas </td>
+												<td> Class </td>
 												<td> : </td>
 												<td><?php echo $row->class; ?></td>
 											</tr>
 											<tr>
-												<td> Ibu Kandung </td>
+												<td> Mother </td>
 												<td> : </td>
 												<td><?php echo $row->mother; ?></td>
 											</tr>
 											<tr>
-												<td> No. HP Ibu </td>
+												<td> Mother's Number Phone </td>
 												<td> : </td>
 												<td><?php echo $row->mother_phone; ?></td>
 											</tr>
@@ -74,18 +74,19 @@
 									<table class="table">
 										<tbody>
 											<tr>
-												<td> Kuota </td>
+												<td> Quota </td>
 												<td> : </td>
 												<td><?php
-												if($row->quota==NULL){
-													echo '-';
-												}else{
-													echo $row->quota.' Pertemuan';} ?>&nbsp; &nbsp; &nbsp;
+												if($row->quota>0){
+												echo $row->quota.'x Pertemuan';}
+												else{
+													echo $row->quota;
+												} ?>&nbsp; &nbsp; &nbsp;
 													<a title='Ubah Data' data-toggle="modal" data-target="#ubahdata" id="<?= $row->user_id; ?>" class="ubahdata">
 													<i class="icon-note"></i></a></td>
 											</tr>
 											<tr>
-												<td> Tanggal Berakhir </td>
+												<td> Expired Date </td>
 												<td> : </td>
 												<td><?php
 												if($row->expired_date==NULL){
@@ -103,10 +104,10 @@
 							<div class="tabbable-line">
 								<ul class="nav nav-tabs ">
 									<li class="active">
-										<a href="#tab_15_1" data-toggle="tab"> Riwayat Kehadiran </a>
+										<a href="#tab_15_1" data-toggle="tab"> Attendance History </a>
 									</li>
 									<li>
-										<a href="#tab_15_2" data-toggle="tab"> Riwayat Pembayaran </a>
+										<a href="#tab_15_2" data-toggle="tab"> Payment History </a>
 									</li>
 								</ul>
 								<div class="tab-content">
@@ -115,10 +116,10 @@
 											<thead>
 												<tr>
 													<th style="text-align: center;" width="4%"> # </th>
-													<th style="text-align: center;"> Tanggal </th>
+													<th style="text-align: center;"> Date </th>
 													<!-- <th style="text-align: center;"> Jam Masuk </th>
 													<th style="text-align: center;"> Jam Keluar </th> -->
-													<th style="text-align: center;"> Catatan </th>
+													<th style="text-align: center;"> Note </th>
 												</tr>
 											</thead>
 											<tbody>
@@ -146,9 +147,9 @@
 													<th style="text-align: center;"> Invoice </th>
 													<!-- <th style="text-align: center;"> ID Pesanan </th> -->
 													<th style="text-align: center;"> Total Item </th>
-													<th style="text-align: center;"> Nominal </th>
-													<th style="text-align: center;"> Tanggal Pembayaran </th>
-													<th style="text-align: center;"> Status Pembayaran </th>
+													<th style="text-align: center;"> Price </th>
+													<th style="text-align: center;"> Purchasing Date </th>
+													<th style="text-align: center;"> Payment Status </th>
 													<th style="text-align: center;"> Aksi </th>
 												</tr>
 											</thead>
@@ -162,11 +163,11 @@
 													$order          = Veritrans_Transaction::status($value->invoice_number);
 													$status         = $order->transaction_status;
 													if ($status == "settlement") {
-														$stat = "Telah Dibayarkan";
+														$stat = "Success";
 													} elseif ($status == "pending") {
-														$stat = "Menunggu Pembayaran";
+														$stat = "Pending";
 													} else {
-														$stat = "Gagal";
+														$stat = "Failed";
 													}
 													/*
 													$data['status'] = $status;
@@ -204,7 +205,7 @@
 							</div>
 						</div>
 						<div class="col-md-12" >
-						<hr><a href="<?php echo base_url()."admin_side/siswa"; ?>" class="btn btn-info" role="button"><i class="fa fa-angle-double-left"></i> Kembali</a></div>
+						<hr><a href="<?php echo base_url()."admin_side/siswa"; ?>" class="btn btn-info" role="button"><i class="fa fa-angle-double-left"></i> Back</a></div>
 					</div>
 				</div>
 			</div>

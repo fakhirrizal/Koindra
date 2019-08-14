@@ -6,8 +6,8 @@
 			<div class="portlet light ">
 				<div class="portlet-body">
 					<div class='row'>
-						<h4><b> No. Invoice </b><?php echo $data_utama['invoice_number']; ?><br>
-						<b> Tanggal Transaksi </b><?php echo $this->Main_model->convert_tanggal($data_utama['date']); ?></h4><hr>
+						<h4><b> Invoice Number </b><?php echo $data_utama['invoice_number']; ?><br>
+						<b> Transaction Date </b><?php echo $this->Main_model->convert_tanggal($data_utama['date']); ?></h4><hr>
 						<?php
 						Veritrans_Config::$serverKey = "Mid-server-pj-mcbw3fEk36nTwvZr10lDn";
 						// Uncomment for production environment
@@ -37,8 +37,8 @@
 									<thead>
 										<tr>
 											<th>#</th>
-											<th>Paket</th>
-											<th>Harga</th>
+											<th>Packet</th>
+											<th>Price</th>
 											<th>Qty</th>
 											<th>Sub Total</th>
 										</tr>

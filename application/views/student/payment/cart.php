@@ -4,7 +4,7 @@
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <ul class="page-breadcrumb breadcrumb">
 	<li>
-		<span>Pembelian</span>
+		<span>Purchasing</span>
 		<i class="fa fa-circle"></i>
 	</li>
 	<li>
@@ -24,6 +24,10 @@
 			</div>
 		</div>
 		<hr/> -->
+		<div class="m-heading-1 border-green m-bordered">
+			<h3>Note</h3>
+			<p> Jika ada memiliki hutang pertemuan, akan ditambahkan biaya senilai hutang pertemuan dikali Rp 250.000,00</p>
+		</div>
 		<div class="row">
 			<div class="col-xs-12">
 				<pre>
@@ -83,13 +87,19 @@
 		'gross_amount' => 94000, // no decimal allowed for creditcard
 		);
 		// $price = $biaya_pendaftaran['nilai_pdh'];
-
+		$get_hutang = $this->Main_model->getSelectedData('status a', 'a.*',array('a.user_id'=>$this->session->userdata('id')))->row();
+		$hutang = 0;
+		if($get_hutang->quota>=0){
+			echo '';
+		}else{
+			$hutang = -($get_hutang->quota)*250000;
+		}
 		// Optional
 		$item_details = array (
 			array(
 			'id' => rand(0,9),
 			// 'price' => $price,
-			'price' => $this->cart->total(),
+			'price' => $this->cart->total()+$hutang,
 			'quantity' => 1,
 			'name' => "Transaksi di Koindra"
 			),
@@ -161,8 +171,8 @@
 						<h4><strong>Grand Total:</strong> <?= 'Rp '.number_format($this->cart->total(),2); ?></h4> </li>
 				</ul>
 				<br/>
-				<a onclick="return confirm('Anda yakin?')" href='<?= site_url('student/destroy_cart') ?>' class='btn red hidden-print margin-bottom-5'>Hapus Keranjang <i class="fa fa-trash"></i></a>
-				<button id="pay-button" class="btn green hidden-print margin-bottom-5">Bayar Sekarang <i class="fa fa-check"></i></button>
+				<a onclick="return confirm('Anda yakin?')" href='<?= site_url('student/destroy_cart') ?>' class='btn red hidden-print margin-bottom-5'>Empty The Cart <i class="fa fa-trash"></i></a>
+				<button id="pay-button" class="btn green hidden-print margin-bottom-5">Buy Now <i class="fa fa-check"></i></button>
 			</div>
 		</div>
 	</div>

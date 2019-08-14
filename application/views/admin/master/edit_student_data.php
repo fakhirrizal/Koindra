@@ -5,11 +5,11 @@
 		<i class="fa fa-circle"></i>
 	</li>
 	<li>
-		<span>Data Siswa</span>
+		<span>Student Data</span>
 		<i class="fa fa-circle"></i>
 	</li>
 	<li>
-		<span>Ubah Data</span>
+		<span>Edit Data</span>
 	</li>
 </ul>
 <?= $this->session->flashdata('sukses') ?>
@@ -34,7 +34,7 @@
 						<input type="hidden" name="user_id" value='<?= md5($value->user_id); ?>'>
 						<div class="form-body">
 							<div class="form-group form-md-line-input has-danger">
-								<label class="col-md-2 control-label" for="form_control_1">Nama Lengkap <span class="required"> * </span></label>
+								<label class="col-md-2 control-label" for="form_control_1">Fullname <span class="required"> * </span></label>
 								<div class="col-md-10">
 									<div class="input-icon">
 										<input type="text" class="form-control" name="fullname" placeholder="Type something" value='<?= $value->fullname; ?>' required>
@@ -45,7 +45,7 @@
 								</div>
 							</div>
 							<div class="form-group form-md-line-input has-danger">
-								<label class="col-md-2 control-label" for="form_control_1">No. Induk <span class="required"> * </span></label>
+								<label class="col-md-2 control-label" for="form_control_1">Student ID <span class="required"> * </span></label>
 								<div class="col-md-10">
 									<div class="input-icon">
 										<input type="text" class="form-control" name="student_id" placeholder="Type something" value='<?= $value->student_id; ?>' required>
@@ -56,7 +56,7 @@
 								</div>
 							</div>
 							<div class="form-group form-md-line-input has-danger">
-								<label class="col-md-2 control-label" for="form_control_1">Nama Ibu Kandung <span class="required"> * </span></label>
+								<label class="col-md-2 control-label" for="form_control_1">Mother <span class="required"> * </span></label>
 								<div class="col-md-10">
 									<div class="input-icon">
 										<input type="text" class="form-control" name="mother" placeholder="Type something" value='<?= $value->mother; ?>' required>
@@ -78,7 +78,7 @@
 								</div>
 							</div>
 							<div class="form-group form-md-line-input has-danger">
-								<label class="col-md-2 control-label" for="form_control_1">Nomor HP</label>
+								<label class="col-md-2 control-label" for="form_control_1">Number Phone</label>
 								<div class="col-md-10">
 									<div class="input-icon">
 										<input type="text" class="form-control" name="number_phone" placeholder="Type something" value='<?= $value->number_phone; ?>' maxlength='14'>
@@ -89,7 +89,7 @@
 								</div>
 							</div>
 							<div class="form-group form-md-line-input has-danger">
-								<label class="col-md-2 control-label" for="form_control_1">Nomor HP Ibu</label>
+								<label class="col-md-2 control-label" for="form_control_1">Mother's Number Phone</label>
 								<div class="col-md-10">
 									<div class="input-icon">
 										<input type="text" class="form-control" name="mother_phone" placeholder="Type something" value='<?= $value->mother_phone; ?>' maxlength='14'>
@@ -100,10 +100,10 @@
 								</div>
 							</div>
 							<div class="form-group form-md-line-input has-danger">
-								<label class="col-md-2 control-label" for="form_control_1">Asal Sekolah</label>
+								<label class="col-md-2 control-label" for="form_control_1">School</label>
 								<div class="col-md-10">
 									<select class='form-control' name='school' required>
-										<option value=''>-- Pilih --</option>
+										<option value=''>-- Choose --</option>
 										<?php
 										foreach ($data_sekolah as $key => $value2) {
 											if($value2->school_code=$value->school){
@@ -117,7 +117,7 @@
 								</div>
 							</div>
 							<div class="form-group form-md-line-input has-danger">
-								<label class="col-md-2 control-label" for="form_control_1">Kelas</label>
+								<label class="col-md-2 control-label" for="form_control_1">Class</label>
 								<div class="col-md-10">
 									<!-- <div class="input-icon">
 										<input type="text" class="form-control" name="class" placeholder="Type something" value='<?= $value->class; ?>'>
@@ -126,7 +126,7 @@
 										<i class="fa fa-level-up"></i>
 									</div> -->
 									<select class='form-control' name='class' required>
-										<option value=''>-- Pilih --</option>
+										<option value=''>-- Choose --</option>
 										<?php
 										for ($i=1; $i <13 ; $i++) {
 											if($i==$value->class){
@@ -149,14 +149,42 @@
 									</div>
 								</div>
 							</div>
+							<div class="form-group form-md-line-input has-danger">
+								<label class="col-md-2 control-label" for="form_control_1">Status</label>
+								<div class="col-md-10">
+									<div class="md-radio-inline">
+										<div class="md-radio has-success">
+											<input type="radio" id="radio14" name="status" class="md-radiobtn" value='Aktif' <?php if($value->status=='Aktif'){echo'checked';}else{echo'';} ?>>
+											<label for="radio14">
+												<span></span>
+												<span class="check"></span>
+												<span class="box"></span> Active </label>
+										</div>
+										<div class="md-radio has-warning">
+											<input type="radio" id="radio16" name="status" class="md-radiobtn" value='Free Trial' <?php if($value->status=='Free Trial'){echo'checked';}else{echo'';} ?>>
+											<label for="radio16">
+												<span></span>
+												<span class="check"></span>
+												<span class="box"></span> Free Trial </label>
+										</div>
+										<div class="md-radio has-error">
+											<input type="radio" id="radio15" name="status" class="md-radiobtn" value='Keluar' <?php if($value->status=='Keluar'){echo'checked';}else{echo'';} ?>>
+											<label for="radio15">
+												<span></span>
+												<span class="check"></span>
+												<span class="box"></span> Non Active </label>
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
 						<?php } ?>
 						<br>
 						<div class="form-actions margin-top-10">
 							<div class="row">
 								<div class="col-md-offset-2 col-md-10">
-									<button type="reset" class="btn default">Batal</button>
-									<button type="submit" class="btn blue">Simpan</button>
+									<button type="reset" class="btn default">Clear</button>
+									<button type="submit" class="btn blue">Save</button>
 								</div>
 							</div>
 						</div>
