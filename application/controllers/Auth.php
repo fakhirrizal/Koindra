@@ -163,14 +163,29 @@ class Auth extends CI_Controller {
 				// print_r($data3);
 				$this->Main_model->insertData('user_to_role',$data3);
 
-				$get_student_id = $this->Main_model->getSelectedData('student a', 'a.*', array("a.school" => $this->input->post('school')),'a.student_id DESC','1')->row();
-				$student_id = '';
-				if($get_student_id==NULL){
-					$student_id = '1'.$this->input->post('school').'001';
+				// $get_student_id = $this->Main_model->getSelectedData('student a', 'a.*', array("a.school" => $this->input->post('school')),'a.student_id DESC','1')->row();
+				// $student_id = '';
+				// if($get_student_id==NULL){
+				// 	$student_id = '1'.$this->input->post('school').'001';
+				// }else{
+				// 	$student_id = (substr($get_student_id->student_id,-3))+1;}
+
+				$get_student_id = $this->Main_model->getSelectedData('student a', 'a.*', '', 'a.student_id DESC','1')->row();
+				$student_id = (substr($get_student_id->student_id,-3))+1;
+				$jumlah_karakter = strlen($student_id);
+				$tampil_student_id = '';
+				if($jumlah_karakter=='1'){
+					$tampil_student_id = '00'.$student_id;
+				}elseif($jumlah_karakter=='2'){
+					$tampil_student_id = '0'.$student_id;
+				}elseif($jumlah_karakter=='3'){
+					$tampil_student_id = $student_id;
 				}else{
-					$student_id = (substr($get_student_id->student_id,-3))+1;}
+					echo'';
+				}
+
 				$data4 = array(
-					'student_id' => $student_id,
+					'student_id' => $tampil_student_id,
 					'user_id' => $user_id['id']+1,
 					'fullname' => $this->input->post('fullname'),
 					'mother' => $this->input->post('mother'),

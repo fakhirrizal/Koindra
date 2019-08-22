@@ -56,7 +56,7 @@ foreach ($data_utama as $key => $value) {
 		<div class="row">
 			<div class="col-md-offset-2 col-md-10">
 				<button type="reset" class="btn default">Clear</button>
-				<button type="submit" class="btn blue">Save</button>
+				<button type="submit" class="btn blue">Update</button>
 			</div>
 		</div>
 	</div>

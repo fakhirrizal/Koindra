@@ -84,7 +84,7 @@
 								<!-- <td style="text-align: center;"><?= $this->Main_model->convert_tanggal($value->expired_date); ?></td> -->
 								<td>
 									<div class="btn-group" style="text-align: center;">
-										<button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Aksi
+										<!-- <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Aksi
 											<i class="fa fa-angle-down"></i>
 										</button>
 										<ul class="dropdown-menu" role="menu">
@@ -96,7 +96,10 @@
 												<a href="<?=site_url('student/add_to_cart/'.md5($value->packet_id));?>">
 													<i class="fa fa-share-square-o"></i> Buy </a>
 											</li>
-										</ul>
+										</ul> -->
+										<button class="btn btn-xs green detaildata" type="button"data-toggle="modal" data-target="#detaildata" id="<?= md5($value->packet_id); ?>"> Buy
+											<i class="fa fa-share-square-o"></i>
+										</button>
 									</div>
 								</td>
 							</tr>

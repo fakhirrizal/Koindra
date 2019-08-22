@@ -1,42 +1,42 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Main_model extends CI_Model{
 	function getSelectedData($tbl_name, $select = '', $where = '', $order = '', $limit = '', $start = '0', $group = '', $join = '') {
-        if (!empty($select))
-            $this->db->select($select, false);
-        if (!empty($where))
-            $this->db->where($where);
-        if (!empty($order))
-            $this->db->order_by($order);
-        if (!empty($limit))
-            $this->db->limit($limit, $start);
-        if (!empty($group))
-            $this->db->group_by($group);
-        if (!empty($join) && is_array($join)) {
-            if (!empty($join['table']) && !empty($join['on'])) {
-                $join = array($join);
-            }
+		if (!empty($select))
+			$this->db->select($select, false);
+		if (!empty($where))
+			$this->db->where($where);
+		if (!empty($order))
+			$this->db->order_by($order);
+		if (!empty($limit))
+			$this->db->limit($limit, $start);
+		if (!empty($group))
+			$this->db->group_by($group);
+		if (!empty($join) && is_array($join)) {
+			if (!empty($join['table']) && !empty($join['on'])) {
+				$join = array($join);
+			}
 
-            foreach ($join as $item) {
-                if (!empty($item['table']) && !empty($item['on'])) {
-                    if (!empty($item['pos'])) {
-                        $this->db->join($item['table'], $item['on'], $item['pos']);
-                    } else {
-                        $this->db->join($item['table'], $item['on']);
-                    }
-                }
-            }
-        }
+			foreach ($join as $item) {
+				if (!empty($item['table']) && !empty($item['on'])) {
+					if (!empty($item['pos'])) {
+						$this->db->join($item['table'], $item['on'], $item['pos']);
+					} else {
+						$this->db->join($item['table'], $item['on']);
+					}
+				}
+			}
+		}
 
-        return $this->db->get($tbl_name);
-    }
-    // function manualQuery($q)
+		return $this->db->get($tbl_name);
+	}
+	// function manualQuery($q)
 	// 	{
 	// 		return $this->db->query($q)->result();
 	// 	}
-    function insertData($table,$data){
+	function insertData($table,$data){
 		$res = $this->db->insert($table,$data);
 		return $res;
-        }
+		}
 	function cleanData($table){
 		$q = $this->db->query("TRUNCATE TABLE $table");
 		return $q;

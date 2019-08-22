@@ -28,8 +28,9 @@ class Payment extends CI_Controller {
 		);
 		$this->cart->product_name_rules = '[:print:]';
 		$insert = $this->cart->insert($data);
-		$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>berhasil ditambahkan ke keranjang.<br /></div>' );
-		echo "<script>window.location='".base_url()."student/paket/'</script>";
+		// $this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>berhasil ditambahkan ke keranjang.<br /></div>' );
+		// echo "<script>window.location='".base_url()."student/paket/'</script>";
+		echo "<script>window.location='".base_url()."student/cart/'</script>";
 	}
 	public function cart()
 	{
