@@ -20,7 +20,6 @@
 	</div>
 	<div class="row">
 		<div class="col-md-12">
-			<!-- BEGIN EXAMPLE TABLE PORTLET-->
 			<div class="portlet light ">
 				<div class="portlet-body">
 					<div class='row'>
@@ -157,35 +156,30 @@
 												<?php
 												$urutan = 1;
 												foreach ($riwayat_pembayaran as $key => $value) {
-													Veritrans_Config::$serverKey = "Mid-server-pj-mcbw3fEk36nTwvZr10lDn";
-													// Uncomment for production environment
-													Veritrans_Config::$isProduction = true;
-													$order          = Veritrans_Transaction::status($value->invoice_number);
-													$status         = $order->transaction_status;
-													if ($status == "settlement") {
-														$stat = "Success";
-													} elseif ($status == "pending") {
-														$stat = "Pending";
-													} else {
-														$stat = "Failed";
-													}
-													/*
-													$data['status'] = $status;
-													$data['metode'] = $order->payment_type;
-													$data['biaya']  = $order->gross_amount;*/
-													// if ($order->payment_type == "bank_transfer") {
-													// 	$data['va_number']['bank'] = $order->va_numbers[0]->bank;
-													// 	$data['va_number']['number'] = $order->va_numbers[0]->va_number;
-													// }elseif ($order->payment_type == "cstore") {
-													// 	$data['store'] = $order->store;
-													// 	$data['payment_code'] = $order->payment_code;
+													// Veritrans_Config::$serverKey = "Mid-server-pj-mcbw3fEk36nTwvZr10lDn";
+													// Veritrans_Config::$isProduction = true;
+													// $order          = Veritrans_Transaction::status($value->invoice_number);
+													// $status         = $order->transaction_status;
+													// if ($status == "settlement") {
+													// 	$stat = "Success";
+													// } elseif ($status == "pending") {
+													// 	$stat = "Pending";
+													// } else {
+													// 	$stat = "Failed";
 													// }
+													if($value->status=='1'){
+														$stat = '<span class="label label-success"> Success </span>';
+													}elseif($value->status=='0'){
+														$stat = '<span class="label label-warning"> Pending </span>';
+													}elseif($value->status=='2'){
+														$stat = '<span class="label label-danger"> Failed </span>';
+													}
 													echo'
 													<tr style="text-align: center;">
 														<td>'.$urutan.'.</td>
 														<td>'.$value->invoice_number.'</td>
 														<td>'.$value->total_items.' Item</td>
-														<td>Rp '.number_format($value->grand_total,2).'</td>
+														<td>Rp '.number_format($value->bill,2).'</td>
 														<td>'.$this->Main_model->convert_tanggal($value->date).'</td>
 														<td>'.$stat.'</td>
 														<td>
@@ -209,7 +203,6 @@
 					</div>
 				</div>
 			</div>
-			<!-- END EXAMPLE TABLE PORTLET-->
 		</div>
 	</div>
 <style>
@@ -222,8 +215,7 @@
 </style>
 <script>
 	$(document).ready(function() {
-		// Configure/customize these variables.
-		var showChar = 100;  // How many characters are shown by default
+		var showChar = 100;
 		var ellipsestext = "...";
 		var moretext = "[Show more]";
 		var lesstext = "[Show less]";

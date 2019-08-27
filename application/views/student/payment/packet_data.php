@@ -97,7 +97,7 @@
 													<i class="fa fa-share-square-o"></i> Buy </a>
 											</li>
 										</ul> -->
-										<button class="btn btn-xs green detaildata" type="button"data-toggle="modal" data-target="#detaildata" id="<?= md5($value->packet_id); ?>"> Buy
+										<button class="btn btn-xs green detaildata" type="button" data-toggle="modal" data-target="#detaildata" id="<?= md5($value->packet_id); ?>"> Buy
 											<i class="fa fa-share-square-o"></i>
 										</button>
 									</div>

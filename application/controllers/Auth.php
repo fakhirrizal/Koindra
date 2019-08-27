@@ -208,6 +208,14 @@ class Auth extends CI_Controller {
 				// print_r($data5);
 				$this->Main_model->insertData('status',$data5);
 
+				$data6 = array(
+					'user_id' => $user_id['id']+1,
+					'quota' => 'Unlimited',
+					'expired_date' => $expired_date
+				);
+				// print_r($data6);
+				$this->Main_model->insertData('cache',$data6);
+
 				$this->Main_model->log_activity($user_id['id']+1,'Registration new account',"Creating student data (".$this->input->post('fullname').")");
 				$this->db->trans_complete();
 				if($this->db->trans_status() === false){

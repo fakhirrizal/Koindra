@@ -112,6 +112,8 @@ $route['admin_side/simpan_data_kehadiran'] = 'admin/Report/save_presence_data';
 $route['admin_side/impor_data_kehadiran'] = 'admin/Report/import_presence_data';
 
 $route['admin_side/pembayaran'] = 'admin/Payment/all_payment';
+$route['admin_side/impor_data_pembayaran'] = 'admin/Payment/import_payment_data';
+$route['admin_side/konfirmasi_pembayaran'] = 'admin/Payment/payment_confirmation';
 $route['admin_side/hapus_transaksi/(:any)'] = 'admin/Payment/delete_payment/$1';
 
 /* Student */

@@ -33,7 +33,8 @@
 								<th style="text-align: center;"> Invoice Number </th>
 								<th style="text-align: center;"> Transaction Date </th>
 								<th style="text-align: center;"> Total Price </th>
-								<th style="text-align: center;"> Payment Method </th>
+								<!-- <th style="text-align: center;"> Payment Method </th> -->
+								<th style="text-align: center;"> Status Transaction </th>
 								<th style="text-align: center;" width="8%"> Action </th>
 							</tr>
 						</thead>
@@ -53,7 +54,16 @@
 								<td style="text-align: center;"><?= $value->invoice_number; ?></td>
 								<td style="text-align: center;"><?= $this->Main_model->convert_tanggal($value->date); ?></td>
 								<td style="text-align: center;"><?= 'Rp '.number_format($value->grand_total,2); ?></td>
-								<td style="text-align: center;"><?= $value->payment_type; ?></td>
+								<!-- <td style="text-align: center;"><?= $value->payment_type; ?></td> -->
+								<td style="text-align: center;"><?php
+								if($value->status=='1'){
+									echo'<span class="label label-success"> Success </span>';
+								}elseif($value->status=='0'){
+									echo'<span class="label label-warning"> Pending </span>';
+								}elseif($value->status=='2'){
+									echo'<span class="label label-danger"> Failed </span>';
+								}
+								?></td>
 								<td>
 									<div class="btn-group" style="text-align: center;">
 										<button class="btn btn-xs green" type="button" onclick="window.location.href='<?=base_url('student/detail_transaksi/'.md5($value->invoice_number));?>'"> Detail

@@ -18,20 +18,17 @@
 <?php foreach ($data_profil as $key => $value) {?>
 <ul class="page-breadcrumb breadcrumb">
 	<li>
-		<span>Profil</span>
+		<span>Profile</span>
 		<i class="fa fa-circle"></i>
 	</li>
 	<li>
-		<span>Kata Sandi</span>
+		<span>Password</span>
 	</li>
 </ul>
 <div class="row">
 	<div class="col-md-12">
-		<!-- BEGIN PROFILE SIDEBAR -->
 		<div class="profile-sidebar">
-			<!-- PORTLET MAIN -->
 			<div class="portlet light profile-sidebar-portlet ">
-				<!-- SIDEBAR USERPIC -->
 				<div class="profile-userpic">
 				<?php
 					if(empty($value->photo)){
@@ -42,22 +39,18 @@
 					}
 				?>
 				</div>
-				<!-- END SIDEBAR USERPIC -->
-				<!-- SIDEBAR USER TITLE -->
 				<div class="profile-usertitle">
 					<div class="profile-usertitle-name"> <?php echo $value->fullname; ?> </div>
 				</div>
-				<!-- END SIDEBAR USER TITLE -->
-				<!-- SIDEBAR MENU -->
 				<div class="profile-usermenu">
 					<ul class="nav">
 						<li >
 							<a href="<?php echo site_url('admin_side/profile'); ?>">
-								<i class="icon-user"></i> Pengaturan Profil </a>
+								<i class="icon-user"></i> Profile Setting </a>
 						</li>
 						<li class="active">
 							<a href="#">
-								<i class="icon-lock"></i> Pengaturan Kata Sandi </a>
+								<i class="icon-lock"></i> Password Setting </a>
 						</li>
 						<!-- <li>
 							<a href="<?php echo site_url('admin_side/email_setting'); ?>">
@@ -65,12 +58,8 @@
 						</li> -->
 					</ul>
 				</div>
-				<!-- END MENU -->
 			</div>
-			<!-- END PORTLET MAIN -->
 		</div>
-		<!-- END BEGIN PROFILE SIDEBAR -->
-		<!-- BEGIN PROFILE CONTENT -->
 		<div class="profile-content">
 			<div class="row">
 				<div class="col-md-12">
@@ -80,17 +69,16 @@
 							<h4><?= $this->session->flashdata('gagal') ?></h4>
 							<div class="caption caption-md">
 								<i class="icon-globe theme-font hide"></i>
-								<span class="caption-subject font-blue-madison bold uppercase">Pengaturan Kata Sandi</span>
+								<span class="caption-subject font-blue-madison bold uppercase">Password Setting</span>
 							</div>
 							<ul class="nav nav-tabs">
 								<li class="active">
-									<a href="#tab_1_1" data-toggle="tab">Ganti Kata Sandi</a>
+									<a href="#tab_1_1" data-toggle="tab">Edit Password</a>
 								</li>
 							</ul>
 						</div>
 						<div class="portlet-body">
 							<div class="tab-content">
-								<!-- CHANGE PASSWORD TAB -->
 								<div class="tab-pane active" id="tab_1_1">
 									<form action="<?php echo site_url('admin_side/update_password'); ?>" method="post">
 										<input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>">
@@ -120,14 +108,12 @@
 										</div>
 									</form>
 								</div>
-								<!-- END CHANGE PASSWORD TAB -->
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<!-- END PROFILE CONTENT -->
 	</div>
 </div>
 <?php } ?>

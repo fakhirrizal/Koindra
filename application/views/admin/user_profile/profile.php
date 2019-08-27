@@ -3,16 +3,13 @@
 <?php foreach ($data_profil as $key => $value) {?>
 <ul class="page-breadcrumb breadcrumb">
 	<li>
-		<span>Profil Pengguna</span>
+		<span>User Profile</span>
 	</li>
 </ul>
 <div class="row">
 	<div class="col-md-12">
-		<!-- BEGIN PROFILE SIDEBAR -->
 		<div class="profile-sidebar">
-			<!-- PORTLET MAIN -->
 			<div class="portlet light profile-sidebar-portlet ">
-				<!-- SIDEBAR USERPIC -->
 				<div class="profile-userpic">
 				<?php
 					if(empty($value->photo)){
@@ -23,22 +20,18 @@
 					}
 				?>
 				</div>
-				<!-- END SIDEBAR USERPIC -->
-				<!-- SIDEBAR USER TITLE -->
 				<div class="profile-usertitle">
 					<div class="profile-usertitle-name"> <?php echo $value->fullname; ?> </div>
 				</div>
-				<!-- END SIDEBAR USER TITLE -->
-				<!-- SIDEBAR MENU -->
 				<div class="profile-usermenu">
 					<ul class="nav">
 						<li class="active">
 							<a href="#">
-								<i class="icon-user"></i> Pengaturan Profil </a>
+								<i class="icon-user"></i> Profile Setting </a>
 						</li>
 						<li>
 							<a href="<?php echo site_url('admin_side/password_setting'); ?>">
-								<i class="icon-lock"></i> Pengaturan Kata Sandi </a>
+								<i class="icon-lock"></i> Password Setting </a>
 						</li>
 						<!-- <li>
 							<a href="<?php echo site_url('admin_side/email_setting'); ?>">
@@ -46,12 +39,8 @@
 						</li> -->
 					</ul>
 				</div>
-				<!-- END MENU -->
 			</div>
-			<!-- END PORTLET MAIN -->
 		</div>
-		<!-- END BEGIN PROFILE SIDEBAR -->
-		<!-- BEGIN PROFILE CONTENT -->
 		<div class="profile-content">
 			<div class="row">
 				<div class="col-md-12">
@@ -61,25 +50,24 @@
 							<h4><?= $this->session->flashdata('gagal') ?></h4>
 							<div class="caption caption-md">
 								<i class="icon-globe theme-font hide"></i>
-								<span class="caption-subject font-blue-madison bold uppercase">Pengaturan Profil</span>
+								<span class="caption-subject font-blue-madison bold uppercase">Profile Setting</span>
 							</div>
 							<ul class="nav nav-tabs">
 								<li class="active">
 									<a href="#tab_1_1" data-toggle="tab">Personal Info</a>
 								</li>
 								<li>
-									<a href="#tab_1_2" data-toggle="tab">Ganti Foto Profil</a>
+									<a href="#tab_1_2" data-toggle="tab">Edit Profile Photo's</a>
 								</li>
 							</ul>
 						</div>
 						<div class="portlet-body">
 							<div class="tab-content">
-								<!-- PERSONAL INFO TAB -->
 								<div class="tab-pane active" id="tab_1_1">
 									<form role="form" action="<?php echo site_url('admin_side/update_profile'); ?>" method="post">
 										<input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>">
 										<div class="form-group">
-											<label class="control-label">Nama</label>
+											<label class="control-label">Fullname</label>
 											<div class="input-icon">
 											<i class="fa fa-user"></i>
 											<input type="text" name="fullname" class="form-control" value="<?php echo $value->fullname; ?>" required/> </div>
@@ -91,18 +79,16 @@
 											<input type="text" name="passcode" class="form-control" value="<?php echo $value->passcode; ?>" required/> </div>
 										</div>
 										<div class="form-actions">
-											<button type="submit" class="btn green"> Simpan </button>
-											<button type="reset" class="btn default"> Hapus </button>
+											<button type="submit" class="btn green"> Save </button>
+											<button type="reset" class="btn default"> Clear </button>
 										</div>
 									</form>
 								</div>
-								<!-- END PERSONAL INFO TAB -->
-								<!-- CHANGE AVATAR TAB -->
 								<div class="tab-pane" id="tab_1_2">
 									<div class="m-heading-1 border-green m-bordered">
-										<h3>Catatan</h3>
-										<p> Ekstensi yang diijinkan : jpg, png, jpeg, dan bmp </p>
-										<p> Ukuran maksimal file : 3MB </p>
+										<h3>Note</h3>
+										<p> Allowed extensions : jpg, png, jpeg, dan bmp </p>
+										<p> Maximun file size : 3MB </p>
 									</div>
 									<form action="<?php echo site_url('admin_side/update_profile_photo'); ?>" role="form" enctype='multipart/form-data' method="post">
 										<input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>">
@@ -113,16 +99,16 @@
 												<div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"> </div>
 												<div>
 													<span class="btn default btn-file">
-														<span class="fileinput-new"> Pilih gambar </span>
-														<span class="fileinput-exists"> Ubah </span>
+														<span class="fileinput-new"> Choose image </span>
+														<span class="fileinput-exists"> Update </span>
 														<input type="file" name="foto"> </span>
-													<a href="javascript:;" class="btn default fileinput-exists" data-dismiss="fileinput"> Hapus </a>
+													<a href="javascript:;" class="btn default fileinput-exists" data-dismiss="fileinput"> Delete </a>
 												</div>
 											</div>
 										</div>
 										<div class="form-actions">
-											<button type="submit" class="btn green"> Simpan </button>
-											<button type="reset" class="btn default"> Hapus </button>
+											<button type="submit" class="btn green"> Save </button>
+											<button type="reset" class="btn default"> Clear </button>
 										</div>
 									</form>
 								</div>
@@ -132,33 +118,28 @@
 				</div>
 			</div>
 		</div>
-		<!-- END PROFILE CONTENT -->
 	</div>
 </div>
 <?php } ?>
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				</div>
-				<!-- memulai untuk konten dinamis -->
-				<div class="modal-body" id="data_pend" style="text-align: left;">
-				</div>
-				<!-- selesai konten dinamis -->
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			</div>
+			<div class="modal-body" id="data_pend" style="text-align: left;">
 			</div>
 		</div>
+	</div>
 </div>
 <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				</div>
-				<!-- memulai untuk konten dinamis -->
-				<div class="modal-body" id="data_peker" style="text-align: left;">
-				</div>
-				<!-- selesai konten dinamis -->
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			</div>
+			<div class="modal-body" id="data_peker" style="text-align: left;">
 			</div>
 		</div>
+	</div>
 </div>

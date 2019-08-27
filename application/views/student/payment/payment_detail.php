@@ -15,29 +15,39 @@
 	<div class="m-heading-1 border-green m-bordered">
 		<p>
 			<?php
-			Veritrans_Config::$serverKey = "Mid-server-pj-mcbw3fEk36nTwvZr10lDn";
-			// Uncomment for production environment
-			Veritrans_Config::$isProduction = true;
-			$order          = Veritrans_Transaction::status($value->invoice_number);
-			$status         = $order->transaction_status;
-			$stat = '';
-			if ($status == "settlement") {
-				$stat = "Success";
-			} elseif ($status == "pending") {
-				$stat = "Pending";
-			} else {
-				$stat = "Failed";
-			}
+			// Veritrans_Config::$serverKey = "Mid-server-pj-mcbw3fEk36nTwvZr10lDn";
+			// Veritrans_Config::$isProduction = true;
+			// $order          = Veritrans_Transaction::status($value->invoice_number);
+			// $status         = $order->transaction_status;
+			// $stat = '';
+			// if ($status == "settlement") {
+			// 	$stat = "Success";
+			// } elseif ($status == "pending") {
+			// 	$stat = "Pending";
+			// } else {
+			// 	$stat = "Failed";
+			// }
 			?>
-			<b>Invoice Number</b>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<?= $value->invoice_number; ?><br>
+			<b>Invoice Number</b>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<?= $value->invoice_number; ?><br>
 			<b>Transaction Date</b>&nbsp; &nbsp; &nbsp; &nbsp;<?= $this->Main_model->convert_tanggal($value->date); ?><br>
 			<b>Total Items</b>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<?= $value->total_items.' items'; ?><br>
 			<b>Total Price</b>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<?= 'Rp '.number_format($value->grand_total,2); ?><br>
-			<b>Payment Type</b>&nbsp; &nbsp; &nbsp; &nbsp;<?= $value->payment_type; ?><br>
-			<b>Status</b>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<?= $stat; ?>
-			<?php if ($order->transaction_status == "pending") { ?>
+			<!-- <b>Payment Type</b>&nbsp; &nbsp; &nbsp; &nbsp;<?= $value->payment_type; ?><br> -->
+			<b>Status</b>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<?php
+			// echo $stat;
+			if($value->status=='1'){
+				echo'<span class="label label-success"> Success </span>';
+			}elseif($value->status=='0'){
+				echo'<span class="label label-warning"> Pending </span>';
+			}elseif($value->status=='2'){
+				echo'<span class="label label-danger"> Failed </span>';
+			}
+			?>
+			<?php	// if ($order->transaction_status == "pending") {
+					if ($value->status == "0") {
+			?>
 			<br><br>
-			<div class="panel-group accordion" id="accordion1">
+			<!-- <div class="panel-group accordion" id="accordion1">
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h4 class="panel-title">
@@ -148,12 +158,32 @@
 						</div>
 					</div>
 				</div>
-			</div><?php } ?>
+			</div> -->
+			<div class="panel-group accordion" id="accordion1">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapse_1"> Method of Payment </a>
+						</h4>
+					</div>
+					<div id="collapse_1" class="panel-collapse in">
+						<div class="panel-body">
+							<ol>
+								<li>Silahkan pilih menu transfer pada ATM atau Mobile Banking anda</li>
+								<li>Pilih bank BCA</li>
+								<li>Masukkan rekening tujuan <b>6300839086</b> atas nama <b>Indra Setiawan</b></li>
+								<li>Masukkan jumlah tagihan yang anda bayarkan sebesar <b><?= 'Rp '.number_format($value->grand_total,2); ?></b> pastikan 3 digit terakhir anda sesuai dengan yang tertera pada layar</li>
+							</ol>
+							* Ketika Anda telah melakukan transaksi, harap ditunggu karena masih dalam proses verifikasi oleh admin.
+						</div>
+					</div>
+				</div>
+			</div>
+			<?php } ?>
 		</p>
 	</div>
 	<div class="row">
 		<div class="col-md-12">
-			<!-- BEGIN EXAMPLE TABLE PORTLET-->
 			<div class="portlet light ">
 				<div class="portlet-body">
 					<table class="table table-striped table-bordered table-hover table-checkable order-column">

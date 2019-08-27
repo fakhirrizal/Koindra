@@ -1,5 +1,3 @@
-
-
 <link href="<?= site_url() ?>assets/pages/css/invoice.min.css" rel="stylesheet" type="text/css" />
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <ul class="page-breadcrumb breadcrumb">
@@ -13,20 +11,15 @@
 </ul>
 <?= $this->session->flashdata('sukses') ?>
 <?= $this->session->flashdata('gagal') ?>
+<?php
+$grand_total = 0;
+?>
 <div class="page-content-inner">
 	<div class="invoice">
-		<!-- <div class="row invoice-logo">
-			<div class="col-xs-6 invoice-logo-space">
-				<img src="<?= site_url().'assets/walmart.png'; ?>" class="img-responsive" alt="" /> </div>
-			<div class="col-xs-6">
-				<p> Transaksi Tanggal <?= $this->Main_model->convert_tanggal(date('Y-m-d')); ?>
-				</p>
-			</div>
-		</div>
-		<hr/> -->
 		<div class="m-heading-1 border-green m-bordered">
 			<h3>Note</h3>
-			<p> Jika ada memiliki hutang pertemuan, akan ditambahkan biaya senilai hutang pertemuan dikali Rp 250.000,00</p>
+			<p> 1. Jika ada memiliki hutang pertemuan, akan ditambahkan biaya senilai hutang pertemuan dikali Rp 250.000,00</p>
+			<p> 2. Total tagihan akan ditambahkan dengan 3 kode unik di belakang angka</p>
 		</div>
 		<div class="row">
 			<div class="col-xs-12">
@@ -46,9 +39,6 @@
 						<?php
 						$no = 1;
 						$datacart = $this->cart->contents();
-						// echo'<pre>';
-						// print_r($datacart);
-						// echo'</pre>';
 						$price = 0;
 						foreach ($datacart as $key => $value) {
 						?>
@@ -73,20 +63,14 @@
 			'pos' => 'LEFT',
 		))->row_array();
 
-		// echo $getdata['email'];
+		// Veritrans_Config::$serverKey = "Mid-server-pj-mcbw3fEk36nTwvZr10lDn";
+		// Veritrans_Config::$isProduction = true;
+		// Veritrans_Config::$isSanitized = Veritrans_Config::$is3ds = true;
 
-		// Set Your server key
-		Veritrans_Config::$serverKey = "Mid-server-pj-mcbw3fEk36nTwvZr10lDn";
-		// Uncomment for production environment
-		Veritrans_Config::$isProduction = true;
-		Veritrans_Config::$isSanitized = Veritrans_Config::$is3ds = true;
-
-		// Required
 		$transaction_details = array(
-		'order_id' => date('YmdHi').'-'.$this->session->userdata('id'),// rand(),
-		'gross_amount' => 94000, // no decimal allowed for creditcard
+			'order_id' => date('YmdHi').'-'.$this->session->userdata('id'),
+			'gross_amount' => 94000,
 		);
-		// $price = $biaya_pendaftaran['nilai_pdh'];
 		$get_hutang = $this->Main_model->getSelectedData('status a', 'a.*',array('a.user_id'=>$this->session->userdata('id')))->row();
 		$hutang = 0;
 		if($get_hutang->quota>=0){
@@ -94,95 +78,94 @@
 		}else{
 			$hutang = -($get_hutang->quota)*250000;
 		}
-		// Optional
 		$item_details = array (
 			array(
-			'id' => rand(0,9),
-			// 'price' => $price,
-			'price' => $this->cart->total()+$hutang,
-			'quantity' => 1,
-			'name' => "Transaksi di Koindra"
+				'id' => rand(0,9),
+				'price' => $this->cart->total()+$hutang,
+				'quantity' => 1,
+				'name' => "Transaksi di Koindra"
 			),
 		);
 
 
-		// Optional
 		$billing_address = array(
-		'first_name'    => "Andri",
-		'last_name'     => "Litani",
-		'address'       => "Mangga 20",
-		'city'          => "Jakarta",
-		'postal_code'   => "16602",
-		'phone'         => "081122334455",
-		'country_code'  => 'IDN'
+			'first_name'    => "Andri",
+			'last_name'     => "Litani",
+			'address'       => "Mangga 20",
+			'city'          => "Jakarta",
+			'postal_code'   => "16602",
+			'phone'         => "081122334455",
+			'country_code'  => 'IDN'
 		);
 
-
-		// Optional
 		$shipping_address = array(
-		'first_name'    => "Obet",
-		'last_name'     => "Supriadi",
-		'address'       => "Manggis 90",
-		'city'          => "Jakarta",
-		'postal_code'   => "16601",
-		'phone'         => "08113366345",
-		'country_code'  => 'IDN'
+			'first_name'    => "Obet",
+			'last_name'     => "Supriadi",
+			'address'       => "Manggis 90",
+			'city'          => "Jakarta",
+			'postal_code'   => "16601",
+			'phone'         => "08113366345",
+			'country_code'  => 'IDN'
 		);
 
-		// Optional
 		$customer_details = array(
-		'first_name'    => $getdata['fullname'],
-		// 'address'       => $getdata['address'],
-		// 'last_name'     => "Litani",
-		'email'         => $getdata['email'],
-		'phone'         => $getdata['number_phone']
-		// 'billing_address'  => $billing_address,
-		// 'shipping_address' => $shipping_address
+			'first_name'    => $getdata['fullname'],
+			'email'         => $getdata['email'],
+			'phone'         => $getdata['number_phone']
 		);
-		// Fill transaction details
 		$transaction = array(
-		'transaction_details' => $transaction_details,
-		'customer_details' => $customer_details,
-		'item_details' => $item_details,
+			'transaction_details' => $transaction_details,
+			'customer_details' => $customer_details,
+			'item_details' => $item_details,
 		);
 
-		$snapToken = Veritrans_Snap::getSnapToken($transaction);
-		// echo "snapToken = ".$snapToken;
+		// $snapToken = Veritrans_Snap::getSnapToken($transaction);
 		?>
 		<div class="row">
 			<div class="col-xs-4">
-				<!-- <div class="well">
-					<address>
-						<strong>Loop, Inc.</strong>
-						<br/> 795 Park Ave, Suite 120
-						<br/> San Francisco, CA 94107
-						<br/>
-						<abbr title="Phone">P:</abbr> (234) 145-1810 </address>
-					<address>
-						<strong>Full Name</strong>
-						<br/>
-						<a href="mailto:#"> first.last@email.com </a>
-					</address>
-				</div> -->
 			</div>
 			<div class="col-xs-8 invoice-block">
 				<ul class="list-unstyled amounts">
 					<li>
+					<?php
+					$grand_total = $this->cart->total()+$data_profil->student_id;
+					?>
 						<h4><strong>Grand Total:</strong> <?= 'Rp '.number_format($this->cart->total(),2); ?></h4> </li>
 				</ul>
 				<br/>
 				<a onclick="return confirm('Anda yakin?')" href='<?= site_url('student/destroy_cart') ?>' class='btn red hidden-print margin-bottom-5'>Empty The Cart <i class="fa fa-trash"></i></a>
-				<button id="pay-button" class="btn green hidden-print margin-bottom-5">Buy Now <i class="fa fa-check"></i></button>
+				<!-- <button id="pay-button" class="btn green hidden-print margin-bottom-5">Buy Now <i class="fa fa-check"></i></button> -->
+				<button class="btn green margin-bottom-5" data-toggle="modal" data-target="#last_step">Buy Now <i class="fa fa-check"></i></button>
 			</div>
 		</div>
 	</div>
 </div>
-
-	<!-- TODO: Remove ".sandbox" from script src URL for production environment. Also input your client key in "data-client-key" -->
-	<script src="https://app.midtrans.com/snap/snap.js" data-client-key="Mid-client-TOD6tYn8UrG_1F6C"></script>
-	<script type="text/javascript">
-		document.getElementById('pay-button').onclick = function(){
-		// SnapToken acquired from previous step
-		snap.pay('<?=$snapToken?>');
-		};
-	</script>
+<div class="modal fade" id="last_step" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="myModalLabel">Last Step of Transaction</h4>
+			</div>
+			<div class="modal-body">
+				<div class="box box-primary">
+					<ol>
+						<li>Silahkan pilih menu transfer pada ATM atau Mobile Banking anda</li>
+						<li>Pilih bank BCA</li>
+						<li>Masukkan rekening tujuan <b>6300839086</b> atas nama <b>Indra Setiawan</b></li>
+						<li>Masukkan jumlah tagihan yang anda bayarkan sebesar <b><?= 'Rp '.number_format($grand_total,2); ?></b> pastikan 3 digit terakhir anda sesuai dengan yang tertera pada layar</li>
+					</ol>
+					<button class="btn blue btn-block m-icon" onclick="window.location.href='<?= site_url('student/transaction_completed'); ?>'">Finished
+						<i class="fa fa-check"></i>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- <script src="https://app.midtrans.com/snap/snap.js" data-client-key="Mid-client-TOD6tYn8UrG_1F6C"></script>
+<script type="text/javascript">
+	document.getElementById('pay-button').onclick = function(){
+	snap.pay('<?=$snapToken?>');
+	};
+</script> -->

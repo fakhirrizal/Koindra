@@ -6,26 +6,7 @@ if(($this->session->userdata('id'))==NULL){
 else{
 ?>
 <!DOCTYPE html>
-<!--
-Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 3.3.6
-Version: 4.5.6
-Author: KeenThemes
-Website: http://www.keenthemes.com/
-Contact: support@keenthemes.com
-Follow: www.twitter.com/keenthemes
-Dribbble: www.dribbble.com/keenthemes
-Like: www.facebook.com/keenthemes
-Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
-Renew Support: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
-License: You must have a valid license purchased only from themeforest(the above link) in order to legally use the theme for your project.
--->
-<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
-<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
-<!--[if !IE]><!-->
 <html lang="en">
-    <!--<![endif]-->
-    <!-- BEGIN HEAD -->
-
 	<head>
 		<meta charset="utf-8" />
 		<title>Apps</title>
@@ -61,26 +42,17 @@ License: You must have a valid license purchased only from themeforest(the above
 		<!-- <link href="https://iconverticons.com/img/logo.png" rel="icon" type="image/x-icon"> -->
 		<link href="<?=site_url('assets/1.ico');?>" rel="icon" type="image/x-icon">
 	</head>
-    <!-- END HEAD -->
-
 		<body class="page-container-bg-solid page-md">
-		<!-- BEGIN HEADER -->
 		<div class="page-header">
-			<!-- BEGIN HEADER TOP -->
 			<div class="page-header-top">
 				<div class="container">
-					<!-- BEGIN LOGO -->
 					<div class="page-logo">
 						<a href="javascript:;">
 							<!-- <img src="https://www.debanensite.nl/files/thumb/d/e/logo_D_300_300_demaco.jpg" alt="logo" class="logo-default"> -->
 							<img src="<?= base_url('assets/4.PNG'); ?>" alt="logo" class="logo-default" width='112px' height='32px'>
 						</a>
 					</div>
-					<!-- END LOGO -->
-					<!-- BEGIN RESPONSIVE MENU TOGGLER -->
 					<a href="javascript:;" class="menu-toggler"></a>
-					<!-- END RESPONSIVE MENU TOGGLER -->
-					<!-- BEGIN TOP NAVIGATION MENU -->
 					<div class="top-menu">
 						<ul class="nav navbar-nav pull-right">
 							<!-- <li class="dropdown dropdown-extended dropdown-notification dropdown-dark" id="header_notification_bar">
@@ -142,7 +114,6 @@ License: You must have a valid license purchased only from themeforest(the above
 							<li class="droddown dropdown-separator">
 								<span class="separator"></span>
 							</li>
-							<!-- BEGIN USER LOGIN DROPDOWN -->
 							<li class="dropdown dropdown-user dropdown-dark">
 								<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
 									<!-- <img alt="" class="img-circle" src="https://cdn1.iconfinder.com/data/icons/rcons-user-action/512/user-512.png"> -->
@@ -159,11 +130,11 @@ License: You must have a valid license purchased only from themeforest(the above
 								<ul class="dropdown-menu dropdown-menu-default">
 									<li>
 										<a href="<?php echo site_url('admin_side/profile'); ?>">
-											<i class="icon-user"></i> Profil </a>
+											<i class="icon-user"></i> Profile </a>
 									</li>
 									<li>
 										<a href="<?php echo site_url('admin_side/bantuan'); ?>">
-											<i class="icon-rocket"></i> Bantuan
+											<i class="icon-rocket"></i> Helper
 											<!-- <span class="badge badge-success"> 7 </span> -->
 										</a>
 									</li>
@@ -174,21 +145,16 @@ License: You must have a valid license purchased only from themeforest(the above
 									</li> -->
 									<li>
 										<a href="<?php echo site_url('Auth/logout'); ?>">
-											<i class="icon-key"></i> Keluar </a>
+											<i class="icon-key"></i> Sign Out </a>
 									</li>
 								</ul>
 							</li>
-							<!-- END USER LOGIN DROPDOWN -->
 						</ul>
 					</div>
-					<!-- END TOP NAVIGATION MENU -->
 				</div>
 			</div>
-			<!-- END HEADER TOP -->
-			<!-- BEGIN HEADER MENU -->
 			<div class="page-header-menu">
 				<div class="container">
-					<!-- BEGIN HEADER SEARCH BOX -->
 					<form class="search-form" action="javascript:;" method="GET">
 						<div class="input-group">
 							<input type="text" class="form-control" placeholder="Search" name="query">
@@ -199,10 +165,6 @@ License: You must have a valid license purchased only from themeforest(the above
 							</span>
 						</div>
 					</form>
-					<!-- END HEADER SEARCH BOX -->
-					<!-- BEGIN MEGA MENU -->
-					<!-- DOC: Apply "hor-menu-light" class after the "hor-menu" class below to have a horizontal menu with white background -->
-					<!-- DOC: Remove data-hover="dropdown" and data-close-others="true" attributes below to disable the dropdown opening on mouse hover -->
 					<div class="hor-menu  ">
 						<ul class="nav navbar-nav">
 							<li class="menu-dropdown classic-menu-dropdown <?php if($parent=='home'){echo 'active';}else{echo '';} ?>">
@@ -262,42 +224,27 @@ License: You must have a valid license purchased only from themeforest(the above
 							</li> -->
 						</ul>
 					</div>
-					<!-- END MEGA MENU -->
 				</div>
 			</div>
-			<!-- END HEADER MENU -->
 		</div>
-		<!-- END HEADER -->
-		<!-- BEGIN CONTAINER -->
 		<div class="page-container">
-			<!-- BEGIN CONTENT -->
 			<div class="page-content-wrapper">
-				<!-- BEGIN CONTENT BODY -->
-				<!-- BEGIN PAGE HEAD-->
 				<div class="page-head">
 					<div class="container">
-						<!-- BEGIN PAGE TITLE -->
 						<div class="page-title">
 							<h1>Dashboard
-								<small>Sistem Informasi</small>
+								<small>Information System</small>
 							</h1>
 						</div>
-						<!-- END PAGE TITLE -->
-						<!-- BEGIN PAGE TOOLBAR -->
 						<div class="page-toolbar">
-							<!-- BEGIN THEME PANEL -->
 							<div class="btn-group btn-theme-panel">
-								<a href="#" title="Setting Informasi Aplikasi" class="btn dropdown-toggle" >
+								<a href="#" title="Setting Application Info" class="btn dropdown-toggle" >
 									<i class="icon-settings"></i>
 								</a>
 							</div>
 						</div>
-						<!-- END PAGE TOOLBAR -->
 					</div>
 				</div>
-				<!-- END PAGE HEAD-->
-				<!-- BEGIN PAGE CONTENT BODY -->
 				<div class="page-content">
 					<div class="container">
-						<!-- BEGIN PAGE BREADCRUMBS -->
 <?php } ?>

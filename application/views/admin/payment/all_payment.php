@@ -12,11 +12,10 @@
 	</div>
 	<div class="row">
 		<div class="col-md-12">
-			<!-- BEGIN EXAMPLE TABLE PORTLET-->
 			<div class="portlet light ">
 				<div class="portlet-body">
 					<div class="form-group select2-bootstrap-prepend" >
-						<label class="control-label col-md-2">Opsi pencarian berdasarkan <b>Status</b></label>
+						<label class="control-label col-md-2">Searching by <b>Status</b></label>
 						<div class="col-md-5">
 							<select id='pilihan' class="form-control select2-allow-clear">
 								<option value=""></option>
@@ -31,15 +30,13 @@
 					<form action="#" method="post" onsubmit="return deleteConfirm();"/>
 					<div class="table-toolbar">
 						<div class="row">
-							<!-- <div class="col-md-6">
+							<div class="col-md-6">
 								<div class="btn-group">
-									<button type='submit' id="sample_editable_1_new" class="btn sbold red"> Hapus
-										<i class="fa fa-trash"></i>
-									</button>
+									<a href="#" class="btn btn-info" data-toggle="modal" data-target="#fi">Import Data <i class="fa fa-cloud-upload"></i></a>
 								</div>
 									<span class="separator">|</span>
-									<a href="#" class="btn green uppercase">Tambah Data <i class="fa fa-plus"></i> </a>
-							</div> -->
+									<a href="<?=base_url()?>data_upload/format_data_pembayaran.xlsx" class="btn btn-warning">Import Data Template</a>
+							</div>
 						</div>
 					</div>
 					<table class="table table-striped table-bordered table-hover order-column" id="sample_2">
@@ -51,44 +48,36 @@
 								<th style="text-align: center;"> User </th>
 								<th style="text-align: center;"> Price </th>
 								<th style="text-align: center;"> Transaction Date </th>
-								<th style="text-align: center;">Payment Type</th>
+								<!-- <th style="text-align: center;">Payment Type</th> -->
 								<!-- <th>Virtual Account</th> -->
 								<th style="text-align: center;"> Payment Status </th>
-								<th style="text-align: center;"> Action </th>
+								<th style="text-align: center;" width="7%"> Action </th>
 							</tr>
 						</thead>
 						<tbody>
 							<?php
 							$urutan = 1;
 							foreach ($riwayat_pembayaran as $key => $value) {
-								Veritrans_Config::$serverKey = "Mid-server-pj-mcbw3fEk36nTwvZr10lDn";
-								// Uncomment for production environment
-								Veritrans_Config::$isProduction = true;
+								// Veritrans_Config::$serverKey = "Mid-server-pj-mcbw3fEk36nTwvZr10lDn";
+								// Veritrans_Config::$isProduction = true;
 
-								$order          = Veritrans_Transaction::status($value->invoice_number);
+								// $order          = Veritrans_Transaction::status($value->invoice_number);
 
-								$status         = $order->transaction_status;
-								if ($status == "settlement") {
-									$stat = "Success";
-								} elseif ($status == "pending") {
-									$stat = "Pending";
-								} else {
-									$stat = "Failed";
-								}
-								// $bill_key = $order->bill_key;
-								// $total_items = $value->total_items;
-								/*
-								$data['status'] = $status;
-								$data['metode'] = $order->payment_type;
-								$data['biaya']  = $order->gross_amount;*/
-
-								// if ($order->payment_type == "bank_transfer") {
-								// 	$data['va_number']['bank'] = $order->va_numbers[0]->bank;
-								// 	$data['va_number']['number'] = $order->va_numbers[0]->va_number;
-								// }elseif ($order->payment_type == "cstore") {
-								// 	$data['store'] = $order->store;
-								// 	$data['payment_code'] = $order->payment_code;
+								// $status         = $order->transaction_status;
+								// if ($status == "settlement") {
+								// 	$stat = "Success";
+								// } elseif ($status == "pending") {
+								// 	$stat = "Pending";
+								// } else {
+								// 	$stat = "Failed";
 								// }
+								if($value->status=='1'){
+									$stat = '<span class="label label-success"> Success </span>';
+								}elseif($value->status=='0'){
+									$stat = '<span class="label label-warning"> Pending </span>';
+								}elseif($value->status=='2'){
+									$stat = '<span class="label label-danger"> Failed </span>';
+								}
 								$returning = "return confirm('Anda yakin?')";
 
 								echo'
@@ -96,9 +85,8 @@
 									<td style="text-align: center;">'.$urutan.'.</td>
 									<td style="text-align: center;">'.$value->invoice_number.'</td>
 									<td style="text-align: center;">'.$value->fullname.'</td>
-									<td style="text-align: center;">Rp '.number_format($value->grand_total,2).'</td>
+									<td style="text-align: center;">Rp '.number_format($value->bill,2).'</td>
 									<td style="text-align: center;">'.$this->Main_model->convert_tanggal($value->date).'</td>
-									<td style="text-align: center;">'.$order->payment_type.'</td>
 									<td style="text-align: center;">'.$stat.'</td>
 									<td>
 										<button class="btn btn-xs green detaildata" type="button" data-toggle="modal" data-target="#detaildata" id="'.md5($value->purchasing_id).'"> Detail
@@ -125,7 +113,37 @@
 					</script>
 				</div>
 			</div>
-			<!-- END EXAMPLE TABLE PORTLET-->
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="fi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+		<div class="modal-header">
+			<!-- <h4 class="modal-title" id="exampleModalLabel">Form Import</h4> -->
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		<form role="form" action="<?php echo base_url()."admin_side/impor_data_pembayaran"; ?>" method='post' enctype="multipart/form-data">
+		<div class="modal-body">
+			<div class="form-body">
+				<div class="form-group form-md-line-input has-danger">
+					<label class="col-md-2 control-label" for="form_control_1">File Import <span class="required"> * </span></label>
+					<div class="col-md-10">
+						<div class="input-icon">
+							<input class="form-control" type="file" name='fmasuk' required>
+							<input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</div>
+		</form>
 		</div>
 	</div>
 </div>

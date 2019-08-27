@@ -335,6 +335,12 @@ class Master extends CI_Controller {
 			// print_r($data5);
 			$this->Main_model->insertData('status',$data5);
 
+			$data6 = array(
+				'user_id' => $user_id['id']+1
+			);
+			// print_r($data6);
+			$this->Main_model->insertData('cache',$data6);
+
 			$this->Main_model->log_activity($this->session->userdata('id'),'Creating data',"Creating student data (".$this->input->post('fullname').")");
 			$this->db->trans_complete();
 			if($this->db->trans_status() === false){
