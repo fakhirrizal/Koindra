@@ -22,7 +22,7 @@
 						}elseif($data_status->quota=='Unlimited'){
 							echo $data_status->quota;
 						}else{
-							echo $data_status->quota.'x Pertemuan';
+							echo $data_status->quota.'x Attendance';
 						}
 						?></span>
 					</div>

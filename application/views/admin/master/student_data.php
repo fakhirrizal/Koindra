@@ -87,7 +87,7 @@
 									</label>
 								</td>
 								<td style="text-align: center;"><?= $no++.'.'; ?></td>
-								<td style="text-align: center;"><?= $value->fullname; ?></td>
+								<td style="text-align: left;"><?= $value->fullname; ?></td>
 								<td style="text-align: center;"><?= $value->student_id; ?></td>
 								<td style="text-align: center;"><?= $value->number_phone; ?></td>
 								<td style="text-align: center;"><?php

@@ -45,7 +45,7 @@ $grand_total = 0;
 						<tr>
 							<td> <?= $no++.'.'; ?> </td>
 							<td> <?= $value['name']; ?> </td>
-							<td class="hidden-xs"> <?= 'Kuota: '.$value['option']['quota'].'x Pertemuan<br>Durasi: '.$value['option']['duration'].' Hari'; ?> </td>
+							<td class="hidden-xs"> <?= 'Kuota: '.$value['option']['quota'].'x Attendance<br>Durasi: '.$value['option']['duration'].' Hari'; ?> </td>
 							<td class="hidden-xs"> <?= $value['qty']; ?> </td>
 							<td class="hidden-xs"> <?= 'Rp '.number_format($value['price'],2); ?> </td>
 							<td> <?= 'Rp '.number_format($value['subtotal']); ?> </td>

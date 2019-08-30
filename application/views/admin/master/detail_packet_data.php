@@ -45,7 +45,7 @@
 												<td> : </td>
 												<td><?php
 												if($row->quota>0){
-												echo $row->quota.'x Pertemuan';}
+												echo $row->quota.'x Attendance';}
 												else{
 													echo $row->quota;
 												} ?></td>
@@ -126,7 +126,7 @@
 													<td style="text-align: center;"><?php
 													if($value->quota==NULL){
 														echo'-';
-													}elseif($value->quota=='Unlimited'){echo $value->quota;}else{ echo $value->quota.'x Pertemuan';} ?></td>
+													}elseif($value->quota=='Unlimited'){echo $value->quota;}else{ echo $value->quota.'x Attendance';} ?></td>
 													<td style="text-align: center;"><?php
 													if($value->expired_date==NULL){
 														echo'-';

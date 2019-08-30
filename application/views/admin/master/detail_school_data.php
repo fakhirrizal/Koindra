@@ -100,7 +100,7 @@
 													<td style="text-align: center;"><?php
 													if($value->quota==NULL){
 														echo'-';
-													}else{ echo $value->quota.'x Pertemuan';} ?></td>
+													}else{ echo $value->quota.'x Attendance';} ?></td>
 													<td style="text-align: center;"><?php
 													if($value->expired_date==NULL){
 														echo'-';

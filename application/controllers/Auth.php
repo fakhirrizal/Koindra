@@ -70,7 +70,7 @@ class Auth extends CI_Controller {
 					$this->Main_model->updateData('user',$data_log,array('id'=>$value->id));
 					$this->session->set_flashdata('error','<div class="alert alert-danger alert-dismissible" role="alert" style="text-align: justify;">
 													<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-													<strong>Ups! </strong>Password yg Anda masukkan tidak valid.
+													<strong>Ups! </strong>Your password is invalid.
 												</div>' );
 					echo "<script>window.location='".base_url()."'</script>";
 				}

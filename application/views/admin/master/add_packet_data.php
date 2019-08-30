@@ -44,7 +44,7 @@
 								<label class="col-md-2 control-label" for="form_control_1">Quota <span class="required"> * </span></label>
 								<div class="col-md-10">
 									<div class="input-icon">
-										<input type="number" class="form-control" name="quota" placeholder="Type something" required max='999'>
+										<input type="text" class="form-control" name="quota" placeholder="Type something" required>
 										<div class="form-control-focus"> </div>
 										<span class="help-block">Some help goes here...</span>
 										<i class="fa fa-archive"></i>

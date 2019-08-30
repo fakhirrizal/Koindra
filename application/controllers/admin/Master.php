@@ -73,7 +73,7 @@ class Master extends CI_Controller {
 				echo "<script>window.location='".base_url()."admin_side/tambah_data_admin/'</script>";
 			}
 			else{
-				$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data telah berhasil ditambahkan.<br /></div>' );
+				$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data saved succesfully..<br /></div>' );
 				echo "<script>window.location='".base_url()."admin_side/administrator/'</script>";
 			}
 		}
@@ -192,7 +192,7 @@ class Master extends CI_Controller {
 					echo "<script>window.location='".base_url()."admin_side/sekolah/'</script>";
 				}
 				else{
-					$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data telah berhasil ditambahkan.<br /></div>' );
+					$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data saved succesfully..<br /></div>' );
 					echo "<script>window.location='".base_url()."admin_side/sekolah/'</script>";
 				}
 			}else{
@@ -348,7 +348,7 @@ class Master extends CI_Controller {
 				echo "<script>window.location='".base_url()."admin_side/tambah_data_siswa/'</script>";
 			}
 			else{
-				$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data telah berhasil ditambahkan.<br /></div>' );
+				$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data saved succesfully..<br /></div>' );
 				echo "<script>window.location='".base_url()."admin_side/siswa/'</script>";
 			}
 		}else{
@@ -645,7 +645,7 @@ class Master extends CI_Controller {
 			echo "<script>window.location='".base_url()."admin_side/tambah_data_paket/'</script>";
 		}
 		else{
-			$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data telah berhasil ditambahkan.<br /></div>' );
+			$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data saved succesfully..<br /></div>' );
 			echo "<script>window.location='".base_url()."admin_side/paket/'</script>";
 		}
 	}

@@ -677,7 +677,7 @@ if($profile->passcode!=NULL){
 							</div>
 							<div class="col-md-4">
 								<!-- <div class="col2"> -->
-									<div> <?= 'Kehadiran: '.$value->jumlah_kehadiran.' x'; ?> </div>
+									<div> <?= 'Attendance: '.$value->jumlah_kehadiran.' x'; ?> </div>
 								<!-- </div> -->
 							</div>
 							</div>

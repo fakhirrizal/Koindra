@@ -100,7 +100,7 @@
 								if($value->quota==NULL){
 									echo'-';
 								}elseif($value->quota=='Unlimited'){echo $value->quota;}else{
-									echo $value->quota.' Pertemuan';
+									echo $value->quota.' Attendance';
 								}
 								?></td>
 								<td>

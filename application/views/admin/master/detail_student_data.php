@@ -77,7 +77,7 @@
 												<td> : </td>
 												<td><?php
 												if($row->quota>0){
-												echo $row->quota.'x Pertemuan';}
+												echo $row->quota.'x Attendance';}
 												else{
 													echo $row->quota;
 												} ?>&nbsp; &nbsp; &nbsp;

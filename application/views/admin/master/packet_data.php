@@ -83,7 +83,7 @@
 								<td style="text-align: center;"><?= $value->packet_name; ?></td>
 								<td style="text-align: center;"><?php
 												if($value->quota>0){
-												echo $value->quota.'x Pertemuan';}
+												echo $value->quota.'x Attendance';}
 												else{
 													echo $value->quota;
 												} ?></td>

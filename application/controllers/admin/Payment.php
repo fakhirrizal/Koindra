@@ -141,7 +141,7 @@ class Payment extends CI_Controller {
 			echo "<script>window.location='".base_url()."admin_side/pembayaran/'</script>";
 		}
 		else{
-			$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data telah berhasil disimpan.<br /></div>' );
+			$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data saved succesfully.<br /></div>' );
 			echo "<script>window.location='".base_url()."admin_side/pembayaran/'</script>";
 		}
 	}
@@ -171,7 +171,7 @@ class Payment extends CI_Controller {
 			echo "<script>window.location='".base_url()."admin_side/pembayaran/'</script>";
 		}
 		else{
-			$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data telah berhasil disimpan.<br /></div>' );
+			$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data saved succesfully.<br /></div>' );
 			echo "<script>window.location='".base_url()."admin_side/pembayaran/'</script>";
 		}
 	}
