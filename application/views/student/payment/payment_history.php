@@ -53,7 +53,7 @@
 								<td style="text-align: center;"><?= $no++.'.'; ?></td>
 								<td style="text-align: center;"><?= $value->invoice_number; ?></td>
 								<td style="text-align: center;"><?= $this->Main_model->convert_tanggal($value->date); ?></td>
-								<td style="text-align: center;"><?= 'Rp '.number_format($value->grand_total,2); ?></td>
+								<td style="text-align: center;"><?= 'Rp '.number_format($value->bill,2); ?></td>
 								<!-- <td style="text-align: center;"><?= $value->payment_type; ?></td> -->
 								<td style="text-align: center;"><?php
 								if($value->status=='1'){

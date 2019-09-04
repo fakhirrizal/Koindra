@@ -172,7 +172,7 @@
 								<li>Silahkan pilih menu transfer pada ATM atau Mobile Banking anda</li>
 								<li>Pilih bank BCA</li>
 								<li>Masukkan rekening tujuan <b>6300839086</b> atas nama <b>Indra Setiawan</b></li>
-								<li>Masukkan jumlah tagihan yang anda bayarkan sebesar <b><?= 'Rp '.number_format($value->grand_total,2); ?></b> pastikan 3 digit terakhir anda sesuai dengan yang tertera pada layar</li>
+								<li>Masukkan jumlah tagihan yang anda bayarkan sebesar <b><?= 'Rp '.number_format($value->bill,2); ?></b> pastikan 3 digit terakhir anda sesuai dengan yang tertera pada layar</li>
 							</ol>
 							* Ketika Anda telah melakukan transaksi, harap ditunggu karena masih dalam proses verifikasi oleh admin.
 						</div>
