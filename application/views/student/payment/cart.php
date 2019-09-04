@@ -47,7 +47,7 @@ $grand_total = 0;
 							<td> <?= $value['name']; ?> </td>
 							<td class="hidden-xs"> <?= 'Kuota: '.$value['option']['quota'].'x Attendance<br>Durasi: '.$value['option']['duration'].' Hari'; ?> </td>
 							<td class="hidden-xs"> <?= $value['qty']; ?> </td>
-							<td class="hidden-xs"> <?= 'Rp '.number_format($value['price'],2); ?> </td>
+							<td class="hidden-xs"> <?= 'Rp '.number_format($value['price'],0); ?> </td>
 							<td> <?= 'Rp '.number_format($value['subtotal']); ?> </td>
 						</tr>
 						<?php $price += $value['price']; } ?>
@@ -130,7 +130,7 @@ $grand_total = 0;
 					<?php
 					$grand_total = $this->cart->total()+$data_profil->student_id;
 					?>
-						<h4><strong>Grand Total:</strong> <?= 'Rp '.number_format($this->cart->total(),2); ?></h4> </li>
+						<h4><strong>Grand Total:</strong> <?= 'Rp '.number_format($this->cart->total(),0); ?></h4> </li>
 				</ul>
 				<br/>
 				<a onclick="return confirm('Anda yakin?')" href='<?= site_url('student/destroy_cart') ?>' class='btn red hidden-print margin-bottom-5'>Empty The Cart <i class="fa fa-trash"></i></a>
@@ -153,7 +153,7 @@ $grand_total = 0;
 						<li>Silahkan pilih menu transfer pada ATM atau Mobile Banking anda</li>
 						<li>Pilih bank BCA</li>
 						<li>Masukkan rekening tujuan <b>6300839086</b> atas nama <b>Indra Setiawan</b></li>
-						<li>Masukkan jumlah tagihan yang anda bayarkan sebesar <b><?= 'Rp '.number_format($grand_total,2); ?></b> pastikan 3 digit terakhir anda sesuai dengan yang tertera pada layar</li>
+						<li>Masukkan jumlah tagihan yang anda bayarkan sebesar <b><?= 'Rp '.number_format($grand_total,0); ?></b> pastikan 3 digit terakhir anda sesuai dengan yang tertera pada layar</li>
 					</ol>
 					<button class="btn blue btn-block m-icon" onclick="window.location.href='<?= site_url('student/transaction_completed'); ?>'">Finished
 						<i class="fa fa-check"></i>

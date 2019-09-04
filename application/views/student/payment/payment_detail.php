@@ -31,7 +31,7 @@
 			<b>Invoice Number</b>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<?= $value->invoice_number; ?><br>
 			<b>Transaction Date</b>&nbsp; &nbsp; &nbsp; &nbsp;<?= $this->Main_model->convert_tanggal($value->date); ?><br>
 			<b>Total Items</b>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<?= $value->total_items.' items'; ?><br>
-			<b>Total Price</b>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<?= 'Rp '.number_format($value->grand_total,2); ?><br>
+			<b>Total Price</b>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<?= 'Rp '.number_format($value->grand_total,0); ?><br>
 			<!-- <b>Payment Type</b>&nbsp; &nbsp; &nbsp; &nbsp;<?= $value->payment_type; ?><br> -->
 			<b>Status</b>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<?php
 			// echo $stat;
@@ -172,7 +172,7 @@
 								<li>Silahkan pilih menu transfer pada ATM atau Mobile Banking anda</li>
 								<li>Pilih bank BCA</li>
 								<li>Masukkan rekening tujuan <b>6300839086</b> atas nama <b>Indra Setiawan</b></li>
-								<li>Masukkan jumlah tagihan yang anda bayarkan sebesar <b><?= 'Rp '.number_format($value->bill,2); ?></b> pastikan 3 digit terakhir anda sesuai dengan yang tertera pada layar</li>
+								<li>Masukkan jumlah tagihan yang anda bayarkan sebesar <b><?= 'Rp '.number_format($value->bill,0); ?></b> pastikan 3 digit terakhir anda sesuai dengan yang tertera pada layar</li>
 							</ol>
 							* Ketika Anda telah melakukan transaksi, harap ditunggu karena masih dalam proses verifikasi oleh admin.
 						</div>
@@ -186,43 +186,53 @@
 		<div class="col-md-12">
 			<div class="portlet light ">
 				<div class="portlet-body">
-					<table class="table table-striped table-bordered table-hover table-checkable order-column">
-						<thead>
-							<tr>
-								<th width="3%">
-									<label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
-										<input type="checkbox" class="group-checkable" data-set="#sample_1 .checkboxes" />
-										<span></span>
-									</label>
-								</th>
-								<th style="text-align: center;" width="4%"> # </th>
-								<th style="text-align: center;"> Packet Name </th>
-								<th style="text-align: center;"> Price </th>
-								<th style="text-align: center;"> Qty </th>
-								<th style="text-align: center;"> Sub Total </th>
-							</tr>
-						</thead>
-						<tbody>
-							<?php
-							$n = 1;
-							foreach ($detail as $key => $value) {
-							?>
-							<tr class="odd gradeX">
-								<td style="text-align: center;">
-									<label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
-										<input type="checkbox" class="checkboxes" name="selected_id[]" value="<?= $value->purchasing_detail_id; ?>"/>
-										<span></span>
-									</label>
-								</td>
-								<td style="text-align: center;"><?= $n++.'.'; ?></td>
-								<td style="text-align: center;"><?= $value->packet_name; ?></td>
-								<td style="text-align: center;"><?= 'Rp '.number_format($value->price,2); ?></td>
-								<td style="text-align: center;"><?= $value->qty; ?></td>
-								<td style="text-align: center;"><?= 'Rp '.number_format($value->sub_total,2); ?></td>
-							</tr>
-							<?php } ?>
-						</tbody>
-					</table>
+					<div class='row'>
+						<div class="col-md-12">
+							<div class="portlet light ">
+								<div class="portlet-body">
+									<table class="table table-striped table-bordered table-hover table-checkable order-column">
+										<thead>
+											<tr>
+												<th width="3%">
+													<label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
+														<input type="checkbox" class="group-checkable" data-set="#sample_1 .checkboxes" />
+														<span></span>
+													</label>
+												</th>
+												<th style="text-align: center;" width="4%"> # </th>
+												<th style="text-align: center;"> Packet Name </th>
+												<th style="text-align: center;"> Price </th>
+												<th style="text-align: center;"> Qty </th>
+												<th style="text-align: center;"> Sub Total </th>
+											</tr>
+										</thead>
+										<tbody>
+											<?php
+											$n = 1;
+											foreach ($detail as $key => $value) {
+											?>
+											<tr class="odd gradeX">
+												<td style="text-align: center;">
+													<label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
+														<input type="checkbox" class="checkboxes" name="selected_id[]" value="<?= $value->purchasing_detail_id; ?>"/>
+														<span></span>
+													</label>
+												</td>
+												<td style="text-align: center;"><?= $n++.'.'; ?></td>
+												<td style="text-align: center;"><?= $value->packet_name; ?></td>
+												<td style="text-align: center;"><?= 'Rp '.number_format($value->price,0); ?></td>
+												<td style="text-align: center;"><?= $value->qty; ?></td>
+												<td style="text-align: center;"><?= 'Rp '.number_format($value->sub_total,0); ?></td>
+											</tr>
+											<?php } ?>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-12" >
+						<hr><a href="<?php echo base_url()."student/riwayat_pembelian"; ?>" class="btn btn-info" role="button"><i class="fa fa-angle-double-left"></i> Back</a></div>
+					</div>
 				</div>
 			</div>
 		</div>

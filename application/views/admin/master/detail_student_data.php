@@ -179,7 +179,7 @@
 														<td>'.$urutan.'.</td>
 														<td>'.$value->invoice_number.'</td>
 														<td>'.$value->total_items.' Item</td>
-														<td>Rp '.number_format($value->bill,2).'</td>
+														<td>Rp '.number_format($value->bill,0).'</td>
 														<td>'.$this->Main_model->convert_tanggal($value->date).'</td>
 														<td>'.$stat.'</td>
 														<td>

@@ -620,7 +620,7 @@ if($profile->passcode!=NULL){
 					<div class="caption">
 						<i class="icon-share font-dark hide"></i>
 						<span class="caption-subject font-dark bold uppercase">Attendance Report</span>
-						<span class="caption-helper">Last 7 days</span>
+						<!-- <span class="caption-helper">Last 7 days</span> -->
 					</div>
 					<!-- <div class="actions">
 						<div class="btn-group">

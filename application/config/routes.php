@@ -110,6 +110,7 @@ $route['admin_side/laporan_kehadiran'] = 'admin/Report/presence_data';
 $route['admin_side/detail_data_kehadiran/(:any)'] = 'admin/Report/presence_data_detail/$1';
 $route['admin_side/simpan_data_kehadiran'] = 'admin/Report/save_presence_data';
 $route['admin_side/impor_data_kehadiran'] = 'admin/Report/import_presence_data';
+$route['admin_side/perbarui_data_kehadiran'] = 'admin/Report/update_presence_data';
 
 $route['admin_side/pembayaran'] = 'admin/Payment/all_payment';
 $route['admin_side/impor_data_pembayaran'] = 'admin/Payment/import_payment_data';

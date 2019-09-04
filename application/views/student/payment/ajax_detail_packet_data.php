@@ -51,7 +51,7 @@
 											<tr>
 												<td> Price </td>
 												<td> : </td>
-												<td><?php echo 'Rp '.number_format($row->price,2); ?></td>
+												<td><?php echo 'Rp '.number_format($row->price,0); ?></td>
 											</tr>
 										</tbody>
 									</table>

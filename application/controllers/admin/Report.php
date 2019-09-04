@@ -112,4 +112,51 @@ class Report extends CI_Controller {
 			echo "<script>window.location='".base_url()."admin_side/laporan_kehadiran/'</script>";
 		}
 	}
+	public function update_presence_data(){
+		$this->db->trans_start();
+		$data1 = array(
+			'date' => $this->input->post('date')
+		);
+		// print_r($data1);
+		$this->Main_model->updateData('presence',$data1,array('md5(presence_id)'=>$this->input->post('presence_id')));
+		$this->Main_model->log_activity($this->session->userdata('id'),'Updating data',"Updating attendance data",$this->session->userdata('location'));
+		$this->db->trans_complete();
+		if($this->db->trans_status() === false){
+			$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data gagal diubah.<br /></div>' );
+			echo "<script>window.location='".base_url()."admin_side/detail_data_kehadiran/".$this->input->post('user_id')."'</script>";
+		}
+		else{
+			$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data telah berhasil diubah.<br /></div>' );
+			echo "<script>window.location='".base_url()."admin_side/detail_data_kehadiran/".$this->input->post('user_id')."'</script>";
+		}
+	}
+	public function ajax_function()
+	{
+		if($this->input->post('modul')=='modul_ubah_data_kehadiran'){
+			$data = $this->Main_model->getSelectedData('presence a', 'a.*', array('md5(a.presence_id)'=>$this->input->post('id')))->row();
+			echo'
+				<form role="form" action="'.base_url()."admin_side/perbarui_data_kehadiran".'" method="post" enctype="multipart/form-data">
+					<input type="hidden" name="user_id" value="'.md5($data->user_id).'">
+					<input type="hidden" name="presence_id" value="'.md5($data->presence_id).'">
+					<input type="hidden" name="'.$this->security->get_csrf_token_name().'" value="'.$this->security->get_csrf_hash().'">
+					<div class="modal-body">
+						<div class="form-body">
+							<div class="form-group form-md-line-input has-danger">
+								<label class="col-md-2 control-label" for="form_control_1">Date <span class="required"> * </span></label>
+								<div class="col-md-10">
+									<div class="input-icon">
+										<input type="date" class="form-control" name="date" placeholder="Type something" value="'.$data->date.'" required>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						<button type="submit" class="btn btn-primary">Submit</button>
+					</div>
+				</form>
+			';
+		}
+	}
 }

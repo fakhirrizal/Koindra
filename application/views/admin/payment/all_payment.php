@@ -85,7 +85,7 @@
 									<td style="text-align: center;">'.$urutan.'.</td>
 									<td style="text-align: center;">'.$value->invoice_number.'</td>
 									<td style="text-align: center;">'.$value->fullname.'</td>
-									<td style="text-align: center;">Rp '.number_format($value->bill,2).'</td>
+									<td style="text-align: center;">Rp '.number_format($value->bill,0).'</td>
 									<td style="text-align: center;">'.$this->Main_model->convert_tanggal($value->date).'</td>
 									<td style="text-align: center;">'.$stat.'</td>
 									<td>

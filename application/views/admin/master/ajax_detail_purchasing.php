@@ -49,18 +49,18 @@
 									<tr>
 										<td> <?= $no++.'.'; ?> </td>
 										<td> <?= $row->packet_name; ?> </td>
-										<td> <?= 'Rp '.number_format($row->price,2); ?> </td>
+										<td> <?= 'Rp '.number_format($row->price,0); ?> </td>
 										<td> <?= $row->qty; ?> </td>
-										<td> <?= 'Rp '.number_format($row->sub_total,2); ?> </td>
+										<td> <?= 'Rp '.number_format($row->sub_total,0); ?> </td>
 									</tr>
 								<?php }} ?>
 									<tr>
 										<td colspan='4' style='text-align: center'>Grand Total</td>
-										<td><?= 'Rp '.number_format($data_utama['grand_total'],2); ?></td>
+										<td><?= 'Rp '.number_format($data_utama['grand_total'],0); ?></td>
 									</tr>
 									<tr>
 										<td colspan='4' style='text-align: center'>Bill</td>
-										<td><?= 'Rp '.number_format($data_utama['bill'],2); ?></td>
+										<td><?= 'Rp '.number_format($data_utama['bill'],0); ?></td>
 									</tr>
 								</tbody>
 							</table>

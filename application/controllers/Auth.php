@@ -55,6 +55,7 @@ class Auth extends CI_Controller {
 					}else{
 						foreach ($role as $key => $value2) {
 							$sess_data['id'] = $value2->user_id;
+							$sess_data['location'] = $this->input->post('location');
 							$this->session->set_userdata($sess_data);
 							redirect($value2->route);
 						}

@@ -80,7 +80,7 @@
 													echo $value->quota;
 												} ?></td>
 								<td style="text-align: center;"><?= $value->duration.' Month'; ?></td>
-								<td style="text-align: center;"><?= 'Rp '.number_format($value->price,2); ?></td>
+								<td style="text-align: center;"><?= 'Rp '.number_format($value->price,0); ?></td>
 								<!-- <td style="text-align: center;"><?= $this->Main_model->convert_tanggal($value->expired_date); ?></td> -->
 								<td>
 									<div class="btn-group" style="text-align: center;">

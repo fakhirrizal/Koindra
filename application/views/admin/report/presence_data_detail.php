@@ -18,39 +18,90 @@
 		<div class="col-md-12">
 			<div class="portlet light ">
 				<div class="portlet-body">
-					<table class="table table-striped table-bordered table-hover table-checkable order-column" id="sample_1">
-						<thead>
-							<tr>
-								<th style="text-align: center;" width="4%"> # </th>
-								<th style="text-align: center;" width="15%"> Name </th>
-								<th style="text-align: center;" width="15%"> Date </th>
-								<!-- <th style="text-align: center;"> Jam Masuk </th>
-								<th style="text-align: center;"> Jam Keluar </th> -->
-								<th style="text-align: center;"> Note </th>
-							</tr>
-						</thead>
-						<tbody>
-							<?php
-								$urutan = 1;
-								foreach ($riwayat_kehadiran as $key => $value) {
-									echo'
-									<tr style="text-align: center;">
-										<td>'.$urutan.'.</td>
-										<td>'.$value['fullname'].'</td>
-										<td>'.$this->Main_model->convert_tanggal($value['date']).'</td>
-										<td><span class="more">'.$value['note'].'</span></td>
-									</tr>
-									';
-									$urutan++;
-								}
-							?>
-						</tbody>
-					</table>
+					<div class='row'>
+						<div class="col-md-12">
+							<div class="portlet light ">
+								<div class="portlet-body">
+									<table class="table table-striped table-bordered table-hover table-checkable order-column" id="sample_1">
+										<thead>
+											<tr>
+												<th style="text-align: center;" width="4%"> # </th>
+												<th style="text-align: center;" width="15%"> Name </th>
+												<th style="text-align: center;" width="15%"> Date </th>
+												<!-- <th style="text-align: center;"> Jam Masuk </th>
+												<th style="text-align: center;"> Jam Keluar </th> -->
+												<th style="text-align: center;"> Note </th>
+												<th style="text-align: center;" width="7%"> Action </th>
+											</tr>
+										</thead>
+										<tbody>
+											<?php
+												$urutan = 1;
+												foreach ($riwayat_kehadiran as $key => $value) {
+													echo'
+													<tr style="text-align: center;">
+														<td>'.$urutan.'.</td>
+														<td>'.$value['fullname'].'</td>
+														<td>'.$this->Main_model->convert_tanggal($value['date']).'</td>
+														<td><span class="more">'.$value['note'].'</span></td>
+														<td>
+															<button class="btn btn-xs green ubahdata" type="button" data-toggle="modal" data-target="#ubahdata" id="'.md5($value['presence_id']).'"> Edit
+																<i class="icon-wrench"></i>
+															</button>
+														</td>
+													</tr>
+													';
+													$urutan++;
+												}
+											?>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-12" >
+						<hr><a href="<?php echo base_url()."admin_side/laporan_kehadiran"; ?>" class="btn btn-info" role="button"><i class="fa fa-angle-double-left"></i> Back</a></div>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+<div class="modal fade" id="ubahdata" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="myModalLabel">Edit Attendance Data</h4>
+			</div>
+			<div class="modal-body">
+				<div class="box box-primary" id='formubahdata' >
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	$(document).ready(function(){
+		$.ajaxSetup({
+			type:"POST",
+			url: "<?php echo site_url(); ?>admin/Report/ajax_function",
+			cache: false,
+		});
+		$('.ubahdata').click(function(){
+		var id = $(this).attr("id");
+		var modul = 'modul_ubah_data_kehadiran';
+		var nilai_token = '<?php echo $this->security->get_csrf_hash();?>';
+		$.ajax({
+			data: {id:id,modul:modul,<?php echo $this->security->get_csrf_token_name();?>:nilai_token},
+			success:function(data){
+			$('#formubahdata').html(data);
+			$('#ubahdata').modal("show");
+			}
+		});
+		});
+	});
+</script>
 <style>
 	.morecontent span {
 	display: none;

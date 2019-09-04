@@ -96,7 +96,7 @@ else{
 														<span class="details">
 															<span class="label label-sm label-icon label-warning">
 																<i class="fa fa-exchange"></i>
-															</span> '.$value->fullname.' sebesar Rp '.number_format($value->grand_total,2).'</span>
+															</span> '.$value->fullname.' sebesar Rp '.number_format($value->grand_total,0).'</span>
 													</a>
 												</li>
 												';
