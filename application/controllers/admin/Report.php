@@ -11,18 +11,21 @@ class Report extends CI_Controller {
 		$data['child'] = 'presence';
 		$data['grand_child'] = '';
 
-		if($this->input->post('start')=='' AND $this->input->post('end')==''){
-			$data['data_tabel'] = $this->Main_model->getSelectedData('student a', 'a.*,(SELECT COUNT(b.presence_id) FROM presence b WHERE b.user_id=a.user_id) AS jumlah_kehadiran,q.quota', array('a.deleted'=>'0'), "a.fullname ASC",'','','',array(
-				'table' => 'status q',
-				'on' => 'a.user_id=q.user_id',
-				'pos' => 'left',
-			))->result();
+		// if($this->input->post('start')=='' AND $this->input->post('end')==''){
+		if($this->input->post('period')==''){
+			// $data['data_tabel'] = $this->Main_model->getSelectedData('student a', 'a.*,(SELECT COUNT(b.presence_id) FROM presence b WHERE b.user_id=a.user_id) AS jumlah_kehadiran,q.quota', array('a.deleted'=>'0'), "a.fullname ASC",'','','',array(
+			// 	'table' => 'status q',
+			// 	'on' => 'a.user_id=q.user_id',
+			// 	'pos' => 'left',
+			// ))->result();
 		}else{
-			$data['data_tabel'] = $this->Main_model->getSelectedData('student a', 'a.*,(SELECT COUNT(b.presence_id) FROM presence b WHERE b.user_id=a.user_id AND b.date between "'.$this->input->post('start').'" AND "'.$this->input->post('end').'") AS jumlah_kehadiran,q.quota', array('a.deleted'=>'0'), "a.fullname ASC",'','','',array(
-				'table' => 'status q',
-				'on' => 'a.user_id=q.user_id',
-				'pos' => 'left',
-			))->result();
+			// $data['data_tabel'] = $this->Main_model->getSelectedData('student a', 'a.*,(SELECT COUNT(b.presence_id) FROM presence b WHERE b.user_id=a.user_id AND b.date between "'.$this->input->post('start').'" AND "'.$this->input->post('end').'") AS jumlah_kehadiran,q.quota', array('a.deleted'=>'0'), "a.fullname ASC",'','','',array(
+			// 	'table' => 'status q',
+			// 	'on' => 'a.user_id=q.user_id',
+			// 	'pos' => 'left',
+			// ))->result();
+			$data['data_tabel'] = $this->Main_model->getSelectedData('student a', 'a.*', array('a.deleted'=>'0'), "a.fullname ASC")->result();
+			$data['period'] = $this->input->post('period');
 		}
 		$data['siswa'] = $this->Main_model->getSelectedData('student a', 'a.*','','a.fullname ASC')->result();
 		$this->load->view('admin/template/header',$data);

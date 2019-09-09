@@ -143,6 +143,7 @@ $route['student/destroy_cart'] = 'student/Payment/destroy_cart';
 $route['student/transaction_completed'] = 'student/Payment/transaction_completed';
 $route['student/riwayat_pembelian'] = 'student/Payment/payment_history';
 $route['student/detail_transaksi/(:any)'] = 'student/Payment/payment_detail/$1';
+$route['student/pembatalan_transaksi/(:any)'] = 'student/Payment/transaction_canceled/$1';
 
 $route['student/laporan_kehadiran'] = 'student/Report/presence_data';
 

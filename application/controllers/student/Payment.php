@@ -148,6 +148,19 @@ class Payment extends CI_Controller {
 		$this->load->view('student/payment/payment_detail',$data);
 		$this->load->view('student/template/footer');
 	}
+	public function transaction_canceled($id){
+		$this->db->trans_start();
+		$this->Main_model->updateData('purchasing',array('status'=>'2'),array('md5(invoice_number)'=>$id));
+		$this->db->trans_complete();
+		if($this->db->trans_status() === false){
+			$this->session->set_flashdata('gagal','<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Ups! </strong>data gagal diubah.<br /></div>' );
+			echo "<script>window.location='".base_url()."student/detail_transaksi/".$id."'</script>";
+		}
+		else{
+			$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data berhasil diubah.<br /></div>' );
+			echo "<script>window.location='".base_url()."student/detail_transaksi/".$id."'</script>";
+		}
+	}
 	public function ajax_function()
 	{
 		if($this->input->post('modul')=='modul_detail_data_paket'){

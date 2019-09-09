@@ -1,4 +1,4 @@
-<?php error_reporting(0); ?>
+<?php error_reporting(0); $s = ''; ?>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <ul class="page-breadcrumb breadcrumb">
 	<li>
@@ -35,6 +35,7 @@
 			<!-- <b>Payment Type</b>&nbsp; &nbsp; &nbsp; &nbsp;<?= $value->payment_type; ?><br> -->
 			<b>Status</b>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<?php
 			// echo $stat;
+			$s = $value->status;
 			if($value->status=='1'){
 				echo'<span class="label label-success"> Success </span>';
 			}elseif($value->status=='0'){
@@ -230,8 +231,8 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-md-12" >
-						<hr><a href="<?php echo base_url()."student/riwayat_pembelian"; ?>" class="btn btn-info" role="button"><i class="fa fa-angle-double-left"></i> Back</a></div>
+						<div class="col-md-12">
+						<hr><a href="<?php echo base_url()."student/riwayat_pembelian"; ?>" class="btn btn-info" role="button"><i class="fa fa-angle-double-left"></i> Back</a> <?php if($s=='0'){ ?>| <a href="<?php echo base_url()."student/pembatalan_transaksi/".$this->uri->segment(3); ?>" class="btn btn-danger" role="button"><i class="fa fa-close"></i> Cancel the Transaction</a><?php }else{echo'';} ?></div>
 					</div>
 				</div>
 			</div>

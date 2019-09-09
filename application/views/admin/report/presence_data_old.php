@@ -45,10 +45,13 @@
 						<form method='post' action='<?= site_url('admin_side/laporan_kehadiran'); ?>'>
 							<input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>">
 							<div class="form-group">
-								<div class="col-md-2"></div>
-								<label class="control-label col-md-2">Select period</label>
+								<div class="col-md-1"></div>
+								<label class="control-label col-md-2">Select a time range</label>
 								<div class="col-md-3">
-									<input type="month" class="form-control" name="period" required>
+									<input type="date" class="form-control" name="start" required>
+								</div>
+								<div class="col-md-3">
+									<input type="date" class="form-control" name="end" required>
 								</div>
 								<div class="col-md-2">
 									<button type="submit" class="btn blue">Process</button>
@@ -59,15 +62,8 @@
 					</div>
 					<br>
 					<br>
-                    <br>
-                    <?php
-                    if(isset($data_tabel)){
-                        // $date = '2019-08-02';
-                        // echo date('jS F Y', strtotime($date));
-                        $get_tanggal = explode('-',$period);
-			            $jumlah_hari = cal_days_in_month(CAL_GREGORIAN, $get_tanggal[1], $get_tanggal[0]);
-                    ?>
-                    <table class="table table-striped table-bordered table-hover table-checkable order-column" style="overflow-x:auto;" width='200%' id="sample_1">
+					<br>
+					<table class="table table-striped table-bordered table-hover table-checkable order-column" id="sample_1">
 						<thead>
 							<tr>
 								<th width="3%">
@@ -78,12 +74,9 @@
 								</th>
 								<th style="text-align: center;" width="4%"> # </th>
 								<th style="text-align: center;"> Name </th>
-								<th style="text-align: center;"> Period </th>
-                                <?php
-                                for ($i=1; $i <= $jumlah_hari ; $i++) { 
-                                    echo '<th style="text-align: center;"> '.$i.' </th>';
-                                }
-                                ?>
+								<th style="text-align: center;"> Number Phone </th>
+								<th style="text-align: center;"> Attendance </th>
+								<th style="text-align: center;"> Remaining Quota </th>
 								<th style="text-align: center;" width="7%"> Action </th>
 							</tr>
 						</thead>
@@ -101,30 +94,34 @@
 								</td>
 								<td style="text-align: center;"><?= $no++.'.'; ?></td>
 								<td style="text-align: center;"><?= $value->fullname; ?></td>
-								<td style="text-align: center;"><?= date('F Y', strtotime($period)); ?></td>
-                                <?php
-                                for ($j=1; $j <= $jumlah_hari ; $j++) { 
-                                    $where = date('Y-m-d', strtotime($period.'-'.$j));
-                                    $check = $this->Main_model->getSelectedData('presence a', 'a.*', array('a.user_id'=>$value->user_id,'a.date'=>$where))->result();
-                                    if($check==NULL){
-                                        echo '<td style="text-align: center;">-</td>';
-                                    }else{
-                                        echo '<td style="text-align: center;">v</td>';
-                                    }
-                                }
-                                ?>
-								<td style="text-align: center;">
-                                    <a class="btn btn-xs green detaildata" type="button" href="<?=site_url('admin_side/detail_data_kehadiran/'.md5($value->user_id));?>"> Detail
-                                        <i class="fa fa-share-square-o"></i>
-                                    </a>
+								<td style="text-align: center;"><?= $value->number_phone; ?></td>
+								<td style="text-align: center;"><?= number_format($value->jumlah_kehadiran).'x'; ?></td>
+								<td style="text-align: center;"><?php
+								if($value->quota==NULL){
+									echo'-';
+								}elseif($value->quota=='Unlimited'){echo $value->quota;}else{
+									echo $value->quota.' Attendance';
+								}
+								?></td>
+								<td>
+									<div class="btn-group" style="text-align: center;">
+										<button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Action
+											<i class="fa fa-angle-down"></i>
+										</button>
+										<ul class="dropdown-menu" role="menu">
+											<li>
+												<a href="<?=site_url('admin_side/detail_data_kehadiran/'.md5($value->user_id));?>">
+													<i class="icon-eye"></i> Detail Data </a>
+											</li>
+										</ul>
+									</div>
 								</td>
 							</tr>
 							<?php
 							}
 							?>
 						</tbody>
-                    </table>
-                    <?php } ?>
+					</table>
 					<!-- </form> -->
 					<script type="text/javascript">
 					function deleteConfirm(){

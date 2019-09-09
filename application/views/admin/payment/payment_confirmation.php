@@ -113,7 +113,7 @@
 							}
 							echo'
 							<tr>
-								<td style="text-align: center;">'.$urutan.'.</td>
+								<td style="text-align: center;">'.$urutan++.'.</td>
 								<td style="text-align: center;">'.$value->fullname.'</td>
 								<td style="text-align: center;">'.$quota.'</td>
 								<td style="text-align: center;">'.$this->Main_model->convert_tanggal($value->expired_date).'</td>
@@ -121,7 +121,18 @@
 								<td style="text-align: center;">'.$this->Main_model->convert_tanggal($value->payment_date).'</td>
 							</tr>
 							';
-							$urutan++;
+						}
+						foreach ($transaksi_gagal as $key => $f) {
+							echo '
+								<tr style="background: red">
+									<td style="text-align: center;">'.$urutan++.'.</td>
+									<td style="text-align: center;">-</td>
+									<td style="text-align: center;">-</td>
+									<td style="text-align: center;">-</td>
+									<td style="text-align: center;">'.$f->sender.'</td>
+									<td style="text-align: center;">'.$this->Main_model->convert_tanggal($f->payment_date).'</td>
+								</tr>
+							';
 						}
 						?>
 					</tbody>

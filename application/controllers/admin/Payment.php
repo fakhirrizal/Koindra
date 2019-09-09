@@ -39,7 +39,12 @@ class Payment extends CI_Controller {
 					$string_bill = preg_replace("/[^0-9]/", "", substr($row['B'],0,-3));
 					$dt = $this->Main_model->getSelectedData('purchasing a', '*', array("a.bill" => $string_bill,'a.status'=>'0','a.deleted'=>'0'))->row();
 					if($dt==NULL){
-						echo'';
+						$transaction_failed_data = array(
+							'nominal' => $row['B'],
+							'sender' => $row['C'],
+							'payment_date' => date('Y-m-d', strtotime($row['A']))
+						);
+						$this->Main_model->insertData('cache_transaction_failed',$transaction_failed_data);
 					}else{
 						$get_purchasing_detail = $this->Main_model->getSelectedData('purchasing_detail a', 'a.*',array('purchasing_id'=>$dt->purchasing_id))->result();
 						foreach ($get_purchasing_detail as $key => $value) {
@@ -97,6 +102,7 @@ class Payment extends CI_Controller {
 			'on' => 'a.user_id=b.user_id',
 			'pos' => 'LEFT',
 		))->result();
+		$data['transaksi_gagal'] = $this->Main_model->getSelectedData('cache_transaction_failed a', 'a.*',array('a.status'=>'0'),'a.status DESC')->result();
 		$this->load->view('admin/template/header',$data);
 		$this->load->view('admin/payment/payment_confirmation',$data);
 		$this->load->view('admin/template/footer');
@@ -135,6 +141,7 @@ class Payment extends CI_Controller {
 			$this->Main_model->updateData('student',array('status'=>'Aktif'),array('user_id'=>$value->user_id));
 			$this->Main_model->log_activity($this->session->userdata('id'),'Payment Confirmed',"Payment Confirmed (Invoice number: ".$value->invoice_number.")");
 		}
+		$this->Main_model->updateData('cache_transaction_failed',array('status'=>'1'),array('status'=>'0'));
 		$this->db->trans_complete();
 		if($this->db->trans_status() === false){
 			$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data gagal disimpan.<br /></div>' );
@@ -165,6 +172,7 @@ class Payment extends CI_Controller {
 			);
 			$this->Main_model->updateData('cache',$update1,array('user_id'=>$value->user_id));
 		}
+		$this->Main_model->updateData('cache_transaction_failed',array('status'=>'1'),array('status'=>'0'));
 		$this->db->trans_complete();
 		if($this->db->trans_status() === false){
 			$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data gagal disimpan.<br /></div>' );
