@@ -99,16 +99,16 @@ class Payment extends CI_Controller {
 			$this->cart->destroy();
 			$this->db->trans_complete();
 			if($this->db->trans_status() === false){
-				$this->session->set_flashdata('gagal','<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Ups! </strong>transaksi gagal! Terjadi kesalahan.<br /></div>' );
+				$this->session->set_flashdata('gagal','<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Ups! </strong>Transaction failed! There is an error.<br /></div>' );
 				echo "<script>window.location='".base_url()."student/beranda/'</script>";
 			}
 			else{
-				$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>transaksi Anda segera diproses.<br /></div>' );
+				$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>Your transaction is immediately processed.<br /></div>' );
 				echo "<script>window.location='".base_url()."student/beranda/'</script>";
 			}
 		}else{
 			$this->cart->destroy();
-			$this->session->set_flashdata('gagal','<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Ups! </strong>Transaksi terakhir Anda belum selesai!.<br /></div>' );
+			$this->session->set_flashdata('gagal','<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Ups! </strong>Your last transaction has not yet been completed!<br /></div>' );
 			echo "<script>window.location='".base_url()."student/beranda/'</script>";
 		}
 	}
@@ -153,11 +153,11 @@ class Payment extends CI_Controller {
 		$this->Main_model->updateData('purchasing',array('status'=>'2'),array('md5(invoice_number)'=>$id));
 		$this->db->trans_complete();
 		if($this->db->trans_status() === false){
-			$this->session->set_flashdata('gagal','<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Ups! </strong>data gagal diubah.<br /></div>' );
+			$this->session->set_flashdata('gagal','<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Ups! </strong>Data failed to change.<br /></div>' );
 			echo "<script>window.location='".base_url()."student/detail_transaksi/".$id."'</script>";
 		}
 		else{
-			$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data berhasil diubah.<br /></div>' );
+			$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>Data successfully changed.<br /></div>' );
 			echo "<script>window.location='".base_url()."student/detail_transaksi/".$id."'</script>";
 		}
 	}

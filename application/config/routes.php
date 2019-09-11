@@ -111,11 +111,18 @@ $route['admin_side/detail_data_kehadiran/(:any)'] = 'admin/Report/presence_data_
 $route['admin_side/simpan_data_kehadiran'] = 'admin/Report/save_presence_data';
 $route['admin_side/impor_data_kehadiran'] = 'admin/Report/import_presence_data';
 $route['admin_side/perbarui_data_kehadiran'] = 'admin/Report/update_presence_data';
+$route['admin_side/hapus_data_kehadiran/(:any)'] = 'admin/Report/delete_presence_data';
 
 $route['admin_side/pembayaran'] = 'admin/Payment/all_payment';
 $route['admin_side/impor_data_pembayaran'] = 'admin/Payment/import_payment_data';
 $route['admin_side/konfirmasi_pembayaran'] = 'admin/Payment/payment_confirmation';
 $route['admin_side/hapus_transaksi/(:any)'] = 'admin/Payment/delete_payment/$1';
+
+$route['admin_side/tambah_transaksi'] = 'admin/Payment/add_transaction';
+$route['admin_side/transaction_check'] = 'admin/Payment/transaction_check';
+$route['admin_side/delete_transaction/(:any)'] = 'admin/Payment/delete_transaction/$1';
+$route['admin_side/save_transaction'] = 'admin/Payment/save_transaction';
+$route['admin_side/destroy_cart'] = 'admin/Payment/destroy_cart';
 
 /* Student */
 $route['student/launcher'] = 'student/App/launcher';

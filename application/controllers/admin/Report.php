@@ -133,6 +133,22 @@ class Report extends CI_Controller {
 			echo "<script>window.location='".base_url()."admin_side/detail_data_kehadiran/".$this->input->post('user_id')."'</script>";
 		}
 	}
+	public function delete_presence_data(){
+		$this->db->trans_start();
+		$id_siswa = '';
+		$data = $this->Main_model->getSelectedData('presence a', 'a.*', array('md5(a.presence_id)'=>$this->uri->segment(3)))->row();
+		$id_siswa = $data->user_id;
+		$this->Main_model->deleteData('presence', array('md5(presence_id)'=>$this->uri->segment(3)));
+		$this->db->trans_complete();
+		if($this->db->trans_status() === false){
+			$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>Data failed to delete.<br /></div>' );
+			echo "<script>window.location='".base_url()."admin_side/detail_data_kehadiran/".md5($id_siswa)."'</script>";
+		}
+		else{
+			$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>Data has been successfully deleted.<br /></div>' );
+			echo "<script>window.location='".base_url()."admin_side/detail_data_kehadiran/".md5($id_siswa)."'</script>";
+		}
+	}
 	public function ajax_function()
 	{
 		if($this->input->post('modul')=='modul_ubah_data_kehadiran'){

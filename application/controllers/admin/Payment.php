@@ -5,10 +5,118 @@ class Payment extends CI_Controller {
 	function __construct() {
 		parent::__construct();
 	}
+	/* Transaction */
+	public function add_transaction(){
+		$data['parent'] = 'payment';
+		$data['child'] = 'add_transaction';
+		$data['grand_child'] = '';
+		$data['transaction'] = $this->Main_model->getSelectedData('cache_transaction a', 'a.*,b.fullname,c.packet_name',array('a.status'=>'0'),'','','','',array(
+			array(
+				'table' => 'student b',
+				'on' => 'a.user_id=b.user_id',
+				'pos' => 'LEFT'
+			),
+			array(
+				'table' => 'packet c',
+				'on' => 'a.packet_id=c.packet_id',
+				'pos' => 'LEFT'
+			)
+		))->result();
+		$data['packet'] = $this->Main_model->getSelectedData('packet a', 'a.*',array('a.is_active'=>'1','a.deleted'=>'0'))->result();
+		$data['student'] = $this->Main_model->getSelectedData('student a', 'a.*',array('(a.status="Aktif" OR status="Free Trial")','a.deleted'=>'0'))->result();
+		$this->load->view('admin/template/header',$data);
+		$this->load->view('admin/payment/add_transaction',$data);
+		$this->load->view('admin/template/footer');
+	}
+	public function transaction_check(){
+		$transaction_check1 = $this->Main_model->getSelectedData('purchasing a', 'a.*', array('a.user_id'=>$this->input->post('id'),'a.status'=>'0','a.deleted'=>'0'))->row();
+		if($transaction_check1==NULL){
+			$transaction_check2 = $this->Main_model->getSelectedData('cache_transaction a', 'a.*', array('a.user_id'=>$this->input->post('id'),'a.status'=>'0'))->row();
+			if($transaction_check2==NULL){
+				$purchasing_detail_data = array(
+					'user_id' => $this->input->post('id'),
+					'packet_id' => $this->input->post('packet_id')
+				);
+				$this->Main_model->insertData('cache_transaction',$purchasing_detail_data);
+				$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>Successfully loaded on cart.<br /></div>' );
+				echo "<script>window.location='".base_url()."admin_side/tambah_transaksi/'</script>";
+			}else{
+				$this->session->set_flashdata('gagal','<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Ups! </strong>No double transactions are allowed for a student.<br /></div>' );
+				echo "<script>window.location='".base_url()."admin_side/tambah_transaksi/'</script>";
+			}
+		}else{
+			$this->session->set_flashdata('gagal','<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Ups! </strong>Transactions made by this student have not yet been completed.<br /></div>' );
+			echo "<script>window.location='".base_url()."admin_side/tambah_transaksi/'</script>";
+		}
+	}
+	public function delete_transaction($id){
+		$this->db->trans_start();
+		$this->Main_model->updateData('cache_transaction',array('status'=>'1'),array('md5(id_cache_transaction)'=>$id));
+		$this->db->trans_complete();
+		if($this->db->trans_status() === false){
+			$this->session->set_flashdata('gagal','<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Ups! </strong>Transaction failed! There is an error.<br /></div>' );
+			echo "<script>window.location='".base_url()."admin_side/tambah_transaksi/'</script>";
+		}
+		else{
+			$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>Success.<br /></div>' );
+			echo "<script>window.location='".base_url()."admin_side/tambah_transaksi/'</script>";
+		}
+	}
+	public function destroy_cart(){
+		$this->db->trans_start();
+		$this->Main_model->updateData('cache_transaction',array('status'=>'1'),array('status'=>'0'));
+		$this->db->trans_complete();
+		if($this->db->trans_status() === false){
+			$this->session->set_flashdata('gagal','<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Ups! </strong>Transaction failed! There is an error.<br /></div>' );
+			echo "<script>window.location='".base_url()."admin_side/tambah_transaksi/'</script>";
+		}
+		else{
+			$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>Success.<br /></div>' );
+			echo "<script>window.location='".base_url()."admin_side/tambah_transaksi/'</script>";
+		}
+	}
+	public function save_transaction(){
+		$this->db->trans_start();
+		$get_cache = $this->Main_model->getSelectedData('cache_transaction a', 'a.*', array('a.status'=>'0'))->result();
+		foreach ($get_cache as $key => $value) {
+			$purchasing_id = $this->Main_model->getLastID('purchasing','purchasing_id');
+			$data_profil = $this->Main_model->getSelectedData('student a', 'a.*', array('a.user_id'=>$value->user_id))->row();
+			$data_paket = $this->Main_model->getSelectedData('packet a', 'a.*', array('a.packet_id'=>$value->packet_id))->row();
+			$data_of_purchasing = array(
+				'purchasing_id' => $purchasing_id['purchasing_id']+1,
+				'invoice_number' => date('YmdHi').'-'.$value->user_id,
+				'user_id' => $value->user_id,
+				'date' => date('Y-m-d'),
+				'total_items' => '1',
+				'grand_total' => $data_paket->price,
+				'bill' => $data_paket->price+$data_profil->student_id
+			);
+			$this->Main_model->insertData('purchasing',$data_of_purchasing);
+			$purchasing_detail_data = array(
+				'purchasing_id' => $purchasing_id['purchasing_id']+1,
+				'product_id' => $value->packet_id,
+				'price' => $data_paket->price,
+				'qty' => '1',
+				'sub_total' => $data_paket->price
+			);
+			$this->Main_model->insertData('purchasing_detail',$purchasing_detail_data);
+		}
+		$this->Main_model->updateData('cache_transaction',array('status'=>'1'),array('status'=>'0'));
+		$this->db->trans_complete();
+		if($this->db->trans_status() === false){
+			$this->session->set_flashdata('gagal','<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Ups! </strong>Transaction failed! There is an error.<br /></div>' );
+			echo "<script>window.location='".base_url()."admin_side/tambah_transaksi/'</script>";
+		}
+		else{
+			$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>Your transaction is immediately processed.<br /></div>' );
+			echo "<script>window.location='".base_url()."admin_side/pembayaran/'</script>";
+		}
+	}
+	/* Payment */
 	public function all_payment()
 	{
 		$data['parent'] = 'payment';
-		$data['child'] = '';
+		$data['child'] = 'payment_history';
 		$data['grand_child'] = '';
 		$data['riwayat_pembayaran'] = $this->Main_model->getSelectedData('purchasing a', 'a.*,b.fullname',array('a.deleted'=>'0'),'a.date DESC','','','',array(
 			'table' => 'user_profile b',
@@ -90,7 +198,7 @@ class Payment extends CI_Controller {
 	}
 	public function payment_confirmation(){
 		$data['parent'] = 'payment';
-		$data['child'] = '';
+		$data['child'] = 'payment_history';
 		$data['grand_child'] = '';
 		$data['riwayat_pembayaran'] = $this->Main_model->getSelectedData('purchasing a', 'a.*,b.fullname',array('a.deleted'=>'0'),'a.date DESC','','','',array(
 			'table' => 'user_profile b',
@@ -141,6 +249,58 @@ class Payment extends CI_Controller {
 			$this->Main_model->updateData('student',array('status'=>'Aktif'),array('user_id'=>$value->user_id));
 			$this->Main_model->log_activity($this->session->userdata('id'),'Payment Confirmed',"Payment Confirmed (Invoice number: ".$value->invoice_number.")");
 		}
+		$cek = $this->Main_model->getSelectedData('cache_transaction_failed a', 'a.*', array('a.status'=>'0'))->result();
+		$config = Array(
+			'protocol' => 'smtp',
+			'smtp_host' => 'ssl://smtp.googlemail.com',
+			'smtp_port' => 465,
+			'smtp_user' => 'tatasuratmerbabu@gmail.com',
+			'smtp_pass' => '@tatasuratmerbabu',
+			'mailtype'  => 'html',
+			'charset'   => 'iso-8859-1'
+		);
+
+		$to = 'ko.in.dra.tutorial@gmail.com';
+		$this->load->library('email', $config);
+		$this->email->set_newline("\r\n");
+		$isi_tabel = '';
+		foreach ($cek as $key => $value) {
+			$isi_tabel .='
+			<tr>	
+				<td valign="top" align="center">'.$this->Main_model->convert_tanggal($value->payment_date).'</td>
+				<td valign="top" align="center">'.$value->sender.'</td>
+				<td valign="top" align="center">Rp '.number_format($value->nominal,0).'</td>
+			</tr>';
+		}
+		$isiemail = 'Dear Admin<br><br>
+					Berikut kami infokan transaksi yang gagal di proses :
+					<br>
+					<br>
+					<table class="table">
+						<thead>
+							<tr>
+								<th valign="top" align="center">Tanggal Transaksi</th>
+								<th valign="top" align="center">Pengirim</th>
+								<th valign="top" align="center">Nominal</th>
+							</tr>
+						</thead>
+						<tbody>
+							'.$isi_tabel.'
+						<tbody>
+					</table>
+					<br>
+					<br>
+					Demikian detail dari pesan yang kami sampaikan.
+					<br>
+					<br>
+					Salam';
+
+		$this->email->from('service@koindra.com', 'Koindra - Bimbingan Belajar Terpecaya');
+		$this->email->to($to);
+		$this->email->subject('Transaksi');
+		$this->email->message($isiemail);
+
+		$this->email->send();
 		$this->Main_model->updateData('cache_transaction_failed',array('status'=>'1'),array('status'=>'0'));
 		$this->db->trans_complete();
 		if($this->db->trans_status() === false){

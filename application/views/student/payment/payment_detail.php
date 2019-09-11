@@ -169,13 +169,20 @@
 					</div>
 					<div id="collapse_1" class="panel-collapse in">
 						<div class="panel-body">
-							<ol>
+							<!-- <ol>
 								<li>Silahkan pilih menu transfer pada ATM atau Mobile Banking anda</li>
 								<li>Pilih bank BCA</li>
 								<li>Masukkan rekening tujuan <b>6300839086</b> atas nama <b>Indra Setiawan</b></li>
 								<li>Masukkan jumlah tagihan yang anda bayarkan sebesar <b><?= 'Rp '.number_format($value->bill,0); ?></b> pastikan 3 digit terakhir anda sesuai dengan yang tertera pada layar</li>
-							</ol>
-							* Ketika Anda telah melakukan transaksi, harap ditunggu karena masih dalam proses verifikasi oleh admin.
+							</ol> -->
+							<div style='text-align: center'>
+								<h4>Please Make a Payment</h4>
+								<b><?= 'Rp '.number_format($value->bill,0); ?></b><br>
+								BCA Account Number : <b>6300839086</b><br>
+								Under Name : <b>Indra Setiawan</b><br><br>
+							</div>
+							<!-- * Ketika Anda telah melakukan transaksi, harap ditunggu karena masih dalam proses verifikasi oleh admin. -->
+							* When you have made a transaction, please wait because it is still in the process of verification by the admin.
 						</div>
 					</div>
 				</div>

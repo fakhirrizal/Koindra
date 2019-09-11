@@ -38,16 +38,28 @@
 											<?php
 												$urutan = 1;
 												foreach ($riwayat_kehadiran as $key => $value) {
+													$return_on_click = "return confirm('Anda yakin?')";
 													echo'
-													<tr style="text-align: center;">
-														<td>'.$urutan.'.</td>
-														<td>'.$value['fullname'].'</td>
-														<td>'.$this->Main_model->convert_tanggal($value['date']).'</td>
-														<td><span class="more">'.$value['note'].'</span></td>
+													<tr>
+														<td style="text-align: center;">'.$urutan.'.</td>
+														<td style="text-align: center;">'.$value['fullname'].'</td>
+														<td style="text-align: center;">'.$this->Main_model->convert_tanggal($value['date']).'</td>
+														<td style="text-align: center;"><span class="more">'.$value['note'].'</span></td>
 														<td>
-															<button class="btn btn-xs green ubahdata" type="button" data-toggle="modal" data-target="#ubahdata" id="'.md5($value['presence_id']).'"> Edit
-																<i class="icon-wrench"></i>
-															</button>
+															<div class="btn-group" style="text-align: center;">
+																<button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Action
+																	<i class="fa fa-angle-down"></i>
+																</button>
+																<ul class="dropdown-menu" role="menu">
+																	<li>
+																		<a class="ubahdata" data-toggle="modal" data-target="#ubahdata" id="'.md5($value['presence_id']).'"><i class="icon-wrench"></i> Edit Data</a>
+																	</li>
+																	<li>
+																		<a onclick="'.$return_on_click.'" href="'.site_url('admin_side/hapus_data_kehadiran/'.md5($value['presence_id'])).'">
+																			<i class="icon-trash"></i> Delete Data </a>
+																	</li>
+																</ul>
+															</div>
 														</td>
 													</tr>
 													';

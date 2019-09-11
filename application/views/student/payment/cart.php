@@ -18,8 +18,10 @@ $grand_total = 0;
 	<div class="invoice">
 		<div class="m-heading-1 border-green m-bordered">
 			<h3>Note</h3>
-			<p> 1. Jika ada memiliki hutang pertemuan, akan ditambahkan biaya senilai hutang pertemuan dikali Rp 250.000,00</p>
-			<p> 2. Total tagihan akan ditambahkan dengan 3 kode unik di belakang angka</p>
+			<!-- <p> 1. Jika ada memiliki hutang pertemuan, akan ditambahkan biaya senilai hutang pertemuan dikali Rp 250.000,00</p>
+			<p> 2. Total tagihan akan ditambahkan dengan 3 kode unik di belakang angka</p> -->
+			<p> 1. Your bill will be added amount of 250.000 rupiahs for each minus quota</p>
+			<p> 2. The total bill will be added with 3 unique codes behind the numbers</p>
 		</div>
 		<div class="row">
 			<div class="col-xs-12">
@@ -148,13 +150,17 @@ $grand_total = 0;
 				<h4 class="modal-title" id="myModalLabel">Last Step of Transaction</h4>
 			</div>
 			<div class="modal-body">
-				<div class="box box-primary">
-					<ol>
+				<div class="box box-primary" style='text-align: center'>
+					<!-- <ol>
 						<li>Silahkan pilih menu transfer pada ATM atau Mobile Banking anda</li>
 						<li>Pilih bank BCA</li>
 						<li>Masukkan rekening tujuan <b>6300839086</b> atas nama <b>Indra Setiawan</b></li>
 						<li>Masukkan jumlah tagihan yang anda bayarkan sebesar <b><?= 'Rp '.number_format($grand_total,0); ?></b> pastikan 3 digit terakhir anda sesuai dengan yang tertera pada layar</li>
-					</ol>
+					</ol> -->
+					<h4>Please Make a Payment</h4>
+					<b><?= 'Rp '.number_format($grand_total,0); ?></b><br>
+					BCA Account Number : <b>6300839086</b><br>
+					Under Name : <b>Indra Setiawan</b><br><br>
 					<button class="btn blue btn-block m-icon" onclick="window.location.href='<?= site_url('student/transaction_completed'); ?>'">Finished
 						<i class="fa fa-check"></i>
 					</button>

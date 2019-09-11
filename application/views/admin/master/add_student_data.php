@@ -97,7 +97,7 @@
 							<div class="form-group form-md-line-input has-danger">
 								<label class="col-md-2 control-label" for="form_control_1">School <span class="required"> * </span></label>
 								<div class="col-md-10">
-									<select class='form-control' name='school' required>
+									<select class='form-control select2-allow-clear' name='school' required>
 										<option value=''>-- Pilih --</option>
 										<?php
 										foreach ($data_sekolah as $key => $value) {
@@ -110,7 +110,7 @@
 							<div class="form-group form-md-line-input has-danger">
 								<label class="col-md-2 control-label" for="form_control_1">Class <span class="required"> * </span></label>
 								<div class="col-md-10">
-									<select class='form-control' name='class' required>
+									<select class='form-control select2-allow-clear' name='class' required>
 										<option value=''>-- Pilih --</option>
 										<?php
 										for ($i=1; $i <13 ; $i++) {

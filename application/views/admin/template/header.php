@@ -199,9 +199,26 @@ else{
 								</ul>
 							</li>
 							<li class="menu-dropdown classic-menu-dropdown <?php if($parent=='payment'){echo 'active';}else{echo '';} ?>">
+								<a href="javascript:;"><i class="icon-wallet"></i> Payment
+									<span class="arrow <?php if($parent=='payment'){echo 'open';}else{echo '';} ?>"></span>
+								</a>
+								<ul class="dropdown-menu pull-left">
+									<li class=" <?php if($child=='add_transaction'){echo 'active';}else{echo '';} ?>">
+										<a href="<?php echo site_url('admin_side/tambah_transaksi'); ?>" class="nav-link nav-toggle ">
+											<i class="icon-basket-loaded"></i> Add Transaction
+										</a>
+									</li>
+									<li class=" <?php if($child=='payment_history'){echo 'active';}else{echo '';} ?>">
+										<a href="<?php echo site_url('admin_side/pembayaran'); ?>" class="nav-link nav-toggle ">
+											<i class="icon-list"></i> Payment History
+										</a>
+									</li>
+								</ul>
+							</li>
+							<!-- <li class="menu-dropdown classic-menu-dropdown <?php if($parent=='payment'){echo 'active';}else{echo '';} ?>">
 								<a href="<?php echo site_url('admin_side/pembayaran'); ?>"><i class="icon-wallet"></i> Payment
 								</a>
-							</li>
+							</li> -->
 							<li class="menu-dropdown classic-menu-dropdown <?php if($parent=='report'){echo 'active';}else{echo '';} ?>">
 								<a href="javascript:;"><i class="icon-notebook"></i> Report
 									<span class="arrow <?php if($parent=='report'){echo 'open';}else{echo '';} ?>"></span>
