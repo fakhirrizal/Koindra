@@ -12,11 +12,15 @@
 <?= $this->session->flashdata('gagal') ?>
 <div class="page-content-inner">
 	<div class="m-heading-1 border-green m-bordered">
-		<h3>Catatan</h3>
-		<p> Ekstensi yang diijinkan : xlsx </p>
+		<h3>Note</h3>
+		<!-- <p> Ekstensi yang diijinkan : xlsx </p>
 		<p> Pada saat import data, isian dari <b>No. Anggota</b> akan dijadikan <b>username</b> dan <b>password</b> untuk masuk ke sistem. </p>
 		<p> Ukuran maksimal file : 3MB </p>
-		<p> Ketika mengklik <b>Atur Ulang Sandi</b>, maka kata sandi otomatis menjadi "<b>1234</b>"</p>
+		<p> Ketika mengklik <b>Atur Ulang Sandi</b>, maka kata sandi otomatis menjadi "<b>1234</b>"</p> -->
+		<p> Allowed extensions: xlsx </p>
+		<p> When importing data, fill in <b> No. Anggota </b> will be used as <b> username </b> and <b> password </b> to enter the system. </p>
+		<p> Maximum file size: 3MB </p>
+		<p> When clicking <b> Reset Password </b>, the password will automatically become "<b> 1234 </b>" </p>
 	</div>
 	<div class="row">
 		<div class="col-md-12">

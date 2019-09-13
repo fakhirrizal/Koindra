@@ -37,11 +37,11 @@ class User_profile extends CI_Controller {
 		$this->Main_model->log_activity($this->session->userdata('id'),'Updating data',"Updating student data (".$this->input->post('fullname').")");
 		$this->db->trans_complete();
 		if($this->db->trans_status() === false){
-			$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data gagal diubah.<br /></div>' );
+			$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data failed to change.<br /></div>' );
 			echo "<script>window.location='".base_url()."student/profile/'</script>";
 		}
 		else{
-			$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data telah berhasil diubah.<br /></div>' );
+			$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data has been changed successfully.<br /></div>' );
 			echo "<script>window.location='".base_url()."student/profile/'</script>";
 		}
 	}
@@ -75,11 +75,11 @@ class User_profile extends CI_Controller {
 
 				$this->db->trans_complete();
 				if($this->db->trans_status() === false){
-					$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data gagal diubah.<br /></div>' );
+					$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data failed to change.<br /></div>' );
 					echo "<script>window.location='".base_url()."student/profile/'</script>";
 				}
 				else{
-					$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data telah berhasil diubah.<br /></div>' );
+					$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data has been changed successfully.<br /></div>' );
 					echo "<script>window.location='".base_url()."student/profile/'</script>";
 				}
 			}
@@ -109,16 +109,16 @@ class User_profile extends CI_Controller {
 			$this->Main_model->log_activity($this->session->userdata('id'),'Updating data',"Updating password account");
 			$this->db->trans_complete();
 			if($this->db->trans_status() === false){
-				$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data gagal diubah.<br /></div>' );
+				$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data failed to change.<br /></div>' );
 				echo "<script>window.location='".base_url()."student/password_setting/'</script>";
 			}
 			else{
-				$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data telah berhasil diubah.<br /></div>' );
+				$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data has been changed successfully.<br /></div>' );
 				echo "<script>window.location='".base_url()."student/password_setting/'</script>";
 			}
 		}
 		else{
-			$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>Password yang Anda masukkan tidak valid.<br /></div>' );
+			$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>The password you entered is invalid.<br /></div>' );
 			redirect('student/password_setting');
 		}
 	}
@@ -150,17 +150,17 @@ class User_profile extends CI_Controller {
 
 					$this->Main_model->log_activity($this->session->userdata('id'),'Updating data',"Updating email user");
 
-					$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>Email telah berhasil diubah.<br /></div>' );
+					$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>The email has been successfully changed.<br /></div>' );
 					redirect('student/email_setting');
 				}
 				else{
-					$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>Email yang Anda masukkan sudah digunakan.<br /></div>' );
+					$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>The email you entered is already in use.<br /></div>' );
 					redirect('student/email_setting');
 				}
 			}
 		}
 		else{
-			$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>Password yang Anda masukkan tidak valid.<br /></div>' );
+			$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>The password you entered is invalid.<br /></div>' );
 			redirect('student/email_setting');
 		}
 	}

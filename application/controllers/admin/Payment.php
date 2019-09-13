@@ -189,10 +189,10 @@ class Payment extends CI_Controller {
 				$numrow++;
 			}
 			$this->Main_model->log_activity($this->session->userdata('id'),'Importing data',"Import payment data");
-			$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-warning"></i></button><strong></i>Warning! </strong>silahkan cek data.<br /></div>' );
+			$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-warning"></i></button><strong></i>Warning! </strong>please check the data.<br /></div>' );
 			echo "<script>window.location='".base_url()."admin_side/konfirmasi_pembayaran/'</script>";
 		}else{
-			$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data gagal diupload.<br /></div>' );
+			$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data failed to upload.<br /></div>' );
 			echo "<script>window.location='".base_url()."admin_side/pembayaran/'</script>";
 		}
 	}
@@ -304,7 +304,7 @@ class Payment extends CI_Controller {
 		$this->Main_model->updateData('cache_transaction_failed',array('status'=>'1'),array('status'=>'0'));
 		$this->db->trans_complete();
 		if($this->db->trans_status() === false){
-			$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data gagal disimpan.<br /></div>' );
+			$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data failed to save.<br /></div>' );
 			echo "<script>window.location='".base_url()."admin_side/pembayaran/'</script>";
 		}
 		else{
@@ -335,7 +335,7 @@ class Payment extends CI_Controller {
 		$this->Main_model->updateData('cache_transaction_failed',array('status'=>'1'),array('status'=>'0'));
 		$this->db->trans_complete();
 		if($this->db->trans_status() === false){
-			$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data gagal disimpan.<br /></div>' );
+			$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data failed to save.<br /></div>' );
 			echo "<script>window.location='".base_url()."admin_side/pembayaran/'</script>";
 		}
 		else{
@@ -353,11 +353,11 @@ class Payment extends CI_Controller {
 		$this->Main_model->log_activity($this->session->userdata('id'),'Deleting data',"Deleting transaction data");
 		$this->db->trans_complete();
 		if($this->db->trans_status() === false){
-			$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data gagal dihapus.<br /></div>' );
+			$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data failed to delete.<br /></div>' );
 			echo "<script>window.location='".base_url()."admin_side/pembayaran/'</script>";
 		}
 		else{
-			$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data telah berhasil dihapus.<br /></div>' );
+			$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data has been successfully deleted.<br /></div>' );
 			echo "<script>window.location='".base_url()."admin_side/pembayaran/'</script>";
 		}
 	}

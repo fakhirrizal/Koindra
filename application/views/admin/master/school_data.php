@@ -135,7 +135,7 @@
 			</div>
 			<div class="modal-body">
 				<div class="m-heading-1 border-green m-bordered">
-					<h3>Catatan</h3>
+					<h3>Note</h3>
 					<p> Kolom isian dengan tanda bintang (<font color='red'>*</font>) adalah wajib untuk di isi.</p>
 				</div>
 				<div class="box box-primary">

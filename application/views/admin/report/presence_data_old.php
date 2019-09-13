@@ -13,9 +13,12 @@
 <div class="page-content-inner">
 	<div class="m-heading-1 border-green m-bordered">
 		<h3>Note</h3>
-		<p> Jika melakukan import data, kemudian ditemukan duplikasi data kehadiran siswa di hari yang sama maka hanya 1 data yang masuk</p>
+		<!-- <p> Jika melakukan import data, kemudian ditemukan duplikasi data kehadiran siswa di hari yang sama maka hanya 1 data yang masuk</p>
 		<p> Ekstensi yang diijinkan : xlsx </p>
-		<p> Ukuran maksimal file : 3MB </p>
+		<p> Ukuran maksimal file : 3MB </p> -->
+		<p> If you import data, then duplicate student attendance data is found on the same day, only 1 data will be entered </p>
+		<p> Allowed extensions: xlsx </p>
+		<p> Maximum file size: 3MB </p>
 	</div>
 	<div class="row">
 		<div class="col-md-12">

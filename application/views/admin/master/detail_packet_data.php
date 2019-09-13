@@ -17,7 +17,7 @@
 <div class="page-content-inner">
 	<div class="m-heading-1 border-green m-bordered">
 		<h3>Note</h3>
-		<p>Pesan pemberitahuan kepada siswa akan dikirimkan via email.</p>
+		<!-- <p>Pesan pemberitahuan kepada siswa akan dikirimkan via email.</p> -->
 	</div>
 	<div class="row">
 		<div class="col-md-12">

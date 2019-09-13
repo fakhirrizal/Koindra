@@ -57,7 +57,7 @@ class Report extends CI_Controller {
 		$this->Main_model->log_activity($this->session->userdata('id'),'Creating data',"Add attendance student data");
 			$this->db->trans_complete();
 			if($this->db->trans_status() === false){
-				$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data gagal ditambahkan.<br /></div>' );
+				$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data failed to add.<br /></div>' );
 				echo "<script>window.location='".base_url()."admin_side/laporan_kehadiran/'</script>";
 			}
 			else{
@@ -108,10 +108,10 @@ class Report extends CI_Controller {
 				$numrow++;
 			}
 			$this->Main_model->log_activity($this->session->userdata('id'),'Importing data',"Import student attendance data");
-			$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data telah berhasil diupload.<br /></div>' );
+			$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data has been uploaded successfully.<br /></div>' );
 			echo "<script>window.location='".base_url()."admin_side/laporan_kehadiran/'</script>";
 		}else{
-			$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data gagal diupload.<br /></div>' );
+			$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data failed to upload.<br /></div>' );
 			echo "<script>window.location='".base_url()."admin_side/laporan_kehadiran/'</script>";
 		}
 	}
@@ -125,11 +125,11 @@ class Report extends CI_Controller {
 		$this->Main_model->log_activity($this->session->userdata('id'),'Updating data',"Updating attendance data",$this->session->userdata('location'));
 		$this->db->trans_complete();
 		if($this->db->trans_status() === false){
-			$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data gagal diubah.<br /></div>' );
+			$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data failed to change.<br /></div>' );
 			echo "<script>window.location='".base_url()."admin_side/detail_data_kehadiran/".$this->input->post('user_id')."'</script>";
 		}
 		else{
-			$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data telah berhasil diubah.<br /></div>' );
+			$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data has been successfully changed.<br /></div>' );
 			echo "<script>window.location='".base_url()."admin_side/detail_data_kehadiran/".$this->input->post('user_id')."'</script>";
 		}
 	}

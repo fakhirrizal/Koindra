@@ -5,7 +5,7 @@
 </ul>
 <div class="page-content-inner">
 	<!-- <div class="m-heading-1 border-green m-bordered">
-		<h3>Catatan</h3>
+		<h3>Note</h3>
 		<p> Hanya status <b>aktif</b> yang akan tampil di shop display pengguna</p>
 	</div> -->
 	<div class="row">

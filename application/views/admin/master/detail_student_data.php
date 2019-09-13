@@ -16,7 +16,7 @@
 <?= $this->session->flashdata('gagal') ?>
 <div class="page-content-inner">
 	<div class="m-heading-1 border-green m-bordered">
-		<h3>Catatan</h3>
+		<h3>Note</h3>
 	</div>
 	<div class="row">
 		<div class="col-md-12">

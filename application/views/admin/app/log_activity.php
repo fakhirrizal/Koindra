@@ -1,14 +1,14 @@
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <ul class="page-breadcrumb breadcrumb">
 	<li>
-		<span>Log Aktifitas</span>
+		<span>Log Activity</span>
 	</li>
 </ul>
 <?= $this->session->flashdata('sukses') ?>
 <?= $this->session->flashdata('gagal') ?>
 <div class="page-content-inner">
 	<div class="m-heading-1 border-green m-bordered">
-		<h3>Catatan</h3>
+		<h3>Note</h3>
 		<!-- <p> Hanya status <b>aktif</b> yang akan tampil di shop display pengguna</p> -->
 	</div>
 	<div class="row">
@@ -21,12 +21,12 @@
 						<div class="row">
 							<div class="col-md-6">
 								<div class="btn-group">
-									<button type='submit' id="sample_editable_1_new" class="btn sbold red"> Hapus
+									<button type='submit' id="sample_editable_1_new" class="btn sbold red"> Delete
 										<i class="fa fa-trash"></i>
 									</button>
 								</div>
 									<span class="separator">|</span>
-									<a href="<?=base_url('admin_side/cleaning_log');?>" class="btn red uppercase">Kosongkan Log <i class="fa fa-trash"></i> </a>
+									<a href="<?=base_url('admin_side/cleaning_log');?>" class="btn red uppercase">Clear Log <i class="fa fa-trash"></i> </a>
 							</div>
 						</div>
 					</div>
@@ -40,11 +40,11 @@
 									</label>
 								</th>
 								<th style="text-align: center;" width="4%"> # </th>
-								<th style="text-align: center;"> Tipe Aktifitas </th>
-								<th style="text-align: center;"> Aktifitas </th>
-								<th style="text-align: center;"> Pengguna </th>
-								<th style="text-align: center;"> Waktu </th>
-								<th style="text-align: center;" width="7%"> Aksi </th>
+								<th style="text-align: center;"> Activity Type </th>
+								<th style="text-align: center;"> Activity </th>
+								<th style="text-align: center;"> User </th>
+								<th style="text-align: center;"> Datetime </th>
+								<th style="text-align: center;" width="8%"> Action </th>
 							</tr>
 						</thead>
 						<tbody>
@@ -67,7 +67,7 @@
 								<td style="text-align: center;"><?= $this->Main_model->convert_tanggal($pecah_datetime[0]).' '.$pecah_datetime[1]; ?></td>
 								<td>
 									<div class="btn-group" style="text-align: center;">
-										<button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Aksi
+										<button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Action
 											<i class="fa fa-angle-down"></i>
 										</button>
 										<ul class="dropdown-menu" role="menu">
@@ -77,7 +77,7 @@
 											</li>
 											<li>
 												<a onclick="return confirm('Anda yakin?')" href="<?=site_url('admin_side/hapus_aktifitas/'.md5($value->activity_id));?>">
-													<i class="icon-trash"></i> Hapus Data </a>
+													<i class="icon-trash"></i> Delete Data </a>
 											</li>
 										</ul>
 									</div>

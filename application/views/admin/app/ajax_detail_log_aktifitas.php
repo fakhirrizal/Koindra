@@ -15,22 +15,22 @@
 									<table class="table">
 										<tbody>
 											<tr>
-												<td> Tipe Aktifitas </td>
+												<td> Activity Type </td>
 												<td> : </td>
 												<td><?php echo $row->activity_type; ?></td>
 											</tr>
 											<tr>
-												<td> Aktifitas </td>
+												<td> Activity </td>
 												<td> : </td>
 												<td><?php echo $row->activity_data; ?></td>
 											</tr>
 											<tr>
-												<td> Pengguna </td>
+												<td> User </td>
 												<td> : </td>
 												<td><?php echo $row->fullname; ?></td>
 											</tr>
 											<tr>
-												<td> Waktu </td>
+												<td> Datetime </td>
 												<td> : </td>
 												<td><?= $this->Main_model->convert_tanggal($pecah_datetime[0]).' '.$pecah_datetime[1]; ?></td>
 											</tr>

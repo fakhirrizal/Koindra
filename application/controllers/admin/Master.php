@@ -69,7 +69,7 @@ class Master extends CI_Controller {
 			$this->Main_model->log_activity($this->session->userdata('id'),'Creating data',"Creating administrator data (".$this->input->post('fullname').")");
 			$this->db->trans_complete();
 			if($this->db->trans_status() === false){
-				$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data gagal ditambahkan.<br /></div>' );
+				$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data failed to add.<br /></div>' );
 				echo "<script>window.location='".base_url()."admin_side/tambah_data_admin/'</script>";
 			}
 			else{
@@ -110,11 +110,11 @@ class Master extends CI_Controller {
 		$this->Main_model->log_activity($this->session->userdata('id'),'Updating data',"Reset password admin account");
 		$this->db->trans_complete();
 		if($this->db->trans_status() === false){
-			$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data gagal diubah.<br /></div>' );
+			$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data failed to change.<br /></div>' );
 			echo "<script>window.location='".base_url()."admin_side/administrator/'</script>";
 		}
 		else{
-			$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data telah berhasil diubah.<br /></div>' );
+			$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data has been changed successfully.<br /></div>' );
 			echo "<script>window.location='".base_url()."admin_side/administrator/'</script>";
 		}
 	}
@@ -131,11 +131,11 @@ class Master extends CI_Controller {
 		$this->Main_model->log_activity($this->session->userdata('id'),'Deleting data',"Deleting admin data");
 		$this->db->trans_complete();
 		if($this->db->trans_status() === false){
-			$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data gagal dihapus.<br /></div>' );
+			$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data failed to delete.<br /></div>' );
 			echo "<script>window.location='".base_url()."admin_side/administrator/'</script>";
 		}
 		else{
-			$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data telah berhasil dihapus.<br /></div>' );
+			$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data has been successfully deleted.<br /></div>' );
 			echo "<script>window.location='".base_url()."admin_side/administrator/'</script>";
 		}
 	}
@@ -188,7 +188,7 @@ class Master extends CI_Controller {
 				$this->Main_model->log_activity($this->session->userdata('id'),'Creating data',"Creating school data (".$this->input->post('school_name').")");
 				$this->db->trans_complete();
 				if($this->db->trans_status() === false){
-					$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data gagal ditambahkan.<br /></div>' );
+					$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data failed to add.<br /></div>' );
 					echo "<script>window.location='".base_url()."admin_side/sekolah/'</script>";
 				}
 				else{
@@ -196,11 +196,11 @@ class Master extends CI_Controller {
 					echo "<script>window.location='".base_url()."admin_side/sekolah/'</script>";
 				}
 			}else{
-				$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>nama sekolah tidak boleh sama.<br /></div>' );
+				$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>the name of the school cannot be the same.<br /></div>' );
 				echo "<script>window.location='".base_url()."admin_side/sekolah/'</script>";
 			}
 		}else{
-			$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>kode sekolah telah digunakan.<br /></div>' );
+			$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>school code has been used.<br /></div>' );
 			echo "<script>window.location='".base_url()."admin_side/sekolah/'</script>";
 		}
 	}
@@ -217,11 +217,11 @@ class Master extends CI_Controller {
 		$this->Main_model->log_activity($this->session->userdata('id'),'Updating data',"Updating school data (".$this->input->post('school_name').")");
 		$this->db->trans_complete();
 		if($this->db->trans_status() === false){
-			$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data gagal diubah.<br /></div>' );
+			$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data failed to change.<br /></div>' );
 			echo "<script>window.location='".base_url()."admin_side/sekolah/'</script>";
 		}
 		else{
-			$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data telah berhasil diubah.<br /></div>' );
+			$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data has been changed successfully.<br /></div>' );
 			echo "<script>window.location='".base_url()."admin_side/sekolah/'</script>";
 		}
 	}
@@ -233,11 +233,11 @@ class Master extends CI_Controller {
 		$this->Main_model->log_activity($this->session->userdata('id'),'Deleting data',"Deleting school data");
 		$this->db->trans_complete();
 		if($this->db->trans_status() === false){
-			$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data gagal dihapus.<br /></div>' );
+			$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data failed to delete.<br /></div>' );
 			echo "<script>window.location='".base_url()."admin_side/sekolah/'</script>";
 		}
 		else{
-			$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data telah berhasil dihapus.<br /></div>' );
+			$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data has been successfully deleted.<br /></div>' );
 			echo "<script>window.location='".base_url()."admin_side/sekolah/'</script>";
 		}
 	}
@@ -344,7 +344,7 @@ class Master extends CI_Controller {
 			$this->Main_model->log_activity($this->session->userdata('id'),'Creating data',"Creating student data (".$this->input->post('fullname').")");
 			$this->db->trans_complete();
 			if($this->db->trans_status() === false){
-				$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data gagal ditambahkan.<br /></div>' );
+				$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data failed to add.<br /></div>' );
 				echo "<script>window.location='".base_url()."admin_side/tambah_data_siswa/'</script>";
 			}
 			else{
@@ -440,10 +440,10 @@ class Master extends CI_Controller {
 				$numrow++;
 			}
 			$this->Main_model->log_activity($this->session->userdata('id'),'Importing data',"Import student data");
-			$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data telah berhasil diupload.<br /></div>' );
+			$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data has been uploaded successfully.<br /></div>' );
 			echo "<script>window.location='".base_url()."admin_side/siswa/'</script>";
 		}else{
-			$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data gagal diupload.<br /></div>' );
+			$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data failed to upload.<br /></div>' );
 			echo "<script>window.location='".base_url()."admin_side/siswa/'</script>";
 		}
 	}
@@ -505,11 +505,11 @@ class Master extends CI_Controller {
 			$this->Main_model->log_activity($this->session->userdata('id'),'Updating data',"Updating student data (".$this->input->post('fullname').")");
 			$this->db->trans_complete();
 			if($this->db->trans_status() === false){
-				$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data gagal diubah.<br /></div>' );
+				$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data failed to change.<br /></div>' );
 				echo "<script>window.location='".base_url()."admin_side/ubah_data_siswa/".$this->input->post('user_id')."'</script>";
 			}
 			else{
-				$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data telah berhasil diubah.<br /></div>' );
+				$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data has been changed successfully.<br /></div>' );
 				echo "<script>window.location='".base_url()."admin_side/siswa/'</script>";
 			}
 		}else{
@@ -529,11 +529,11 @@ class Master extends CI_Controller {
 		$this->Main_model->log_activity($this->session->userdata('id'),'Updating data',"Updating status student (quota and expired date packet)");
 		$this->db->trans_complete();
 		if($this->db->trans_status() === false){
-			$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data gagal diubah.<br /></div>' );
+			$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data failed to change.<br /></div>' );
 			echo "<script>window.location='".base_url()."admin_side/detail_data_siswa/".md5($this->input->post('id'))."'</script>";
 		}
 		else{
-			$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data telah berhasil diubah.<br /></div>' );
+			$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data has been changed successfully.<br /></div>' );
 			echo "<script>window.location='".base_url()."admin_side/detail_data_siswa/".md5($this->input->post('id'))."'</script>";
 		}
 	}
@@ -549,11 +549,11 @@ class Master extends CI_Controller {
 		$this->Main_model->log_activity($this->session->userdata('id'),'Updating data',"Reset password student account");
 		$this->db->trans_complete();
 		if($this->db->trans_status() === false){
-			$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data gagal diubah.<br /></div>' );
+			$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data failed to change.<br /></div>' );
 			echo "<script>window.location='".base_url()."admin_side/siswa/'</script>";
 		}
 		else{
-			$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data telah berhasil diubah.<br /></div>' );
+			$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data has been changed successfully.<br /></div>' );
 			echo "<script>window.location='".base_url()."admin_side/siswa/'</script>";
 		}
 	}
@@ -571,11 +571,11 @@ class Master extends CI_Controller {
 		$this->Main_model->log_activity($this->session->userdata('id'),'Deleting data',"Deleting student data");
 		$this->db->trans_complete();
 		if($this->db->trans_status() === false){
-			$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data gagal dihapus.<br /></div>' );
+			$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data failed to delete.<br /></div>' );
 			echo "<script>window.location='".base_url()."admin_side/siswa/'</script>";
 		}
 		else{
-			$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data telah berhasil dihapus.<br /></div>' );
+			$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data has been successfully deleted.<br /></div>' );
 			echo "<script>window.location='".base_url()."admin_side/siswa/'</script>";
 		}
 	}
@@ -601,7 +601,7 @@ class Master extends CI_Controller {
 		mail($to,$subjek,$pesan, $headers);
 
 		$this->Main_model->log_activity($this->session->userdata('id'),'Send notification',"Send notification to ".$data->fullname);
-		$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>silahkan cek inbox ataupun spam email.<br /></div>' );
+		$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>please check your inbox or email spam.<br /></div>' );
 		echo "<script>window.location='".base_url()."admin_side/detail_data_paket/".$packet_id."'</script>";
 	}
 	/* Packet */
@@ -641,7 +641,7 @@ class Master extends CI_Controller {
 		$this->Main_model->log_activity($this->session->userdata('id'),'Creating data',"Creating packet data (".$this->input->post('packet_name').")");
 		$this->db->trans_complete();
 		if($this->db->trans_status() === false){
-			$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data gagal ditambahkan.<br /></div>' );
+			$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data failed to add.<br /></div>' );
 			echo "<script>window.location='".base_url()."admin_side/tambah_data_paket/'</script>";
 		}
 		else{
@@ -691,11 +691,11 @@ class Master extends CI_Controller {
 		$this->Main_model->log_activity($this->session->userdata('id'),'Updating data',"Updating packet data (".$this->input->post('packet_name').")");
 		$this->db->trans_complete();
 		if($this->db->trans_status() === false){
-			$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data gagal diubah.<br /></div>' );
+			$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data failed to change.<br /></div>' );
 			echo "<script>window.location='".base_url()."admin_side/ubah_data_paket/".$this->input->post('packet_id')."'</script>";
 		}
 		else{
-			$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data telah berhasil diubah.<br /></div>' );
+			$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data has been changed successfully.<br /></div>' );
 			echo "<script>window.location='".base_url()."admin_side/paket/'</script>";
 		}
 	}
@@ -710,11 +710,11 @@ class Master extends CI_Controller {
 		$this->Main_model->log_activity($this->session->userdata('id'),'Deleting data',"Deleting packet data");
 		$this->db->trans_complete();
 		if($this->db->trans_status() === false){
-			$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data gagal dihapus.<br /></div>' );
+			$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data failed to delete.<br /></div>' );
 			echo "<script>window.location='".base_url()."admin_side/paket/'</script>";
 		}
 		else{
-			$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data telah berhasil dihapus.<br /></div>' );
+			$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data has been successfully deleted.<br /></div>' );
 			echo "<script>window.location='".base_url()."admin_side/paket/'</script>";
 		}
 	}

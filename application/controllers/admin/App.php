@@ -79,11 +79,11 @@ class App extends CI_Controller {
 		$this->Main_model->cleanData('activity_logs');
 		$this->db->trans_complete();
 		if($this->db->trans_status() === false){
-			$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data gagal dihapus.<br /></div>' );
+			$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data failed to delete.<br /></div>' );
 			echo "<script>window.location='".base_url()."admin_side/log_activity/'</script>";
 		}
 		else{
-			$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data telah berhasil dihapus.<br /></div>' );
+			$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data has been successfully deleted.<br /></div>' );
 			echo "<script>window.location='".base_url()."admin_side/log_activity/'</script>";
 		}
 	}

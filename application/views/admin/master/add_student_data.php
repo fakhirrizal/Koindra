@@ -16,9 +16,9 @@
 <?= $this->session->flashdata('gagal') ?>
 <div class="page-content-inner">
 	<div class="m-heading-1 border-green m-bordered">
-		<h3>Catatan</h3>
-		<p> 1. Kolom isian dengan tanda bintang (<font color='red'>*</font>) adalah wajib untuk di isi.</p>
-		<p> 2. Untuk <b>username</b> dan <b>password</b> diambil dari isian <b>Nama Lengkap</b> dan <b>Nama Ibu</b>.</p>
+		<h3>Note</h3>
+		<p> 1. Fields with an asterisk (<font color = 'red'> * </font>) are required to be filled in. </p>
+		<p> 2. For <b> username </b> and <b> password </b> taken from the <b> Fullname </b> and <b> Mother's Name </b> fields. </p>
 	</div>
 	<div class="row">
 		<div class="col-md-12">

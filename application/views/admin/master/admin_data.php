@@ -12,8 +12,8 @@
 <?= $this->session->flashdata('gagal') ?>
 <div class="page-content-inner">
 	<div class="m-heading-1 border-green m-bordered">
-		<h3>Catatan</h3>
-		<p> Ketika mengklik <b>Atur Ulang Sandi</b>, maka kata sandi otomatis menjadi "<b>1234</b>"</p>
+		<h3>Note</h3>
+		<p> When clicking <b> Reset Password </b>, the password will automatically become "<b> 1234 </b>" </p>
 	</div>
 	<div class="row">
 		<div class="col-md-12">

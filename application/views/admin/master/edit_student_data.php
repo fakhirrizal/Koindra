@@ -16,7 +16,7 @@
 <?= $this->session->flashdata('gagal') ?>
 <div class="page-content-inner">
 	<div class="m-heading-1 border-green m-bordered">
-		<h3>Catatan</h3>
+		<h3>Note</h3>
 		<!-- <p> 1. Ekstensi foto yang diizinkan <b>jpg</b>, <b>png</b>, <b>jpeg</b>, dan <b>bmp</b>.</p>
 		<p> 2. Ukuran maksimal file yang akan diupload sebesar <b>3Mb</b>.</p>
 		<p> 3. Untuk <b>username</b> dan <b>password</b> diambil dari isian <b>Nama Lengkap</b> dan <b>Nama Ibu</b>.</p> -->

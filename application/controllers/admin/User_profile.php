@@ -26,11 +26,11 @@ class User_profile extends CI_Controller {
 		$this->Main_model->log_activity($this->session->userdata('id'),'Updating profile data',"Updating admin data (".$this->input->post('fullname').")");
 		$this->db->trans_complete();
 		if($this->db->trans_status() === false){
-			$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data gagal diubah.<br /></div>' );
+			$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data failed to change.<br /></div>' );
 			echo "<script>window.location='".base_url()."admin_side/profile/'</script>";
 		}
 		else{
-			$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data telah berhasil diubah.<br /></div>' );
+			$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data has been successfully changed.<br /></div>' );
 			echo "<script>window.location='".base_url()."admin_side/profile/'</script>";
 		}
 	}
@@ -64,11 +64,11 @@ class User_profile extends CI_Controller {
 
 				$this->db->trans_complete();
 				if($this->db->trans_status() === false){
-					$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data gagal diubah.<br /></div>' );
+					$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data failed to change.<br /></div>' );
 					echo "<script>window.location='".base_url()."admin_side/profile/'</script>";
 				}
 				else{
-					$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data telah berhasil diubah.<br /></div>' );
+					$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data has been successfully changed.<br /></div>' );
 					echo "<script>window.location='".base_url()."admin_side/profile/'</script>";
 				}
 			}
@@ -94,11 +94,11 @@ class User_profile extends CI_Controller {
 			$this->Main_model->log_activity($this->session->userdata('id'),'Updating data',"Updating password account");
 			$this->db->trans_complete();
 			if($this->db->trans_status() === false){
-				$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data gagal diubah.<br /></div>' );
+				$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data failed to change.<br /></div>' );
 				echo "<script>window.location='".base_url()."admin_side/password_setting/'</script>";
 			}
 			else{
-				$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data telah berhasil diubah.<br /></div>' );
+				$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data has been successfully changed.<br /></div>' );
 				echo "<script>window.location='".base_url()."admin_side/password_setting/'</script>";
 			}
 		}

@@ -49,7 +49,7 @@ class Auth extends CI_Controller {
 					if($role==NULL){
 						$this->session->set_flashdata('error','<div class="alert alert-danger alert-dismissible" role="alert" style="text-align: justify;">
 															<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-															<strong>Ups! </strong>Akun Anda tidak dikenali sistem.
+															<strong>Ups! </strong>Your account is not recognized by the system.
 														</div>' );
 						echo "<script>window.location='".base_url()."'</script>";
 					}else{
@@ -80,7 +80,7 @@ class Auth extends CI_Controller {
 		else{
 			$this->session->set_flashdata('error','<div class="alert alert-danger alert-dismissible" role="alert" style="text-align: justify;">
 											<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-											<strong>Ups! </strong>Username/ Email yang Anda masukkan tidak terdaftar.
+											<strong>Ups! </strong>The username/ email you entered is not registered.
 										</div>' );
 			echo "<script>window.location='".base_url()."'</script>";
 		}
@@ -116,7 +116,7 @@ class Auth extends CI_Controller {
 		if($cek_passcode==NULL){
 			$this->session->set_flashdata('error','<div class="alert alert-danger alert-dismissible" role="alert" style="text-align: justify;">
 											<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-											<strong>Ups! </strong>Passcode yang Anda masukkan tidak valid.
+											<strong>Ups! </strong>The passcode you entered is invalid.
 										</div>' );
 			echo "<script>window.location='".base_url('registrasi')."'</script>";
 		}else{
@@ -125,7 +125,7 @@ class Auth extends CI_Controller {
 				$this->session->set_flashdata('error','
 				<div class="alert alert-danger alert-dismissible" role="alert" style="text-align: justify;">
 					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					<strong>Ups! </strong>Akun ini telah digunakan.
+					<strong>Ups! </strong>This account has already been used.
 				</div>' );
 				echo "<script>window.location='".base_url('registrasi')."'</script>";
 			}
@@ -222,7 +222,7 @@ class Auth extends CI_Controller {
 				if($this->db->trans_status() === false){
 					$this->session->set_flashdata('error','<div class="alert alert-danger alert-dismissible" role="alert" style="text-align: justify;">
 												<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-												<strong>Ups! </strong>Registrasi gagal.
+												<strong>Ups! </strong>Registration failed.
 											</div>' );
 					echo "<script>window.location='".base_url('registrasi')."'</script>";
 				}
@@ -237,7 +237,7 @@ class Auth extends CI_Controller {
 					if($role==NULL){
 						$this->session->set_flashdata('error','<div class="alert alert-danger alert-dismissible" role="alert" style="text-align: justify;">
 															<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-															<strong>Ups! </strong>Akun Anda tidak dikenali sistem.
+															<strong>Ups! </strong>Your account is not recognized by the system.
 														</div>' );
 						echo "<script>window.location='".base_url()."'</script>";
 					}else{
@@ -261,7 +261,7 @@ class Auth extends CI_Controller {
 		if($cek==NULL){
 			$this->session->set_flashdata('error','<div class="alert alert-danger alert-dismissible" role="alert" style="text-align: justify;">
 													<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-													<strong>Ups! </strong>Email tidak terdaftar.
+													<strong>Ups! </strong>Email not registered.
 												</div>' );
 			echo "<script>window.location='".base_url()."'</script>";
 		}
