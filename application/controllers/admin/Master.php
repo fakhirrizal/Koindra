@@ -493,32 +493,45 @@ class Master extends CI_Controller {
 	public function update_student_data(){
 		$check = $this->Main_model->getSelectedData('student a', 'a.*','a.student_id="'.$this->input->post('student_id').'" AND md5(a.user_id) NOT IN ("'.$this->input->post('user_id').'")')->result();
 		if($check==NULL){
-			$this->db->trans_start();
+			$check2 = $this->Main_model->getSelectedData('user a', 'a.*','a.username="'.$this->input->post('fullname').'" AND md5(a.id) NOT IN ("'.$this->input->post('user_id').'")')->result();
+			if($check2==NULL){
+				$this->db->trans_start();
 
-			$data1 = array(
-				'student_id' => $this->input->post('student_id'),
-				'fullname' => $this->input->post('fullname'),
-				'mother' => $this->input->post('mother'),
-				'number_phone' => $this->input->post('number_phone'),
-				'mother_phone' => $this->input->post('mother_phone'),
-				'email' => $this->input->post('email'),
-				'school' => $this->input->post('school'),
-				'class' => $this->input->post('class'),
-				'passcode' => $this->input->post('passcode'),
-				'status' => $this->input->post('status')
-			);
-			// print_r($data1);
-			$this->Main_model->updateData('student',$data1,array('md5(user_id)'=>$this->input->post('user_id')));
+				$data1 = array(
+					'student_id' => $this->input->post('student_id'),
+					'fullname' => $this->input->post('fullname'),
+					'mother' => $this->input->post('mother'),
+					'number_phone' => $this->input->post('number_phone'),
+					'mother_phone' => $this->input->post('mother_phone'),
+					'email' => $this->input->post('email'),
+					'school' => $this->input->post('school'),
+					'class' => $this->input->post('class'),
+					'passcode' => $this->input->post('passcode'),
+					'status' => $this->input->post('status')
+				);
+				// print_r($data1);
+				$this->Main_model->updateData('student',$data1,array('md5(user_id)'=>$this->input->post('user_id')));
 
-			$this->Main_model->log_activity($this->session->userdata('id'),'Updating data',"Updating student data (".$this->input->post('fullname').")");
-			$this->db->trans_complete();
-			if($this->db->trans_status() === false){
-				$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data failed to change.<br /></div>' );
+				$data2 = array(
+					'username' => $this->input->post('fullname'),
+					'pass' => $this->input->post('mother')
+				);
+				// print_r($data2);
+				$this->Main_model->updateData('user',$data2,array('md5(id)'=>$this->input->post('user_id')));
+
+				$this->Main_model->log_activity($this->session->userdata('id'),'Updating data',"Updating student data (".$this->input->post('fullname').")");
+				$this->db->trans_complete();
+				if($this->db->trans_status() === false){
+					$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data failed to change.<br /></div>' );
+					echo "<script>window.location='".base_url()."admin_side/ubah_data_siswa/".$this->input->post('user_id')."'</script>";
+				}
+				else{
+					$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data has been changed successfully.<br /></div>' );
+					echo "<script>window.location='".base_url()."admin_side/siswa/'</script>";
+				}
+			}else{
+				$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>username already exist.<br /></div>' );
 				echo "<script>window.location='".base_url()."admin_side/ubah_data_siswa/".$this->input->post('user_id')."'</script>";
-			}
-			else{
-				$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data has been changed successfully.<br /></div>' );
-				echo "<script>window.location='".base_url()."admin_side/siswa/'</script>";
 			}
 		}else{
 			$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>dupilcate Student ID.<br /></div>' );
