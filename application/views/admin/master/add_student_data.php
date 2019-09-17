@@ -18,7 +18,7 @@
 	<div class="m-heading-1 border-green m-bordered">
 		<h3>Note</h3>
 		<p> 1. Fields with an asterisk (<font color = 'red'> * </font>) are required to be filled in. </p>
-		<p> 2. For <b> username </b> and <b> password </b> taken from the <b> Fullname </b> and <b> Mother's Name </b> fields. </p>
+		<p> 2. For <b>username</b> and <b>password</b> taken from the <b>Fullname</b> and <b>Mother's Name</b> fields. </p>
 	</div>
 	<div class="row">
 		<div class="col-md-12">

@@ -18,9 +18,9 @@
 		<p> Ukuran maksimal file : 3MB </p>
 		<p> Ketika mengklik <b>Atur Ulang Sandi</b>, maka kata sandi otomatis menjadi "<b>1234</b>"</p> -->
 		<p> Allowed extensions: xlsx </p>
-		<p> When importing data, fill in <b> No. Anggota </b> will be used as <b> username </b> and <b> password </b> to enter the system. </p>
+		<p> When importing data, fill in <b> Nama Lengkap </b> will be used as <b> username</b>, and <b> Nama Ibu </b> will be used as <b> password </b> to enter the system. </p>
 		<p> Maximum file size: 3MB </p>
-		<p> When clicking <b> Reset Password </b>, the password will automatically become "<b> 1234 </b>" </p>
+		<p> When clicking <b> Reset Password </b>, the password will automatically become "<b>1234</b>" </p>
 	</div>
 	<div class="row">
 		<div class="col-md-12">

@@ -19,7 +19,7 @@
 	<div class="m-heading-1 border-green m-bordered">
 		<h3>Note</h3>
 		<p> Fields with an asterisk (<font color = 'red'> * </font>) are required to be filled.</p>
-		<p> If the quota is unlimited then write "<b> Unlimited </b>" </p>
+		<p> If the quota is unlimited then write "<b>Unlimited</b>" </p>
 	</div>
 	<div class="row">
 		<div class="col-md-12">

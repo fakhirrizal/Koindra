@@ -376,71 +376,79 @@ class Master extends CI_Controller {
 			$loadexcel = $excelreader->load('data_upload/'.$namafile);
 			$sheet = $loadexcel->getActiveSheet()->toArray(null, true, true ,true);
 			$numrow = 1;
+			$pesan_error = '';
 			foreach($sheet as $row){
 				if($numrow > 1){
-					$check = $this->Main_model->getSelectedData('student a', 'a.*',array('student_id'=>$row['A']))->result();
-					if($check==NULL){
-						$user_id = $this->Main_model->getLastID('user','id');
+					if($row['A']==NULL OR $row['B']==NULL OR $row['D']==NULL){
+						$pesan_error .= 'Line '.$numrow.' is empty<br>';
+					}
+					else{
+						$check = $this->Main_model->getSelectedData('student a', 'a.*',array('student_id'=>$row['A']))->result();
+						if($check==NULL){
+							$user_id = $this->Main_model->getLastID('user','id');
 
-						$data1 = array(
-									'id' => $user_id['id']+1,
-									'username' => $row['A'],
-									'pass' => $row['A'],
-									'total_login' => '1',
-									'last_login' => date('Y-m-d H-i-s'),
-									'last_activity' => date('Y-m-d H-i-s'),
-									'login_attempts' => '1',
-									'last_login_attempt' => date('Y-m-d H-i-s'),
-									'is_active' => '1',
-									'created_at' => date('Y-m-d H:i:s'),
-									'created_by' => $this->session->userdata('id')
-								);
-						// print_r($data1);
-						$this->Main_model->insertData('user',$data1);
+							$data1 = array(
+										'id' => $user_id['id']+1,
+										// 'username' => $row['A'],
+										// 'pass' => $row['A'],
+										'username' => $row['B'],
+										'pass' => $row['D'],
+										'total_login' => '1',
+										'last_login' => date('Y-m-d H-i-s'),
+										'last_activity' => date('Y-m-d H-i-s'),
+										'login_attempts' => '1',
+										'last_login_attempt' => date('Y-m-d H-i-s'),
+										'is_active' => '1',
+										'created_at' => date('Y-m-d H:i:s'),
+										'created_by' => $this->session->userdata('id')
+									);
+							// print_r($data1);
+							$this->Main_model->insertData('user',$data1);
 
-						$data2 = array(
-							'user_id' => $user_id['id']+1,
-							'fullname' => $row['B'],
-							'address' => $row['C']
-						);
-						// print_r($data2);
-						$this->Main_model->insertData('user_profile',$data2);
+							$data2 = array(
+								'user_id' => $user_id['id']+1,
+								'fullname' => $row['B'],
+								'address' => $row['C']
+							);
+							// print_r($data2);
+							$this->Main_model->insertData('user_profile',$data2);
 
-						$data3 = array(
-							'user_id' => $user_id['id']+1,
-							'role_id' => '2',
-						);
-						// print_r($data3);
-						$this->Main_model->insertData('user_to_role',$data3);
+							$data3 = array(
+								'user_id' => $user_id['id']+1,
+								'role_id' => '2',
+							);
+							// print_r($data3);
+							$this->Main_model->insertData('user_to_role',$data3);
 
-						$data4 = array(
-							'student_id' => $row['A'],
-							'user_id' => $user_id['id']+1,
-							'fullname' => $row['B'],
-							'mother' => $row['D'],
-							'number_phone' => $row['E'],
-							'mother_phone' => $row['F'],
-							'email' => $row['G'],
-							'school' => $row['H'],
-							'class' => $row['I'],
-							'passcode' => $row['J']
-						);
-						// print_r($data4);
-						$this->Main_model->insertData('student',$data4);
+							$data4 = array(
+								'student_id' => $row['A'],
+								'user_id' => $user_id['id']+1,
+								'fullname' => $row['B'],
+								'mother' => $row['D'],
+								'number_phone' => $row['E'],
+								'mother_phone' => $row['F'],
+								'email' => $row['G'],
+								'school' => $row['H'],
+								'class' => $row['I'],
+								'passcode' => $row['J']
+							);
+							// print_r($data4);
+							$this->Main_model->insertData('student',$data4);
 
-						$data5 = array(
-							'user_id' => $user_id['id']+1
-						);
-						// print_r($data5);
-						$this->Main_model->insertData('status',$data5);
-					}else{
-						echo'';
+							$data5 = array(
+								'user_id' => $user_id['id']+1
+							);
+							// print_r($data5);
+							$this->Main_model->insertData('status',$data5);
+						}else{
+							$pesan_error .= 'Student ID '.$row['A'].' is already exist<br>';
+						}
 					}
 				}
 				$numrow++;
 			}
 			$this->Main_model->log_activity($this->session->userdata('id'),'Importing data',"Import student data");
-			$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data has been uploaded successfully.<br /></div>' );
+			$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data has been uploaded successfully.<br />'.$pesan_error.'</div>' );
 			echo "<script>window.location='".base_url()."admin_side/siswa/'</script>";
 		}else{
 			$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data failed to upload.<br /></div>' );

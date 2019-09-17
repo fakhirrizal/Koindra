@@ -1,4 +1,4 @@
-<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+ <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <ul class="page-breadcrumb breadcrumb">
 	<li>
 		<span>Master</span>
@@ -106,7 +106,7 @@
 										<option value=''>-- Choose --</option>
 										<?php
 										foreach ($data_sekolah as $key => $value2) {
-											if($value2->school_code=$value->school){
+											if($value2->school_code==$value->school){
 												echo '<option value="'.$value2->school_code.'" selected>'.$value2->school_name.'</option>';
 											}else{
 												echo '<option value="'.$value2->school_code.'">'.$value2->school_name.'</option>';
