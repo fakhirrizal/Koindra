@@ -19,6 +19,7 @@
 		<h3>Note</h3>
 		<p> 1. Fields with an asterisk (<font color = 'red'> * </font>) are required to be filled in. </p>
 		<p> 2. For <b>username</b> and <b>password</b> taken from the <b>Fullname</b> and <b>Mother's Name</b> fields. </p>
+		<p> 3. If the student status is other than "<b>Free Trial</b>", please change the <b>quota</b> and <b>expired date</b>, in the student data detail menu </p>
 	</div>
 	<div class="row">
 		<div class="col-md-12">

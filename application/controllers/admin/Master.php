@@ -329,17 +329,36 @@ class Master extends CI_Controller {
 			// print_r($data4);
 			$this->Main_model->insertData('student',$data4);
 
-			$data5 = array(
-				'user_id' => $user_id['id']+1
-			);
-			// print_r($data5);
-			$this->Main_model->insertData('status',$data5);
+			if($this->input->post('status')=='Free Trial'){
+				$expired_date = date('Y-m-d', strtotime('+14 days', strtotime(date('Y-m-d'))));
+				$data5 = array(
+					'user_id' => $user_id['id']+1,
+					'quota' => 'Unlimited',
+					'expired_date' => $expired_date
+				);
+				// print_r($data5);
+				$this->Main_model->insertData('status',$data5);
 
-			$data6 = array(
-				'user_id' => $user_id['id']+1
-			);
-			// print_r($data6);
-			$this->Main_model->insertData('cache',$data6);
+				$data6 = array(
+					'user_id' => $user_id['id']+1,
+					'quota' => 'Unlimited',
+					'expired_date' => $expired_date
+				);
+				// print_r($data6);
+				$this->Main_model->insertData('cache',$data6);
+			}else{
+				$data5 = array(
+					'user_id' => $user_id['id']+1
+				);
+				// print_r($data5);
+				$this->Main_model->insertData('status',$data5);
+
+				$data6 = array(
+					'user_id' => $user_id['id']+1
+				);
+				// print_r($data6);
+				$this->Main_model->insertData('cache',$data6);
+			}
 
 			$this->Main_model->log_activity($this->session->userdata('id'),'Creating data',"Creating student data (".$this->input->post('fullname').")");
 			$this->db->trans_complete();
@@ -383,7 +402,7 @@ class Master extends CI_Controller {
 						$pesan_error .= 'Line '.$numrow.' is empty<br>';
 					}
 					else{
-						$check = $this->Main_model->getSelectedData('student a', 'a.*',array('student_id'=>$row['A']))->result();
+						$check = $this->Main_model->getSelectedData('student a', 'a.*',array('a.student_id'=>$row['A'],'a.deleted'=>"0"))->result();
 						if($check==NULL){
 							$user_id = $this->Main_model->getLastID('user','id');
 
@@ -491,7 +510,7 @@ class Master extends CI_Controller {
 		$this->load->view('admin/template/footer');
 	}
 	public function update_student_data(){
-		$check = $this->Main_model->getSelectedData('student a', 'a.*','a.student_id="'.$this->input->post('student_id').'" AND md5(a.user_id) NOT IN ("'.$this->input->post('user_id').'")')->result();
+		$check = $this->Main_model->getSelectedData('student a', 'a.*','a.student_id="'.$this->input->post('student_id').'" AND a.deleted="0" AND md5(a.user_id) NOT IN ("'.$this->input->post('user_id').'")')->result();
 		if($check==NULL){
 			$check2 = $this->Main_model->getSelectedData('user a', 'a.*','a.username="'.$this->input->post('fullname').'" AND md5(a.id) NOT IN ("'.$this->input->post('user_id').'")')->result();
 			if($check2==NULL){
@@ -551,11 +570,11 @@ class Master extends CI_Controller {
 		$this->db->trans_complete();
 		if($this->db->trans_status() === false){
 			$this->session->set_flashdata('gagal','<div class="alert alert-warning"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Oops! </strong>data failed to change.<br /></div>' );
-			echo "<script>window.location='".base_url()."admin_side/detail_data_siswa/".md5($this->input->post('id'))."'</script>";
+			echo "<script>window.location='".base_url()."admin_side/detail_data_siswa/".md5($this->input->post('user_id'))."'</script>";
 		}
 		else{
 			$this->session->set_flashdata('sukses','<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert"><i class="ace-icon fa fa-times"></i></button><strong></i>Yeah! </strong>data has been changed successfully.<br /></div>' );
-			echo "<script>window.location='".base_url()."admin_side/detail_data_siswa/".md5($this->input->post('id'))."'</script>";
+			echo "<script>window.location='".base_url()."admin_side/detail_data_siswa/".md5($this->input->post('user_id'))."'</script>";
 		}
 	}
 	public function reset_password_student_account(){

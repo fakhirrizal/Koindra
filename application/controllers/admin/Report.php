@@ -98,6 +98,8 @@ class Report extends CI_Controller {
 							if($getquota->quota==NULL){
 								// echo $getquota->user_id;
 								echo'';
+							}elseif($getquota->quota=='Unlimited'){
+								echo'';
 							}else{
 								$this->Main_model->updateData('status',array('quota'=>($getquota->quota)-1),array('user_id'=>$get_student_id->user_id));}
 						}else{

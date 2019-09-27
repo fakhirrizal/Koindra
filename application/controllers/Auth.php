@@ -195,6 +195,7 @@ class Auth extends CI_Controller {
 					'email' => $this->input->post('email'),
 					'school' => $this->input->post('school'),
 					'class' => $this->input->post('class'),
+					'status' => 'Free Trial',
 					'passcode' => $this->input->post('passcode')
 				);
 				// print_r($data4);

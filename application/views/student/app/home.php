@@ -59,7 +59,7 @@
 			<a href="<?php echo site_url('student/riwayat_pembelian'); ?>"><img src="https://img.icons8.com/cotton/2x/invoice.png" alt="Riwayat Transaksi" title="Riwayat Transaksi" width='200px' height='200px'></a>
 		</div>
 		<div class="col-md-4" style='text-align:center;'><h3>Attendance Data</h3>
-			<a href="<?php echo site_url('student/laporan_kehadiran'); ?>"><img src="http://jplussolution.com/sca/img/attend.png" alt="Laporan Kehadiran" title="Laporan Kehadiran" width='200px' height='200px'></a>
+			<a href="<?php echo site_url('student/laporan_kehadiran'); ?>"><img src="http://pluspng.com/img-png/png-for-attendance--256.png" alt="Laporan Kehadiran" title="Laporan Kehadiran" width='200px' height='200px'></a>
 		</div>
 	</div>
 	<!-- <div class="row">
