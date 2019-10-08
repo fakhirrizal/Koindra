@@ -70,4 +70,16 @@ class Cronjob extends CI_Controller {
 			}
 		}
 	}
+	public function cek_masa_aktif(){
+		$check = $this->db->query("SELECT a.* FROM status a WHERE a.expired_date < '".date('Y-m-d')."'")->result();
+		foreach ($check as $key => $value) {
+			if($value->quota=='Unlimited'){
+				$this->Main_model->updateData('status',array('quota'=>'0'),array('user_id'=>$value->user_id));
+			}elseif($value->quota>=0){
+				$this->Main_model->updateData('status',array('quota'=>'0'),array('user_id'=>$value->user_id));
+			}else{
+				echo'';
+			}
+		}
+	}
 }
