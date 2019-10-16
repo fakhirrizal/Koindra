@@ -111,7 +111,7 @@
 								</ul>
 								<div class="tab-content">
 									<div class="tab-pane active" id="tab_15_1">
-										<table class="table table-striped table-bordered table-hover order-column" id="sample_1">
+										<table class="table table-striped table-bordered table-hover order-column" id="tabel-data">
 											<thead>
 												<tr>
 													<th style="text-align: center;" width="4%"> # </th>
@@ -137,6 +137,11 @@
 												?>
 											</tbody>
 										</table>
+										<script>
+											$(document).ready(function(){
+												$('#tabel-data').DataTable();
+											});
+										</script>
 									</div>
 									<div class="tab-pane" id="tab_15_2">
 										<table class="table table-striped table-bordered table-hover order-column" id="sample_2">
